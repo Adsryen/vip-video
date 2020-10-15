@@ -1,0 +1,460 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+<link rel="stylesheet" href="../css/zhibo.css">
+
+<title>title</title>
+</head>
+<body>
+<div id="aui-slide">
+    <div id="slidebox" class="aui-slide-wrap">
+      <div class="aui-slide-node bg-dark">
+          <img src="../image/ysdt.jpg" />
+      </div>
+
+
+    </div>
+    <div class="aui-slide-page-wrap"></div>
+  </div>
+	<section class="aui-flexView">
+
+	            <section class="aui-scrollView">
+
+
+
+
+
+
+	                <div class="aui-tab">
+	                    <div class="tab-panel">
+	                        <div class="tab-panel-item tab-active">
+	                            <div class="tab-item">
+	                                <a  onClick="vList()" class="aui-flex b-line">
+	                                    <div class="aui-flex-iphone">
+	                                        <img src="../image/app/dianying.png" alt="">
+	                                    </div>
+	                                    <div class="aui-flex-box">
+																				<p>
+																						<em class="aui-group-three"> 明星影视轮播</em>
+																				</p>
+	                                        <h3>经典影视</h3>
+	                                        <p>
+	                                            <em class="aui-group-one">24小时轮播</em> <em class="aui-group-two">经典热门大片</em>
+	                                        </p>
+
+	                                    </div>
+	                                    <div class="aui-flex-support">在线影院</div>
+	                                </a>
+
+
+																	<a  onClick="tvList()" class="aui-flex b-line">
+	                                    <div class="aui-flex-iphone">
+	                                        <img src="../image/app/tv.png" alt="">
+	                                    </div>
+	                                    <div class="aui-flex-box">
+																				<p>
+																						<em class="aui-group-three"> 全国电视直播</em>
+																				</p>
+	                                        <h3>在线收看高清CCTV、卫视</h3>
+	                                        <p>
+	                                            <em class="aui-group-one">实时更新</em> <em class="aui-group-two">电视TV</em>
+	                                        </p>
+
+	                                    </div>
+	                                    <div class="aui-flex-support">在线观看</div>
+	                                </a>
+
+
+
+																	<a  onClick="gameList()" class="aui-flex b-line">
+																			<div class="aui-flex-iphone">
+	                                        <img src="../image/app/game.png" alt="">
+																			</div>
+																			<div class="aui-flex-box">
+																				<p>
+																						<em class="aui-group-three"> 游戏在线直播</em>
+																				</p>
+																					<h3>各类游戏在线直播 </h3>
+																					<p>
+																							<em class="aui-group-one">实时更新</em> <em class="aui-group-two">知名主播</em>
+																					</p>
+
+																			</div>
+																			<div class="aui-flex-support">游戏直播</div>
+																	</a>
+
+																	<!-- <a onClick="girlxiezhenList()" class="aui-flex b-line">
+																			<div class="aui-flex-iphone">
+																					<img src="../image/app/meinvxiezhen.png" alt="">
+																			</div>
+																			<div class="aui-flex-box">
+																				<p>
+																						<em class="aui-group-three"> 美女写真视频</em>
+																				</p>
+																					<h3>海量美女写真视频</h3>
+																					<p>
+																							<em class="aui-group-one">不定时更新</em> <em class="aui-group-two">狼友福利</em>
+																					</p>
+
+																			</div>
+																			<div class="aui-flex-support">在线点播</div>
+																	</a> -->
+
+																	<a onClick="xiaoshuoList()" class="aui-flex b-line">
+																		<div class="aui-flex-iphone">
+																				<img src="../image/timg.jpg" alt="">
+																		</div>
+																		<div class="aui-flex-box">
+																			<p>
+																					<em class="aui-group-three"> 全网小说</em>
+																			</p>
+																				<h3>免费小说在线观看</h3>
+																				<p>
+																						<em class="aui-group-one">实时更新</em> <em class="aui-group-two">全网火热</em>
+																				</p>
+
+																		</div>
+																		<div class="aui-flex-support">看小说</div>
+																</a>
+																<a onClick="yinyue()" class="aui-flex b-line">
+																		<div class="aui-flex-iphone">
+																				<img src="../image/app/music.jpg" alt="">
+																		</div>
+																		<div class="aui-flex-box">
+																			<p>
+																					<em class="aui-group-three"> 全网音乐</em>
+																			</p>
+																				<h3>全网音乐免费下载</h3>
+																				<p>
+																						<em class="aui-group-one">实时更新</em> <em class="aui-group-two">无损音质</em>
+																				</p>
+
+																		</div>
+																		<div class="aui-flex-support">听音乐</div>
+																</a>
+
+																		<a onClick="douyinList()" class="aui-flex b-line">
+																		<div class="aui-flex-iphone">
+																				<img src="../image/douying.png" alt="">
+																		</div>
+																		<div class="aui-flex-box">
+																			<p>
+																					<em class="aui-group-three"> 热门抖音</em>
+																			</p>
+																				<h3>抖音美女在线观看</h3>
+																				<p>
+																						<em class="aui-group-one">实时更新</em> <em class="aui-group-two">全网火热</em>
+																				</p>
+
+																		</div>
+																		<div class="aui-flex-support">看抖音</div>
+																</a>
+
+
+
+	                            </div>
+	                        </div>
+
+
+	                    </div>
+	                </div>
+
+	            </section>
+
+	        </section>
+
+</body>
+
+<script type="text/javascript">
+
+
+  apiready = function(){
+
+
+				//下拉刷新
+							api.setCustomRefreshHeaderInfo({
+								bgColor: '#fff',
+								images: [
+									'widget://image/app/xiala/1.png',
+				              'widget://image/app/xiala/2.png',
+				              'widget://image/app/xiala/3.png',
+				              'widget://image/app/xiala/4.png',
+				              'widget://image/app/xiala/5.png',
+				              'widget://image/app/xiala/6.png',
+				              'widget://image/app/xiala/7.png',
+				              'widget://image/app/xiala/8.png',
+								],
+								tips: {
+									pull: '你…你想干什么！你不要过来！',
+									threshold: '讨厌 快放开我 非礼呀！',
+									load: '欣然影视 享受生活'
+								}
+
+							}, function() {
+								//下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+								setTimeout(function() {
+									api.refreshHeaderLoadDone()
+								}, 3000);
+							});
+							//下拉刷新
+
+
+
+  }
+
+
+  function vList(){
+  var delay = 0;
+  if(api.systemType != 'ios'){
+      delay = 300;
+  }
+  api.openWin({
+      name: 'v_list_win',
+      url: 'v_list_win.html',
+      bounces:false,
+      delay: delay,
+      slidBackEnabled:true,
+      vScrollBarEnabled:false,
+  });
+}
+
+function tvList(){
+  var delay = 0;
+  api.openWin({
+      name: 'tv_list_win',
+      url: 'tv_list_win.html',
+      bounces:false,
+      delay: delay,
+      slidBackEnabled:true,
+      vScrollBarEnabled:false,
+  });
+}
+
+function mnList(){
+	var delay = 0;
+	api.openWin({
+			name: 'v_mn_win',
+			url: 'v_mn_win.html',
+			bounces:false,
+			delay: delay,
+			slidBackEnabled:true,
+			vScrollBarEnabled:false,
+	});
+}
+
+
+function zhiboList(){
+	var delay = 0;
+	api.openWin({
+			name: 'zhibo_win',
+			url: 'zhibo_win.html',
+			bounces:false,
+			delay: delay,
+			slidBackEnabled:true,
+			vScrollBarEnabled:false,
+	});
+}
+
+function gameList(){
+	var delay = 0;
+	api.openWin({
+			name: 'game_list_win',
+			url: 'game_list_win.html',
+			bounces:false,
+			delay: delay,
+			slidBackEnabled:true,
+			vScrollBarEnabled:false,
+	});
+}
+
+
+
+
+function girlList(){
+	var delay = 0;
+	api.toast({
+			msg: '暂时下线',
+			duration: 5000
+	});
+}
+
+function girlxiezhenList(){
+	var delay = 0;
+	api.openWin({
+			name: 'v_mn_win',
+			url: 'v_mn_win.html',
+			bounces:false,
+			delay: delay,
+			slidBackEnabled:true,
+			vScrollBarEnabled:false,
+	});
+}
+
+function fenlei(){
+	var delay = 0;
+	api.openWin({
+			name: 'fenlei_win',
+			url: 'fenlei_win.html',
+			bounces:false,
+			delay: delay,
+			slidBackEnabled:true,
+			vScrollBarEnabled:false,
+	});
+}
+
+function xiaoshuoList(){
+	var delay = 0;
+	api.openWin({
+			name: 'xiaoshuo_win',
+			url: 'xiaoshuo_win.html',
+			bounces:false,
+			delay: delay,
+			slidBackEnabled:true,
+			vScrollBarEnabled:false,
+	});
+}
+//////////////////////   打开抖音写真视频列表  方法    girlxiezhenList     E //////////////////////
+
+function douyinList(){
+	var delay = 0;
+	api.openWin({
+			name: 'douyin_win',
+			url: 'douyin_win.html',
+			bounces:false,
+			delay: delay,
+			slidBackEnabled:true,
+			vScrollBarEnabled:false,
+	});
+}
+
+function yinyue(){
+	var delay = 0;
+	api.openWin({
+			name: 'yinyue_win',
+			url: 'yinyue_win.html',
+			bounces:false,
+			delay: delay,
+			slidBackEnabled:true,
+			vScrollBarEnabled:false,
+	});
+}
+
+function zhibohezi(){
+	var delay = 0;
+	api.openWin({
+			name: 'zhibo_win',
+			url: 'zhibo_win.html',
+			bounces:false,
+			delay: delay,
+			slidBackEnabled:true,
+			vScrollBarEnabled:false,
+	});
+}
+
+
+  function openWin(name){
+      var time = localStorage.getItem('user_time');
+      var user_id = localStorage.getItem('user_id');
+      var username = localStorage.getItem('user_name');
+      var timestamp = Date.parse(new Date())/1000;
+      if(user_id==0){
+        api.alert({
+            title: '温馨提示',
+            msg: '请先登陆后使用',
+        });
+        api.openWin({
+            name: 'login',
+            url: 'login.html',
+            delay: 300
+        });
+        return;
+
+      }
+
+      if (time>timestamp) {
+
+
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+            name: ''+name+'',
+            url: ''+name+'.html',
+            delay: 800,
+            bgColor: '#000000'
+        });
+
+      }else if (time<timestamp){
+        var dialogBox = api.require('dialogBox');
+        dialogBox.alert({
+            texts: {
+                content: '您的VIP会员已过期，请及时续费！',
+                leftBtnTitle: '在想想',
+                rightBtnTitle: '去开通'
+            },
+            styles: {
+                bg: '#fff',
+                w: 300,
+                content: {
+                    color: '#000',
+                    size: 14
+                },
+                left: {
+                    marginB: 7,
+                    marginL: 20,
+                    w: 130,
+                    h: 35,
+                    corner: 2,
+                    bg: '#ff7600',
+                    color: '#fff',
+                    size: 14
+                },
+                right: {
+                    marginB: 7,
+                    marginL: 10,
+                    w: 130,
+                    h: 35,
+                    corner: 2,
+                    bg: '#ff7600',
+                    color: '#fff',
+                    size: 14
+                }
+            }
+        }, function(ret) {
+            if (ret.eventType == 'left') {
+                var dialogBox = api.require('dialogBox');
+                dialogBox.close({
+                    dialogName: 'alert'
+                });
+            }else if (ret.eventType == 'right') {
+              api.openWin({
+                  name: 'open_vip_win',
+                  url: './open_vip_win.html',
+                  delay: 300
+              });
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+            }
+        });
+      }
+
+    }
+
+
+
+			     function fnRefreshHeaderLoading() {
+			         api.refreshHeaderLoading();
+			     };
+
+
+
+
+</script>
+</html>

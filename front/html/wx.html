@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="tephone=no,email=no,date=no,address=no">
+		<style type="text/css">
+			html{ background-color: white; }
+			header{ border-bottom: 1px solid #ccc; padding: 25px 0; }
+			span {
+				padding: 5px 15px;
+				margin: 10px;
+				display: inline-block;
+				background-color: #e8e8e8;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>wx</h1>
+			<mark>
+				使用前请详细阅读文档使用规则
+			</mark>
+			<hr />
+			<br />
+		</header>
+		<span tapmode onclick="isInstalled()"> isInstalled() </span>
+		<span tapmode onclick="shareText()"> shareText() </span>
+		<span tapmode onclick="shareImage('session')"> shareImage('session') </span>
+		<span tapmode onclick="shareImage('timeline')"> shareImage('timeline') </span>
+		<span tapmode onclick="shareImage('favorite')"> shareImage('favorite') </span>
+		<span tapmode onclick="shareMusic('session')"> shareMusic('session') </span>
+		<span tapmode onclick="shareMusic('timeline')"> shareMusic('timeline') </span>
+		<span tapmode onclick="shareMusic('favorite')"> shareMusic('favorite') </span>
+		<span tapmode onclick="shareVideo('session')"> shareVideo('session') </span>
+		<span tapmode onclick="shareVideo('timeline')"> shareVideo('timeline') </span>
+		<span tapmode onclick="shareVideo('favorite')"> shareVideo('favorite') </span>
+		<span tapmode onclick="shareWebpage('session')"> shareWebpage('session') </span>
+		<span tapmode onclick="shareWebpage('timeline')"> shareWebpage('timeline') </span>
+		<span tapmode onclick="shareWebpage('favorite')"> shareWebpage('favorite') </span>
+		<!--<span tapmode onclick="auth()"> auth </span>
+		<span tapmode onclick="getToken()"> getToken </span>
+		<span tapmode onclick="getUserInfo()"> getUserInfo </span>
+		<span tapmode onclick="refreshToken()"> refreshToken </span>-->
+		<span tapmode onclick="shareMutableImg()"> shareMutableImg (此接口仅Android可用)</span>
+		<p>登录类接口，需要在微信开放平台交300元，认证微信开发者后，申请微信登录能力。故此demo没有演示此类接口。</p>
+	</body>
+	<script type="text/javascript">
+		var wx;
+		apiready = function() {
+			wx = api.require('wx');
+		};
+		function isInstalled() {
+			wx.isInstalled(function(ret, err) {
+				if (ret.installed) {
+					alert(JSON.stringify(ret))
+				} else {
+					alert(JSON.stringify(err))
+				}
+			});
+		}
+
+		function shareText() {
+			wx.shareText({
+				apiKey : '',
+				scene : 'timeline',
+				text : '我分享的文本'
+			}, function(ret, err) {
+				if (ret.status) {
+					alert(JSON.stringify(ret))
+				} else {
+					alert(JSON.stringify(err))
+				}
+			});
+		}
+
+		function shareImage(Vscene) {
+			wx.shareImage({
+				apiKey : '',
+				scene : Vscene,
+				thumb : 'widget://res/iconfont-touxiang.png',
+				contentUrl : "widget://res/8.jpg"
+			}, function(ret, err) {
+				if (ret.status) {
+					alert(JSON.stringify(ret))
+				} else {
+					alert(JSON.stringify(err))
+				}
+			});
+		}
+
+		function shareMusic(Vscene) {
+			wx.shareMusic({
+				apiKey : '',
+				scene : Vscene,
+				title : '分享音乐',
+				description : '分享音乐的描述',
+				thumb : 'widget://res/iconfont-touxiang.png',
+				musicDataUrl : "http://docs.apicloud.com/test/m.mp3",
+				contentUrl : 'http://www.baidu.com'
+			}, function(ret, err) {
+				if (ret.status) {
+					alert(JSON.stringify(ret))
+				} else {
+					alert(JSON.stringify(err))
+				}
+			});
+		}
+
+		function shareVideo(Vscene) {
+			wx.shareVideo({
+				apiKey : '',
+				scene : Vscene,
+				title : '分享视频',
+				description : '分享视频的描述',
+				thumb : 'widget://res/iconfont-touxiang.png',
+				contentUrl : 'http://www.youku.com/'
+			}, function(ret, err) {
+				if (ret.status) {
+					alert(JSON.stringify(ret))
+				} else {
+					alert(JSON.stringify(err))
+				}
+			});
+		}
+
+		function shareWebpage(Vscene) {
+			wx.shareWebpage({
+				apiKey : '',
+				scene : Vscene,
+				title : '分享网页的标题',
+				description : '分享网页的描述',
+				thumb : 'widget://res/iconfont-touxiang.png',
+				contentUrl : 'http://www.apicloud.com'
+			}, function(ret, err) {
+				if (ret.status) {
+					alert(JSON.stringify(ret))
+				} else {
+					alert(JSON.stringify(err))
+				}
+			});
+		}
+
+
+// 登录类接口，需要在微信开放平台交300元，认证微信开发者后，申请微信登录能力。
+		function auth() {
+			wx.auth({
+				apiKey : ''
+			}, function(ret, err) {
+				if (ret.status) {
+					alert(JSON.stringify(ret));
+				} else {
+					alert(JSON.stringify(err))
+				}
+			});
+		}
+
+		function getToken() {
+			wx.getToken({
+				apiKey : '',
+				apiSecret : '',
+				code : "12346857684"
+			}, function(ret, err) {
+				if (ret.status) {
+					alert(JSON.stringify(ret));
+				} else {
+					alert(JSON.stringify(err))
+				}
+			});
+		}
+
+		function getUserInfo() {
+			wx.getUserInfo({
+				accessToken : '',
+				openId : ''
+			}, function(ret, err) {
+				if (ret.status) {
+					alert(JSON.stringify(ret));
+				} else {
+					alert(JSON.stringify(err))
+				}
+			});
+		}
+
+		function refreshToken() {
+			wx.refreshToken({
+				apiKey : '',
+				dynamicToken : ''
+			}, function(ret, err) {
+				if (ret.status) {
+					alert(JSON.stringify(ret));
+				} else {
+					alert(JSON.stringify(err))
+				}
+			});
+		}
+
+		function shareMutableImg() {
+			wx.shareMutableImg({
+				description : 'weixin share image test description',
+				imgs : ['widget://res/girl.png', 'widget://res/8.jpg', 'widget://res/6.jpg']
+			});
+		}
+	</script>
+</html>

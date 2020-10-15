@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+</head>
+<body>
+  <div class="myui-jifen-box">
+    <div class="myui-jifen-1">
+      <h1 id="sign"></h1>当前积分
+    </div>
+    <div class="myui-jifen-bt">
+      <div class="my-jien-btn aui-btn aui-btn-info aui-btn-block aui-btn-sm" tapmode onclick="openWin('share_win')">获取积分</div>
+    </div>
+    <div id="bili" class="myui-jifen-2">  </div>
+
+<br>
+
+    <div class="aui-bar aui-bar-btn" style="width:60%; " type="count" id="demo">
+        <div class="aui-bar-btn-item aui-font-size-20">
+            <i class="aui-iconfont aui-icon-minus"></i>
+        </div>
+        <div class="aui-bar-btn-item">
+            <input type="number" class="aui-input aui-text-center" id="count" value="1">
+        </div>
+        <div class="aui-bar-btn-item aui-font-size-20">
+            <i class="aui-iconfont aui-icon-plus"></i>
+        </div>
+    </div>
+    <div class="myui-jifen-bt">
+      <div class="my-jien-btn aui-btn aui-btn-info aui-btn-block aui-btn-sm" tapmode onclick="exchange()">确认兑换（天）</div>
+    </div>
+
+  </div>
+
+
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../script/auitab.js" ></script>
+<script type="text/javascript">
+  var api_url = localStorage.getItem('api_url');
+
+  apiready = function(){
+
+    api.parseTapmode();
+    api.showProgress({
+        title: '正在刷新',
+        text: '请稍等...',
+        modal: false
+    });
+
+
+
+    api.ajax({
+        url: api_url+'/login/login/sign.html',
+        method: 'get',
+        data: {
+            values: {
+                uid: localStorage.getItem('user_id')
+            }
+        }
+    },function(ret, err){
+        if (ret) {
+            var sign = $api.byId('sign');
+            sign.innerHTML = ret.msg['share'];
+
+        } else {
+          api.hideProgress();
+          /*
+            alert('网络错误');
+        */
+            api.toast({
+                msg: '网络错误',
+                duration: 5000
+            });
+
+
+        }
+    });
+
+    api.ajax({
+        url: api_url+'/login/login/share.html',
+        method: 'get',
+        data: {
+            values: {
+                uid: localStorage.getItem('user_id')
+            }
+        }
+    },function(ret, err){
+        if (ret) {
+          var bili = $api.byId('bili');
+          jifenbi = ret.sign;
+          bili.innerHTML = ret.sign+'积分即可兑换1天会员';
+          api.hideProgress();
+
+        } else {
+          api.hideProgress();
+          /*
+          alert('获取失败');
+          */
+          api.toast({
+              msg: '获取失败',
+              duration: 5000
+          });
+
+        }
+    });
+  }
+
+  var jifenbi = '';
+
+
+  function exchange(){
+    var share = $api.val($api.byId('count'));
+
+    api.ajax({
+        url: api_url+'/login/login/exchange.html',
+        method: 'get',
+        data: {
+            values: {
+                uid: localStorage.getItem('user_id'),
+                share:share*jifenbi
+            }
+        }
+    },function(ret, err){
+        if (ret) {
+            if (ret.code == 0) {
+              api.toast({
+                  msg: ret.msg,
+                  duration: 5000
+              });
+
+            }else {
+              getTime();
+              /*
+              alert( '成功兑换'+share+'天会员' );
+              */
+              api.toast({
+                  msg: '成功兑换'+share+'天会员',
+                  duration: 10000
+              });
+
+            }
+
+        } else {
+          api.hideProgress();
+          /*
+            alert( '网络错误' );
+            */
+            api.toast({
+                msg: '网络错误',
+                duration: 5000
+            });
+
+        }
+    });
+  }
+
+
+  //重新获取到期时间
+  function getTime(){
+    api.ajax({
+        url: api_url+'/login/login/veifys.html',
+        method: 'get',
+        data: {
+            values: {
+                username: localStorage.getItem('user_name'),
+                passwd: localStorage.getItem('password'),
+                imei:api.deviceId
+            }
+        }
+    },function(ret, err){
+        if (ret) {
+          if (ret.code == 0) {
+            api.hideProgress();
+            alert('不明错误 请重新登录');
+          }else if (ret.code == 1) {
+              localStorage.setItem('user_time',ret.msg['time']);
+              api.sendEvent({
+                name: 'newLoingdata',
+                extra: {
+                }
+              });
+          }
+        } else {
+          api.hideProgress();
+          alert('网络错误！');
+        }
+    });
+  }
+
+
+  var bar = document.querySelectorAll(".aui-bar-btn");
+    if(bar){
+        for(var i=0; i<bar.length;i++){
+            var d = bar[i];
+            var tab = new auiTab({
+                element:bar[i],
+                repeatClick:true
+            },function(ret){
+                //alert( JSON.stringify( ret ) );
+                if(ret.dom.parentNode.getAttribute("type") && ret.dom.parentNode.getAttribute("type")=="count"){
+                    var count = parseInt(document.getElementById("count").value);
+                    if(ret.index==2)return;
+                    if(ret.index==1){
+                      if (document.getElementById("count").value<=1) {
+                        return;
+                      }
+                        document.getElementById("count").value = count-1;
+                    }
+                    if(ret.index==3){
+                        document.getElementById("count").value = count+1;
+                    }
+                }
+            });
+
+        }
+    }
+
+
+
+  function openWin(name){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+            name: ''+name+'',
+            url: ''+name+'.html',
+            bounces:false,
+            delay: delay,
+            slidBackEnabled:true,
+            vScrollBarEnabled:false
+        });
+    }
+</script>
+</html>

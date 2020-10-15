@@ -1,0 +1,15 @@
+1.播放器目录必须存在一个默认文档，是WEB服务指定的默认文档名，例如：index.html,index.php
+
+
+2. 必须加载class.min.js，调用代码：
+
+ <script type="text/javascript"  src="../../include/class.min.js" ></script>
+
+
+代码例子：
+
+ <script type="text/javascript">
+       
+  var url=Base64.decode(_GET('url'));              //取得解密url地址
+     
+ </script>

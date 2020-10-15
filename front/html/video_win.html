@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <title>title</title>
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+      <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+      <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+      <style>
+          body{
+
+          }
+          .error{
+          	padding-top:4rem;
+          	font-size: 0.7rem;
+              margin: 1.1rem 0 0;
+              color: #666666;
+              font: 20px/1.5 'Microsoft YaHei',arial,tahoma,\5b8b\4f53,sans-serif;
+              text-align:center;
+          }
+          .error i{
+          	font-size:6rem;
+          }
+      </style>
+  </head>
+  <body>
+
+
+
+<header class="aui-navBar aui-navBar-fixed" style="background: #fff;" id="header" >
+
+
+                <a   onclick="ios_inwin('closeWin')" class="aui-navBar-item-db"  >
+              <i class="icon icon-back"></i>
+
+                </a>
+
+  							<a  onclick="ios_inwin('tuichu')"  class="aui-navBar-item-s"  style="color: #c4c4c4;"  >
+  							<i class="icon icon-Close-b"></i>关闭
+  								</a>
+
+								<div class="aui-center">
+										<span class="aui-center-title"   id="title">欣然影视</span>
+								</div>
+				<!-- <a   onclick="ios_inwin('shuaxin')" tapmode  class="aui-navBar-item" style="color: #FF00FF; position: absolute;right: 90px;"  >
+						 	<i class="icon icon-blackRefresh"></i>刷新
+								</a> -->
+								<a   onclick="ios_inwin('shuaxin')" tapmode  class="aui-navBar-item" style="color: #FF00FF; "  >
+						 	<i class="icon icon-bofang"></i>刷新
+								</a> 
+
+						</header>
+
+
+
+
+    <div id="err"></div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+      var dataurl = '';
+      var dataurl2 = '';
+      var qiyiurl = '';
+      var dcode = 1;
+      var onoff = true;
+      var jx_url1 = localStorage.getItem('jx_url1');
+      var jx_url2 = localStorage.getItem('jx_url2');
+      var need_go_away = false;
+
+	var browser;
+	var page_title = "";
+
+
+      apiready = function(){
+
+        //
+        var api_url = localStorage.getItem('api_url');
+
+api.parseTapmode();
+$api.fixStatusBar(header);
+var headerPos = $api.offset(header);
+var body_h = $api.offset($api.dom('body')).h;
+
+
+var user_id = localStorage.getItem('user_id');
+if (user_id>1) {
+
+  api.ajax({
+      url: api_url+'/login/login/imei.html',
+      method: 'get',
+      data: {
+          values: {
+              uid: user_id
+          }
+      }
+  },function(ret, err){
+      if (ret) {
+        localStorage.setItem('jx_url1',ret.msg.url1);
+        localStorage.setItem('jx_url2',ret.msg.url2);
+        localStorage.setItem('jx_url3',ret.msg.url3);
+        localStorage.setItem('jx_url4',ret.msg.url4);
+        localStorage.setItem('jx_url5',ret.msg.url5);
+        localStorage.setItem('jx_url6',ret.msg.url6);
+        localStorage.setItem('jx_url7',ret.msg.url7);
+        localStorage.setItem('jx_url8',ret.msg.url8);
+        localStorage.setItem('jx_url9',ret.msg.url9);
+		localStorage.setItem('jx_url10',ret.msg.url10);
+
+
+          if (ret.msg.imei!=api.deviceId) {
+            localStorage.setItem('user_id','');
+            localStorage.setItem('user_name','');
+            localStorage.setItem('user_time','');
+            api.sendEvent({
+              name: 'newLoingdata',
+              extra: {
+              }
+            });
+
+            api.closeWin({
+            });
+
+            api.alert({
+                title: '您已在其他设备登陆！账号已强制下线',
+                msg: '请重新登陆',
+            });
+            return;
+          }
+      } else {
+
+
+
+      }
+  });
+}
+api.addEventListener({
+    name: 'keyback'
+}, function(ret, err) {
+  api.hideProgress();
+  api.setScreenOrientation({
+      orientation: 'portrait_up'
+  });
+  var browser = api.require('webBrowser');
+  browser.historyBack(
+    function(ret, err) {
+        if (!ret.status) {
+            api.closeWin();
+        }
+    }
+  );
+});
+
+        api.parseTapmode();
+        //$api.fixStatusBar($api.dom('.header'));
+        data=api.pageParam;
+
+
+        api.openFrame({
+            name: 'video_frame',
+            url: api.pageParam.url,
+            progress:{
+              type:"page",
+              color:"#6dd26d"
+            },
+            bgColor:'widget://icon/an.png',
+            softInputMode:'pan',
+            rect: {
+                x: 0,
+                y: $api.offset($api.byId('header')).h,
+                w: 'auto',
+                h: 'auto'
+            }
+        });
+
+        ios_inwin=function(n){
+          if(n=='closeWin'){
+                api.historyBack({
+              frameName: 'video_frame'
+          }, function(ret, err) {
+              if (!ret.status) {
+                api.closeWin({
+                  name: 'video_win'
+                });
+              }
+          });
+        }else if(n=='shuaxin'){
+          var jsfuns='history.go(0);';
+          api.execScript({
+          frameName: 'video_frame',
+          script: jsfuns
+        });
+      }else if(n=='tuichu'){
+        api.closeWin({
+           name: 'video_win'
+       });
+      }
+    };
+var connectionType=api.connectionType;
+
+
+    api.setFrameClient({
+      frameName: 'video_frame'
+  }, function(ret, err) {
+      console.log("9900##" + JSON.stringify(ret));
+      switch (ret.state) {
+
+          case 2:setTimeout(function(){videojs()},1000);
+
+                  dataurl = ret.url;
+        dataurl2 = dataurl;
+        //alert(dataurl2);
+        var txurlc = dataurl2.split(":");
+        var txurl = txurlc[1].slice(0,12);
+        var ykurl = txurlc[1].slice(0,13);
+        var ykdata = txurlc[1].slice(13);
+        var funurl = txurlc[1].slice(0,11);
+        //alert(ykurl);
+
+        if (ykurl=='//m.youku.com') {
+
+          var txurlc = dataurl2.split(":");
+          var ykurl = txurlc[1].slice(0,13);
+          var ykdata = txurlc[1].slice(13);
+          dataurl2 = 'http://www.youku.com'+ykdata;
+      }else {
+
+      }
+      if (ykurl=='//m.iqiyi.com') {
+
+        var txurlc = dataurl2.split(":");
+        var ykurl = txurlc[1].slice(0,13);
+        var ykdata = txurlc[1].slice(13);
+        dataurl2 = 'https://www.iqiyi.com'+ykdata;
+
+      }else {
+
+      }
+      if (txurl=='//m.v.qq.com') {
+        var txdata = dataurl2;
+        var txget = new winsx(dataurl2);
+        var vid = getParam('vid');
+        var txdata2 = dataurl2.split("?");
+        var cid = txdata2[0].slice(-20,-5)
+        //alert(vid);
+
+        if (vid.length == 11) {
+          dataurl2 = 'https://v.qq.com/x/cover/'+cid+'/'+vid+'.html';
+
+        }else {
+          dataurl2 = 'https://v.qq.com/x/cover/'+cid+'.html';
+
+        }
+
+      }else {
+
+      }
+      if (ykurl=='//m.le.com/vp') {
+        var leurlc = dataurl2.split("_");
+        var leurl = leurlc[1];
+        dataurl2 = 'http://www.le.com/ptv/vplay/'+leurl;
+      }else {
+
+      }
+      var txdeurl = dataurl2.split(":");
+      var detxurl = txdeurl[1].slice(0,29);
+      if (detxurl == '//v.qq.com/x/cover/.v.qq.com/') {
+        dataurl2 = 'https://v.qq.com/';
+      }else {
+
+      }
+
+      var bturl = dataurl2.split(":");
+      var feurl = bturl[1];
+      if (feurl.slice(0,18) == '//www.iqiyi.com/v_'||feurl.slice(0,19) == '//v.qq.com/x/cover/'||feurl.slice(0,17) == '//m.tv.sohu.com/v'||feurl.slice(0,23) == '//m.film.sohu.com/album'||feurl.slice(0,14) == '//m.mgtv.com/b'||feurl.slice(0,21) == '//www.youku.com/video'||feurl.slice(0,22) == '//www.le.com/ptv/vplay'||feurl.slice(0,30) == '//www.wasu.cn/wap/play/show/id'||feurl.slice(0,30) == '//www.wasu.cn/wap/Play/show/id'||feurl.slice(0,17) == '//m.pptv.com/show'||feurl.slice(0,60) == '//m.miguvideo.com/wap/resource/migu/miguH5/detail/detail.jsp') {
+
+        if (!onoff) {
+          return;
+        }
+      }else {
+
+      }
+          	break;
+          case 4:
+          	//if(connectionType!='wifi'){setTimeout(function(){videojs()},3000)};
+          	videojs();
+          	if(need_go_away){
+          		dataurl2 = ret.url;
+          		playVideo();
+          		need_go_away = false;
+          	}
+          case 3:
+
+  			page_title = ret.title;
+          	break;
+      }
+  });
+
+  api.addEventListener({
+      name: 'getUrl'
+  }, function(ret, err) {
+    if(ret && ret.value){
+      //alert("getUrl");
+      var value = ret.value;
+      huanxian(value.herf,value.title);
+  }
+  });
+};
+
+ function videojs(){
+   var data=api.pageParam;
+   var jsfun='';
+   if(api.pageParam.url.indexOf("iqiyi.com")!= -1){
+     jsfun="var iframe=document.getElementById('_if');if(iframe){api.toast({msg: '爱奇艺官方错误!稍等自动刷新'});history.go(0)};var i=document.getElementsByClassName('m-video-player-wrap')[0];if(typeof(i) != 'undefined'){i.style.height='220px';i.style.color='#fff';i.style.lineHeight='15';i.style.position='static';i.style.paddingTop='0%';i.style.background='#000000';i.style.textAlign='center';i.innerHTML='<div>视频连接成功,点击免费播放!</div>';api.toast({msg: '视频连接成功,点击免费播放!', duration: 5000});i.addEventListener('tap',function(){api.sendEvent({name:'getUrl',extra:{herf:window.location.href,title:document.title}})})}";
+   }else if(api.pageParam.url.indexOf("v.qq.com")!= -1){
+     jsfun="var i=document.getElementsByClassName('site_player')[0];if(typeof(i) != 'undefined'){i.style.height='210px';i.style.background='#000000';i.style.textAlign='center';i.style.color='#fff';i.style.lineHeight='14';i.innerHTML='<div>视频连接成功,点击免费播放!</div>';i.addEventListener('touchstart',function(e){api.sendEvent({name:'getUrl',extra:{herf:window.location.href,title:document.title}})})}";
+   }else if(api.pageParam.url.indexOf("m.le.com")!= -1){
+     jsfun="var i=document.getElementsByClassName('playB')[0];if(typeof(i) != 'undefined'){i.style.background='#000000';i.innerHTML='<div>视频连接成功,点击免费播放!</div>';i.style.width='100%';i.style.textAlign='center';i.style.lineHeight='14';i.style.color='#fff';api.toast({msg: '视频连接成功,点击免费播放!', duration: 5000});i.addEventListener('touchstart',function(e){api.sendEvent({name:'getUrl',extra:{herf:window.location.href,title:document.title}})})}";
+   }else if(api.pageParam.url.indexOf("youku.com")!= -1){
+     jsfun="var i=document.getElementById('playerBox');if(typeof(i) != 'undefined'){i.style.background='#000000';i.style.color='#fff';i.style.textAlign='center';i.style.lineHeight='15';i.innerHTML='<div>视频连接成功,点击免费播放!</div>';api.toast({msg:'视频连接成功,点击免费播放!', duration: 5000});i.addEventListener('touchstart',function(e){api.sendEvent({name:'getUrl',extra:{herf:window.location.href,title:document.title}})})}";
+   }else if(api.pageParam.url.indexOf("mgtv.com")!= -1){
+     jsfun="var i=document.getElementsByClassName('video-area')[0];if(typeof(i) != 'undefined'){i.style.background='#000000';i.style.color='#fff';i.style.textAlign='center';i.style.lineHeight='16';i.innerHTML='<div>视频连接成功,点击免费播放!</div>';api.toast({msg: '视频连接成功,点击免费播放!', duration: 5000});i.addEventListener('click',function(e){api.sendEvent({name:'getUrl',extra:{herf:window.location.href,title:document.title}})})}";
+   }else if(api.pageParam.url.indexOf("sohu.com")!= -1){
+     jsfun="var i=document.getElementsByClassName('x-player')[0];var x=document.getElementById('top-poster');if(typeof(i) != 'undefined'){i.style.background='#000000';i.style.color='#fff';i.style.textAlign='center';i.style.lineHeight='13';i.innerHTML='<div>视频连接成功,点击免费播放!</div>';api.toast({msg: '视频连接成功,点击免费播放!', duration: 5000});i.addEventListener('touchstart',function(e){api.sendEvent({name:'getUrl',extra:{herf:window.location.href,title:document.title}})})}else if(typeof(x) != 'undefined'){x.style.background='#000000';x.style.color='#fff';x.style.height='210px';x.style.textAlign='center';x.style.lineHeight='13';x.innerHTML='<div>视频连接成功,点击免费播放!</div>';api.toast({msg: '视频连接成功,点击免费播放!'});x.addEventListener('click',function(){api.sendEvent({name:'getUrl',extra:{herf:window.location.href,title:document.title}})})}";
+   }else if(api.pageParam.url.indexOf("fun.tv")!= -1){
+     jsfun="var myVideo=document.getElementById('m-h5v-video-1');if(typeof(myVideo) != 'undefined'){myVideo.pause()};var i=document.getElementById('m-h5v-player-1');if(typeof(i) != 'undefined'){i.style.background='#000000';i.style.color='#fff';i.style.lineHeight='12';i.innerHTML='<div>视频连接成功,点击免费播放!</div>';api.toast({msg: '视频连接成功,点击免费播放!', duration: 5000});i.addEventListener('touchstart',function(e){api.sendEvent({name:'getUrl',extra:{herf:window.location.href,title:document.title}})})}";
+   }else if(api.pageParam.url.indexOf("baofeng.com")!= -1){
+     jsfun="var myVideo=document.getElementsByTagName('video')[0];myVideo.pause();var i=document.getElementById('videoplayer');if(typeof(i) != 'undefined'){i.style.background='#000000';i.style.textAlign='center';i.style.color='#fff';i.style.lineHeight='17';i.innerHTML='<div>视频连接成功,点击免费播放!</div>';api.toast({msg: '视频连接成功,点击免费播放!', duration: 5000});i.addEventListener('touchstart',function(e){api.sendEvent({name:'getUrl',extra:{herf:window.location.href,title:document.title}})})}";
+   }else if(api.pageParam.url.indexOf("bilibili.com")!= -1){
+     jsfun="var i=document.getElementById('bofqi');i.style.background='#000000';i.style.lineHeight='10';if(typeof(i) != 'undefined'){i.style.color='#fff';i.style.textAlign='center';i.innerHTML='<div>视频连接成功,点击免费播放!</div>';api.toast({msg: '视频连接成功,点击免费播放!', duration: 5000});i.addEventListener('touchstart',function(e){api.sendEvent({name:'getUrl',extra:{herf:window.location.href,title:document.title}})})}";
+   }else if(api.pageParam.url.indexOf("miguvideo.com")!= -1){
+     jsfun="var i=document.getElementsByClassName('fixedHeader')[0];if(typeof(i) != 'undefined'){i.style.height='220px';i.style.color='#fff';i.style.fontSize='14px';i.style.lineHeight='15';i.style.background='#000000';i.style.textAlign='center';i.innerHTML='<div>视频连接成功,点击免费播放!</div>';api.toast({msg: '视频连接成功,点击免费播放!', duration: 5000});i.addEventListener('touchstart',function(e){api.sendEvent({name:'getUrl',extra:{herf:window.location.href,title:document.title}})})}";
+   }else if(api.pageParam.url.indexOf("1905.com")!= -1){
+     jsfun="var i=document.getElementById('player');if(typeof(i) != 'undefined'){i.style.color='#fff';i.style.fontSize='14px';i.style.lineHeight='16';i.style.background='#000000';i.style.textAlign='center';i.innerHTML='<div>视频连接成功,点击免费播放!</div>';api.toast({msg: '视频连接成功,点击免费播放!', duration: 5000});i.addEventListener('touchstart',function(e){api.sendEvent({name:'getUrl',extra:{herf:window.location.href,title:document.title}})})}";
+   }else if(api.pageParam.url.indexOf("17173.com")!= -1){
+     jsfun="var i=document.getElementById('videoplay');if(typeof(i) != 'undefined'){i.style.color='#fff';i.style.fontSize='14px';i.style.lineHeight='16';i.style.background='#000000';i.style.textAlign='center';i.innerHTML='<div>视频连接成功,点击免费播放!</div>';api.toast({msg: '视频连接成功,点击免费播放!', duration: 5000});i.addEventListener('touchstart',function(e){api.sendEvent({name:'getUrl',extra:{herf:window.location.href,title:document.title}})})}";
+   }else if(api.pageParam.url.indexOf("pptv.com")!= -1){
+     jsfun="var i=document.getElementById('playerbox');if(typeof(i) != 'undefined'){i.style.color='#fff';i.style.lineHeight='12';i.style.background='#000000';i.style.textAlign='center';i.innerHTML='<div>视频连接成功,点击免费播放!</div>';api.toast({msg: '视频连接成功,点击免费播放!', duration: 5000});i.addEventListener('touchstart',function(e){api.sendEvent({name:'getUrl',extra:{herf:window.location.href,title:document.title}})})}";
+   }
+
+     api.execScript({
+     frameName: 'video_frame',
+     script: jsfun
+   });
+ }
+ function getCaption(obj){
+   var index=obj.lastIndexOf("\=");
+   obj=obj.substring(index+1,obj.length);
+   return obj;
+ }
+
+ function huanxian(){
+   //alert(dataurl2);
+   var user_id = localStorage.getItem('user_id');
+   if(user_id<1){
+     api.alert({
+         title: '温馨提示',
+         msg: '请先登陆后使用',
+     });
+     api.openWin({
+         name: 'login',
+         url: './login.html',
+         delay: 300
+     });
+     return;
+
+   }
+   api.showProgress({
+       title: '获取VIP信息',
+       modal: false
+   });
+   var browser = api.require('webBrowser');
+     api.execScript({
+     frameName: 'video_frame',
+     script: 'location.reload();'
+   });
+   need_go_away = true;
+
+ }
+
+ function playVideo(){
+ 	//alert(223+dataurl2);
+   api.hideProgress();
+     var systemType = api.systemType;
+     if (systemType == 'ios') {
+       api.openWin({
+           name: 'play_win',
+           url: './play_win.html',
+           delay: 300,
+           pageParam:{
+           		url:jx_url2+dataurl2,
+           		srcUrl:dataurl2,
+           		title:page_title,
+           		needRecordHistory: true
+           	},
+           //pageParam:{url:dataurl2},
+           bgColor: '#000000'
+       });
+     }else if (systemType == 'android') {
+       api.openWin({
+           name: 'play_win',
+           url: './play_win.html',
+           delay: 300,
+           pageParam:{
+           		url:jx_url2+dataurl2,
+           		srcUrl:dataurl2,
+           		title:page_title,
+           		needRecordHistory: true
+           	},
+           //pageParam:{url:dataurl2},
+           bgColor: '#000000'
+       });
+     }else {
+       var browser = api.require('webBrowser');
+       browser.open({
+           url: jx_url2+dataurl2,
+           titleBar: {
+             visible: true
+           }
+       });
+
+     }
+ }
+
+ function getParam(name) {
+
+     return dataurl2.match(new RegExp('[?&]' + name + '=([^?&]+)', 'i')) ? decodeURIComponent(RegExp.$1) : '';
+
+ }
+
+ function closeWin(){
+   var browser = api.require('webBrowser');
+   browser.historyBack(
+     function(ret, err) {
+         if (!ret.status) {
+             api.closeWin();
+         }
+     }
+   );
+ }
+
+ function closeWd(){
+   api.closeWin();
+ }
+
+ function vipHuanxian(jiekou){
+ 	alert("ddd" + dataurl2);
+   var user_id = localStorage.getItem('user_id');
+   if(user_id<1){
+     api.alert({
+         title: '温馨提示',
+         msg: '请先登陆后使用',
+     });
+     api.openWin({
+         name: 'login',
+         url: './login.html',
+         delay: 300
+     });
+     return;
+
+   }
+
+   var systemType = api.systemType;
+   if (systemType == 'android') {
+     api.openWin({
+         name: 'play_win',
+         url: './play_win.html',
+         delay: 300,
+         pageParam:{url:jiekou+dataurl2},
+         bgColor: '#000000'
+     });
+   }else {
+     var browser = api.require('webBrowser');
+     browser.open({
+         url: jiekou+dataurl2,
+         titleBar: {
+           visible: true
+         }
+     });
+
+   }
+
+ }
+  </script>
+  </html>

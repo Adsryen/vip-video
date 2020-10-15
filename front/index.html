@@ -1,0 +1,764 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>底部导航</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css"/>
+   <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/iconfont.css">
+    <style>
+        header{     background: linear-gradient(to right,#ff5e3e 0,#ff1679 100%);}
+        header ul li { height: 2.25rem; line-height: 2.25rem; text-align: center; display: none; color: #333; position: relative;font-size: 0.9rem;  }
+        header ul li.active{ display: block; }
+  /*      #footer{  border-radius: 30px 30px 0px 0px;box-shadow: 0.01rem 0.15rem 1rem 1px rgba(0, 0, 0, 0.1);}  */
+        #footer ul li{  height: 2.25rem; padding-top: 1.25rem; padding-bottom: 1px; background: url() no-repeat center 2px; font-size: 0.6rem;background-size: auto 1.1rem; text-align: center; }
+        #footer ul li.active{ color: #f52737; }
+        #footer ul li:nth-child(1){ background-image: url(./image/shouye.png); }
+        #footer ul li:nth-child(2){ background-image: url(./image/zhibo.png); }
+        #footer ul li:nth-child(3){ background-image: url(./image/yingyuan.png); }
+        #footer ul li:nth-child(4){ background-image: url(./image/faxian.png); }
+        #footer ul li:nth-child(5){ background-image: url(./image/wode.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(./image/shouye2.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(./image/zhibo2.png); }
+        #footer ul li:nth-child(3).active{ background-image: url(./image/yingyuan2.png); }
+        #footer ul li:nth-child(4).active{ background-image: url(./image/faxian2.png); }
+        #footer ul li:nth-child(5).active{ background-image: url(./image/wode2.png); }
+        .flex-con{
+          overflow: auto;
+          background-color:#fff;
+        }
+
+
+
+    </style>
+    <script type="text/javascript">
+
+      localStorage.setItem('api_url',"http://959495.xyz");
+    </script>
+</head>
+<body>
+<div id="wrap" class="flex-wrap flex-vertical">
+
+  <header class="aui-navBar aui-navBar-fixed" >
+
+
+
+
+
+
+    <ul>
+      <li class="border-b active">      <a class="aui-navBar-item masked" style="color: #FF00FF;"  id="tietle" > 欣然影视  <i class="icon icon-Disconnect-r" style=" margin-left: 10px; "></i> </a> </li>
+      <li class="border-b">     <a class="aui-navBar-item" style="color: #FF00FF;">影院热映</a> </li>
+      <li class="border-b">     <a class="aui-navBar-item" style="color: #FF00FF;">影视大厅</a> </li>
+      <li class="border-b">     <a class="aui-navBar-item" style="color: #FF00FF;">福利中心</a> </li>
+      <li class="border-b">     <a class="aui-navBar-item" style="color: #FF00FF;">会员中心</a> </li>
+    </ul>
+
+                  <div class="aui-center">
+                      <span class="aui-center-title"></span>
+                  </div>
+                 <div class="aui-navBar-item"   id="hbbox">
+
+                    <img src="./image/app/cz.png" style="position: absolute;width: 1.5rem;right: 0.5rem;height: 24px;" tapmode onClick="UnloadedCompleted()">
+              <!--        <i class="icon icon-set"></i>-->
+
+</div>
+
+              </header>
+  <!--
+    <header>
+        <ul>
+          <li class="border-b active"  id="hbbox" style="color:#fff"></li>
+          <li class="border-b" style="color:#fff">大厅</li>
+          <li class="border-b" style="color:#fff">福利社</li>
+          <li class="border-b" style="color:#fff">会员中心</li>
+        </ul>
+    </header>
+  -->
+
+
+    <div id="main" class="flex-con" >
+
+    </div>
+
+
+
+    <div id="footer" class="border-t" >
+        <ul class="flex-wrap" style="font-weight:bold">
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >首页</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >直播</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >大厅</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >福利</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >我的</li>
+        </ul>
+
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    apiready = function(){
+      api.openFrame({
+            name: 'frm_main',
+            url: './html/frame0.html',
+            customRefreshHeader: 'UIPullRefresh',
+            bounces: true,
+            rect: {
+                       x: 0,
+                       y: document.querySelector( 'header' ).offsetHeight,
+                       h: api.winHeight - document.querySelector( 'header' ).offsetHeight
+                   }
+        });
+    };
+</script>
+
+
+
+<script type="text/x-dot-template" id="hongbaotpl">
+
+<img src="959495.xyz/{{=it.picurl}}" style="position: absolute;width: 1.5rem;top: 0.3rem;right: 0.5rem;" onclick="toBanner('{{=it.linkurl}}')">{{=it.name}}
+</script>
+
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="script/doT.js"></script>
+<script type="text/javascript" src="script/auipullrefresh.js"></script>
+<script type="text/javascript" src="script/auislide.js"></script>
+<script type="text/javascript" src="script/auilazyload.js" ></script>
+<script type="text/javascript">
+    var hongbaoid = $api.byId('hbbox');
+    var hongbaotpl = $api.byId('hongbaotpl');
+    var api_url = localStorage.getItem('api_url');
+    var uid  =  '';
+    var jpush = null;
+    apiready = function(){
+    jpush = api.require('ajpush');
+    api.addEventListener({name:'appintent'}, function(ret,err) {
+        alert('通知被点击，收到数据：\n' + JSON.stringify(ret));//监听通知被点击后收到的数据
+    })
+    api.addEventListener({name:'pause'}, function(ret,err) {
+        onPause();//监听应用进入后台，通知jpush暂停事件
+    })
+        
+    api.addEventListener({name:'resume'}, function(ret,err) {
+        onResume();//监听应用恢复到前台，通知jpush恢复事件
+    }) 
+}
+
+//统计-app恢复
+function onResume(){
+    jpush.onResume();
+    console.log('JPush onResume');
+}
+
+//统计-app暂停
+function onPause(){
+    jpush.onPause();
+    console.log('JPush onPause');
+}
+
+    /////  初始化执行   S /////
+    /////  apiready  一打开就执行的 函数
+    apiready = function () {
+
+
+
+
+                                        //  检测网络是否正常 OK
+                                        api.addEventListener({
+                                              name: 'online'
+                                          }, function(ret, err) {
+                                            //  connectionType = ret.connectionType;
+
+
+                                                          //关闭无网络提示弹窗
+                                                          var dialogBox = api.require('dialogBox');
+                                                          dialogBox.close({
+                                                              dialogName: 'alert'
+                                                          });
+
+
+                                                          GetTitleData();     ////获取标题和红包图标 ////
+                                                          GetfunIniGroup();   ////执行页面获取 ////
+
+                                                          api.toast({
+                                                              msg: '网络已恢复',
+                                                              duration: 5000
+                                                          });
+
+
+
+
+                                          });
+
+
+                                            //  检测网络是否正常 NO
+                                            api.addEventListener({
+                                            name:'offline'
+                                            }, function(ret, err){
+
+                                           //进行弹窗提示
+                                            ConnectionDetectionWithServer();
+
+
+                                             });
+
+
+
+
+
+
+
+
+                                              $api.fixStatusBar( $api.dom('header') );
+                                              api.setStatusBarStyle({
+                                                  style: 'dark',
+                                                  color: 'rgba(0,0,0,0)'
+                                              });
+                                              if (localStorage.getItem('user_id')>1) {
+                                                uid = localStorage.getItem('user_id');
+                                              }else {
+                                                uid = 0;
+                                              }
+
+
+  //      OpenAppNetworkMonitoring();   ////执行网络检测 ////
+        GetTitleData();   ////获取标题和红包图标 ////
+        GetfunIniGroup();   ////执行页面获取 ////
+
+
+
+//////////////    单点登录检测方法     S       ///////////
+          var user_id = localStorage.getItem('user_id');
+          if (user_id>1) {
+
+
+                    //单点登录定时检测
+                    var ddtimer = setInterval(function(){
+                        Onepersonlogin();
+                    },1000)
+
+
+            //与服务器通信
+            function Onepersonlogin() {
+
+            api.ajax({
+                url: api_url+'/login/login/imei.html',
+                method: 'get',
+                data: {
+                    values: {
+                        uid: user_id
+                    }
+                }
+            },function(ret, err){
+                if (ret) {
+
+                    if (ret.msg.imei!=api.deviceId) {
+                      localStorage.setItem('user_id','');
+                      localStorage.setItem('user_name','');
+                      localStorage.setItem('user_time','');
+                      api.sendEvent({
+                        name: 'newLoingdata',
+                        extra: {
+                        }
+                      });
+
+
+
+                      var dialogBox = api.require('dialogBox');
+                      dialogBox.alert({
+                          tapClose: true,  //描述：（可选项）是否点击遮罩层关闭该对话框  默认值：false
+                          texts: {
+                              content: '您已在其他设备登录',
+                          },
+                          styles:{
+                    bg: '#fff',            //（可选项）字符串类型；对话框整体背景配置，支持#、rgb、rgba、img；默认：#fff
+                    corner: 10,             //（可选项）数字类型；对话框背景圆角大小；默认：2
+                    w: 300,                //（可选项）数字类型；对话框的宽；默认：300
+                    title:{                //（可选项）JSON对象；弹窗标题栏样式配置，不传则不显示标题区域
+                        marginT: 20,       //（可选项）数字类型；标题栏与对话框顶端间距；默认：20
+                        icon: 'widget://image/app/dialogBoxTisi.jpg',          //（可选项）字符串类型；标题前面的图标路径，要求本地路径（widget://、fs://）；图片为正方形的，如：50*50、100*100，建议开发者传大小合适的图片以适配高分辨率手机屏幕，不传则不显示
+                        iconSize: 80,      //（可选项）数字类型；icon 图标边长大小,若 icon 不存在则此参数无效；默认：24
+                        titleSize: 14,     //（可选项）数字类型；标题字体大小；默认：14
+                        titleColor: '#000' //（可选项）字符串类型；标题字体颜色，支持#、rgb、rgba；默认：#fff
+                    },
+                    content:{              //（可选项）JSON 对象；文本内容配置，若不传则不显示该区域
+                        marginT: 20,       //（可选项）数字类型；内容文本顶端与标题栏底端的距离，如果标题栏不存在，则是到窗口顶端的距离；默认：20
+                        marginB: 40,       //（可选项）数字类型；内容文本底端与 left/right 顶端的距离，如果 left/right 都不存在，则是到对话框底端的距离；默认：20
+                        color: '#ff0103',     //（可选项）字符串类型；内容文本字体颜色，支持 rgb、rgba、#；默认：#eee
+                        size: 12           //（可选项）数字类型：内容文本字体大小；默认：12
+                    },
+
+                }
+                      });
+
+
+
+                      clearInterval(ddtimer); //清除定时器
+                      return;
+                    }
+
+
+
+                } else {
+
+                }
+            });
+          }
+
+}
+
+
+//////////////    单点登录检测方法     E       ///////////
+
+
+
+
+
+/*
+  //////////////////////   APP定时器  方法    AppTimer    定时     S //////////////////////
+
+  //定时执行数据加载
+  var timer = setInterval(function(){
+      AppTimer();
+  },1000)
+
+  //判断是否服务器通信成功
+  function AppTimer() {
+
+
+                        api.ajax({
+                            url: '959495.xyz/AppHello.html',
+                            method: 'get'
+                        },function(ret, err){
+                            if (ret) {
+
+                              msg = ret.alevel;
+                              GetTitleData();   //获取标题和红包图标
+
+
+                              api.toast({
+                                  msg: '数据已更新'+ret.msg,
+                                  duration: 1000
+                              });
+
+
+                    //  clearInterval(timer); // 获取成功 清除定时器
+                            } else {
+
+
+
+                              api.toast({
+                                  msg: '服务器链接失败',
+                                  duration: 5000
+                              });
+
+
+
+
+
+                            }
+
+                        });
+
+
+
+
+  }
+
+  //////////////////////   APP定时器  方法    AppTimer    定时     E //////////////////////
+
+*/
+
+    }
+/////  初始化执行   E /////
+
+
+////////           第一次进入app时的滑动欢迎页   fnShowWelcome       S         //////////////////
+
+
+////////           第一次进入app时的滑动欢迎页   fnShowWelcome       E         //////////////////
+
+
+
+
+/*
+////////           打开APP时进行网络环境判断   OpenAppNetworkMonitoring       S         //////////////////
+      function OpenAppNetworkMonitoring(){
+        api.ajax({
+            url: api_url+'/login/login/tongji.html',
+            method: 'get',
+            data: {
+                values: {
+                    os: api.systemType,
+                    imei: api.deviceId,
+                    uid:uid
+                }
+            }
+        },function(ret, err){
+            if (ret) {
+
+
+                //alert( JSON.stringify( ret ) );
+            }else {
+                //alert( JSON.stringify( err ) );
+
+
+                //打开APP时 网络连接失败 进行提示
+                ConnectionDetectionWithServer();
+
+            }
+
+
+        });
+
+  }
+////////           打开APP时进行网络环境判断     OpenAppNetworkMonitoring     E         //////////////////
+*/
+
+
+
+
+
+//////////////////////   顶部导航红包图片打开 方法    toBanner     S //////////////////////
+  function toBanner(url){
+
+    /* 去掉VIP限制
+   var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+
+   if(user_id==0){
+      api.alert({
+          title: '温馨提示',
+          msg: '请先登陆后使用',
+      });
+      api.openWin({
+          name: 'login',
+          url: 'html/login.html',
+          delay: 300
+      });
+      return;
+
+    }
+
+    if (time>timestamp) {
+
+      setTimeout("playRadio();",1000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      } */
+      api.openWin({
+          name: 'haosheng_win',
+          url: 'html/haosheng_win.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: 'rgba(0,0,0,0)'
+      });
+/*  去掉VIP限制
+    }else if (time == -1) {
+
+      setTimeout("playRadio();",2000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'so_win',
+          url: 'html/so_win.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: '#000000'
+      });
+
+
+    }else if (time<timestamp){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.alert({
+          texts: {
+              content: '您的VIP会员已过期，请及时续费！',
+              leftBtnTitle: '在想想',
+              rightBtnTitle: '去开通'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              content: {
+                  color: '#000',
+                  size: 14
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 20,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 10,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              }
+          }
+      }, function(ret) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+          }else if (ret.eventType == 'right') {
+            api.openWin({
+                name: 'open_vip_win',
+                url: 'html/open_vip_win.html',
+                delay: 300
+            });
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+          }
+      });
+    }
+*/
+  }
+
+
+//////////////////////   顶部右侧红包图片打开  方法    toBanner     E //////////////////////
+
+
+
+//////////////////////   底部菜单切换  方法    randomSwitchBtn     S //////////////////////
+    function randomSwitchBtn( tag ) {
+        if( tag == $api.dom('#footer li.active') )return;
+        var eFootLis = $api.domAll('#footer li'),
+            eHeaderLis = $api.domAll('header li'),
+            index = 0;
+        for (var i = 0,len = eFootLis.length; i < len; i++) {
+            if( tag == eFootLis[i] ){
+                index = i;
+            }else{
+                $api.removeCls(eFootLis[i], 'active');
+                $api.removeCls(eHeaderLis[i], 'active');
+            }
+        }
+        $api.addCls( eFootLis[index], 'active');
+        $api.addCls( eHeaderLis[index], 'active');
+        api.setFrameGroupIndex({
+            name: 'group',
+            index: index
+        });
+    }
+
+//////////////////////   底部菜单切换  方法    randomSwitchBtn     E //////////////////////
+
+
+//////////////////////   网络错误未加载完成点击按钮提示  方法    UnloadedCompleted     S //////////////////////
+
+      function UnloadedCompleted(){
+
+            api.toast({
+                msg: '请检查网络是否畅通'
+            });
+      }
+
+//////////////////////   网络错误未加载完成点击按钮提示  方法    UnloadedCompleted     E //////////////////////
+
+
+
+
+////////           获取顶部标题  红包图标方法    GetTitleData    S         //////////////////
+            function GetTitleData() {
+                api.ajax({
+
+		        url: api_url+'/app/nav/on',
+		        method: 'get',
+		    },function(ret, err){
+		        if (ret) {
+		         for(var p in ret){//遍历json数组时，这么写p为索引，0,1
+
+//				if(ret[p].id==23){
+//					localStorage.setItem('api_url',ret[p].content);
+//				}
+				if(ret[p].id==20){
+					localStorage.setItem('na',ret[p].content);
+				}
+		        }
+
+		        }
+
+            /*  去掉无网络弹窗提示
+            else {
+		            alert( '网络错误' );
+		            api.hideProgress();
+		        }
+            */
+		    });
+
+
+
+
+            api.ajax({
+		        url: api_url+'/app/nav/index?uid='+localStorage.getItem('user_id'),
+		        method: 'get',
+		    },function(ret, err){
+		        if (ret) {
+		          //渲染模板
+		          var pagefn = doT.template(hongbaotpl.text);
+		      //    ret.hb['name']=localStorage.getItem('na');
+		      //    hongbaoid.innerHTML = pagefn(ret.hb);
+              hongbaoid.innerHTML = pagefn(ret.hb);
+              tietle.innerHTML = localStorage.getItem('na');
+              tietle.innerHTML = ' <a class="aui-navBar-item" > '+na+' </a>';
+
+
+		//      alert( JSON.stringify( ret.banner ) );
+
+
+		        }
+/*  去掉无网络弹窗提示
+
+            else {
+		            alert( '网络错误' );
+		            api.hideProgress();
+		        }
+            */
+		    });
+}
+////////           获取顶部标题   红包图标方法  GetTitleData     E         //////////////////
+
+
+
+
+
+//////////////////////    与服务器链接失败  方法  ConnectionDetectionWithServer   S  //////////////////////
+function ConnectionDetectionWithServer() {
+
+                  /*无网络弹窗提示*/
+                            var dialogBox = api.require('dialogBox');
+                            dialogBox.alert({
+                                tapClose: false,  //描述：（可选项）是否点击遮罩层关闭该对话框  默认值：false
+                                texts: {
+                                    content: '请检查网络是否畅通',
+                                    rightBtnTitle: '网络设置'
+                                },
+                                styles:{
+                          bg: '#fff',            //（可选项）字符串类型；对话框整体背景配置，支持#、rgb、rgba、img；默认：#fff
+                          corner: 10,             //（可选项）数字类型；对话框背景圆角大小；默认：2
+                          w: 300,                //（可选项）数字类型；对话框的宽；默认：300
+                          title:{                //（可选项）JSON对象；弹窗标题栏样式配置，不传则不显示标题区域
+                              marginT: 20,       //（可选项）数字类型；标题栏与对话框顶端间距；默认：20
+                              icon: 'widget://image/app/NoNetworkTisi.png',          //（可选项）字符串类型；标题前面的图标路径，要求本地路径（widget://、fs://）；图片为正方形的，如：50*50、100*100，建议开发者传大小合适的图片以适配高分辨率手机屏幕，不传则不显示
+                              iconSize: 80,      //（可选项）数字类型；icon 图标边长大小,若 icon 不存在则此参数无效；默认：24
+                              titleSize: 14,     //（可选项）数字类型；标题字体大小；默认：14
+                              titleColor: '#000' //（可选项）字符串类型；标题字体颜色，支持#、rgb、rgba；默认：#fff
+                          },
+                          content:{              //（可选项）JSON 对象；文本内容配置，若不传则不显示该区域
+                              marginT: 20,       //（可选项）数字类型；内容文本顶端与标题栏底端的距离，如果标题栏不存在，则是到窗口顶端的距离；默认：20
+                              marginB: 40,       //（可选项）数字类型；内容文本底端与 left/right 顶端的距离，如果 left/right 都不存在，则是到对话框底端的距离；默认：20
+                              color: '#ff0103',     //（可选项）字符串类型；内容文本字体颜色，支持 rgb、rgba、#；默认：#eee
+                              size: 12           //（可选项）数字类型：内容文本字体大小；默认：12
+                          },
+                          right: {               //（可选项）JSON 对象；右边按钮样式配置，不传则不显示右边按钮
+                              marginB: 30,        //（可选项）数字类型；右边按钮的下边距；默认：7
+                              marginL: 100,      //（可选项）数字类型；右边按钮左边距；默认：10
+                              w: 100,            //（可选项）数字类型；右边按钮的宽；默认：130
+                              h: 40,             //（可选项）数字类型；右边按钮的高；默认：35
+                              corner: 10,         //（可选项）数字类型；右边按钮圆角半径；默认：0.0
+                              bg: '#ff0103',        //（可选项）字符串类型；右边按钮的背景，支持rgb、rgba、#、img；默认：'#e0e'
+                              color: '#fff',  //（可选项）字符串类型；右边按钮标题字体颜色，支持rgb、rgba、#；默认：'#007FFF'
+                              size: 12           //（可选项）数字类型；右边按钮标题字体大小；默认：12
+                          }
+                      }
+                            }, function(ret) {
+                                if (ret.eventType == 'right') {
+
+
+                                  var openset = api.require('openSet');
+                                  openset.open({
+                                      id: 1
+                                  });
+
+                                  /* 关闭点击设置后关闭弹窗 需要系统检测到联网后在执行关闭
+                                  var dialogBox = api.require('dialogBox');
+                                  dialogBox.close({
+                                      dialogName: 'alert'
+                                  });
+                                  */
+
+                                }
+                            });
+                  /*    无网络弹窗提示结束    */
+
+}
+//////////////////////    与服务器链接失败 方法 ConnectionDetectionWithServer  E  //////////////////////
+
+
+//////////////////////   获取FRAME页面 方法    GetfunIniGroup     S //////////////////////
+    function GetfunIniGroup(){
+        var eHeaderLis = $api.domAll('header li'),
+            frames = [];
+        for (var i = 0,len = eHeaderLis.length; i < len; i++) {
+            if(i==1)
+            {
+               frames.push({
+                name: 'frame'+i,
+                url: './html/frame'+i+'.html',
+                bgColor : '#f5f5f5',
+                bounces:true
+               })
+            }
+            else
+            {
+                frames.push({
+                name: 'frame'+i,
+                url: './html/frame'+i+'.html',
+                bgColor : '#f5f5f5',
+                bounces:true
+               })
+            }
+
+
+        }
+        api.openFrameGroup({
+            name: 'group',
+            scrollEnabled: false,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: api.winWidth,
+                h: $api.dom('#main').offsetHeight
+            },
+            index: 0,
+            frames: frames
+        }, function (ret, err) {
+
+        });
+    }
+
+//////////////////////   获取FRAME页面 方法    GetfunIniGroup     E //////////////////////
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

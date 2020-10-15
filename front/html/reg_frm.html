@@ -1,0 +1,328 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style type="text/css">
+        p {
+            margin-bottom: 0.5rem;
+        }
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            color:    #eaeaea;
+        }
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color:    #eaeaea;
+        }
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color:    #eaeaea;
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10+ */
+            color:    #eaeaea;
+        }
+    </style>
+
+
+</head>
+<body class="login-bg2">
+  <header class="aui-bar aui-bar-nav" id="aui-header" style="background-color:rgba(0,0,0,0) !important">
+      <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+          <span class="aui-iconfont aui-icon-left"></span>
+      </a>
+      <div id="title" class="aui-title">注册</div>
+  </header>
+ <!--<div align="center"><img src="../image/app/logo1.png" style="
+    width: 35%;"></div>-->
+<div class="myui-from">
+    <ul class="myui-from-list">
+      <li class="myui-from-list-item">
+        <div class="myui-code">
+        <!--  <input id="username" type="tel"  minlength="11" maxlength="11" placeholder="输入手机号码" class="myui-from-code-input">  -->
+            <input id="username" type="tel"  minlength="11" maxlength="11" placeholder="输入手机号码" class="myui-from-list-item-input">
+    <!--      <button id="btn1" type="button" name="button" style="width:20%;float:left;height: 2.2rem; display:none" class="myui-from-code-button" onclick="getCode()">获取</button> -->
+        </div>
+      </li>
+  <!--    <li class="myui-from-list-item">
+        <input id="yzcode" type="tel" minlength="6" maxlength="6" placeholder="短信验证码" class="myui-from-list-item-input" style="display:none">
+      </li>  -->
+      <li class="myui-from-list-item">
+        <input id="password" type="password" placeholder="设置密码" class="myui-from-list-item-input">
+      </li>
+	    <li class="myui-from-list-item">
+        <input id="password_reg" type="password" placeholder="请再输入一次密码" class="myui-from-list-item-input">
+      </li>
+     <!--
+       <li class="myui-from-list-item">
+        <input id="share" type="tel" minlength="6" maxlength="6" placeholder="邀请码(没有可不填)" class="myui-from-list-item-input">
+      </li>
+    -->
+      <li class="myui-from-list-item">
+        <button id="btn2" type="button" name="button" class="myui-from-list-item-button" onclick="toReg()">立即注册</button>
+      </li>
+    </ul>
+  </div>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+    var api_url = localStorage.getItem('api_url');
+    var onoff = true;
+    var code_data = '';
+    var user = '';
+    var pass = '';
+	var pass02 = '';
+    apiready = function () {
+      api.parseTapmode();
+      var header = $api.byId('aui-header');
+      $api.fixStatusBar(header);
+      var headerPos = $api.offset(header);
+      var body_h = $api.offset($api.dom('body')).h;
+
+    }
+
+
+    //注册
+    function toReg(){
+      var username = $api.val($api.byId('username'));
+      var password = $api.val($api.byId('password'));
+	  var password_reg = $api.val($api.byId('password_reg'));
+      //var yzcode = $api.val($api.byId('yzcode'));
+      //var share = $api.val($api.byId('share'));
+      if(username == ''){
+        api.toast({
+            msg: '请输入手机号',
+        });
+        return;
+      }
+      if(password == '' || password_reg == ''){
+        api.toast({
+                    msg : '请输入密码'
+                });
+
+        return;
+      }
+
+       //if(share == ''){
+        // api.alert({
+        //     title: '警告！',
+        //     msg: '请输入邀请码',
+        // });
+        // return;
+       //}
+      if(username.length < 11){
+
+        api.toast({
+            msg : '请输入11位数手机号码'
+        });
+
+        return;
+      }
+
+	  if ($api.byId('password').value != $api.byId('password_reg').value) {
+                $api.byId('password_reg').focus();
+                api.toast({
+                    msg : '两次密码不一致，请重新输入!'
+                });
+                return;
+                 }
+      //if(yzcode != code_data){
+      //  api.alert({
+      //      title: '错误提示',
+      //      msg: '您输入的验证码不正确',
+      //  });
+      //  return;
+      //}
+      //if(localStorage.getItem('reg_name') == username){
+      //}else {
+        //api.alert({
+        //    title: '错误提示',
+       //     msg: '手机号输入不一致',
+       // });
+       // return;
+     // }
+      user = $api.val($api.byId('username'));
+      pass = $api.val($api.byId('password'));
+	  pass02 = $api.val($api.byId('password_reg'));
+      api.showProgress({
+          title: '注册中...',
+          text: '请稍等...',
+          modal: false
+      });
+      api.ajax({
+          url: 'http://959495.xyz/login/login/create.html',
+          method: 'get',
+          data: {
+              values: {
+                  name: username,
+                  password:password
+              }
+          }
+      },function(ret, err){
+          if (ret) {
+              if (ret.code == 0) {
+                api.hideProgress();
+                api.alert({
+                    title: '错误~',
+                    msg: ret.msg,
+                });
+              }else {
+
+                api.hideProgress();
+                /*
+                api.alert({
+                    title: '注册成功！',
+                    msg: '当前身份：体验会员',
+                });
+                */
+
+
+
+                /*注册成功弹窗提示*/
+                var dialogBox = api.require('dialogBox');
+                dialogBox.alert({
+                    tapClose: true,  //描述：（可选项）是否点击遮罩层关闭该对话框  默认值：false
+                    texts: {
+                        content: '注册成功！系统已赠送超级VIP给您体验！',
+                    },
+                    styles:{
+              bg: '#fff',            //（可选项）字符串类型；对话框整体背景配置，支持#、rgb、rgba、img；默认：#fff
+              corner: 10,             //（可选项）数字类型；对话框背景圆角大小；默认：2
+              w: 300,                //（可选项）数字类型；对话框的宽；默认：300
+              title:{                //（可选项）JSON对象；弹窗标题栏样式配置，不传则不显示标题区域
+                  marginT: 20,       //（可选项）数字类型；标题栏与对话框顶端间距；默认：20
+                  icon: 'widget://image/app/VipExpiredTisi.png',          //（可选项）字符串类型；标题前面的图标路径，要求本地路径（widget://、fs://）；图片为正方形的，如：50*50、100*100，建议开发者传大小合适的图片以适配高分辨率手机屏幕，不传则不显示
+                  iconSize: 80,      //（可选项）数字类型；icon 图标边长大小,若 icon 不存在则此参数无效；默认：24
+                  titleSize: 14,     //（可选项）数字类型；标题字体大小；默认：14
+                  titleColor: '#000' //（可选项）字符串类型；标题字体颜色，支持#、rgb、rgba；默认：#fff
+              },
+              content:{              //（可选项）JSON 对象；文本内容配置，若不传则不显示该区域
+                  marginT: 20,       //（可选项）数字类型；内容文本顶端与标题栏底端的距离，如果标题栏不存在，则是到窗口顶端的距离；默认：20
+                  marginB: 40,       //（可选项）数字类型；内容文本底端与 left/right 顶端的距离，如果 left/right 都不存在，则是到对话框底端的距离；默认：20
+                  color: '#ff0072',     //（可选项）字符串类型；内容文本字体颜色，支持 rgb、rgba、#；默认：#eee
+                  size: 12           //（可选项）数字类型：内容文本字体大小；默认：12
+              }
+          }
+                });
+                /*    注册成功弹窗提示结束    */
+
+
+
+
+
+
+
+
+
+
+
+                api.closeWin({
+                    name: 'login'
+                });
+                //openLogin();
+
+
+                api.ajax({
+                    url: 'http://959495.xyz/login/login/veifys.html',
+                    method: 'get',
+                    data: {
+                        values: {
+                            username: username,
+                            passwd: password,
+                            imei:api.deviceId
+                        }
+                    }
+                },function(ret, err){
+                    if (ret) {
+                      if (ret.code == 0) {
+                        api.hideProgress();
+                        alert('账号或密码不正确');
+                        return;
+                      }else if (ret.code == 1) {
+                        //alert( JSON.stringify( ret ) );
+                          localStorage.setItem('user_id',ret.msg['id']);
+                          localStorage.setItem('user_name',username);
+                          localStorage.setItem('password',password);
+                          localStorage.setItem('user_time',ret.msg['time']);
+                          localStorage.setItem('user_share',ret.msg['share']);
+                          localStorage.setItem('user_advert',ret.msg['advert']);
+                          localStorage.setItem('user_code',ret.msg['code']);
+                          localStorage.setItem('user_weichat',ret.msg['weichat']);
+                          localStorage.setItem('url',ret.msg['url']);
+                          localStorage.setItem('url1',ret.msg['url1']);
+                          localStorage.setItem('url2',ret.msg['url2']);
+                          localStorage.setItem('url3',ret.msg['url3']);
+                          localStorage.setItem('url4',ret.msg['url4']);
+                          api.sendEvent({
+                            name: 'newLoingdata',
+                            extra: {
+                            }
+                          });
+
+
+                          api.hideProgress();
+                          //alert('登录成功');
+
+                          api.closeWin();
+                      }
+                    } else {
+                      api.hideProgress();
+                      alert('网络错误！');
+                      //alert( JSON.stringify( err ) );
+                      return;
+                    }
+                });
+
+
+                api.closeWin();
+              }
+          } else {
+            api.hideProgress();
+            api.alert({
+                title: '糟糕~',
+                msg: '网络错误！',
+            });
+          }
+      });
+    }
+
+    //页面传参
+    function openLogin(){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+
+
+        api.openWin({
+            name: 'login',
+            url: './login.html',
+            pageParam:{user:user,pass:pass},
+        });
+    }
+
+   
+  
+
+    function closeWin(){
+        api.closeWin({
+        });
+    }
+
+    function openWin(name){
+          var delay = 0;
+          if(api.systemType != 'ios'){
+              delay = 300;
+          }
+          api.openWin({
+              name: ''+name+'',
+              url: ''+name+'.html',
+              bounces:false,
+              delay: delay,
+              slidBackEnabled:true,
+              vScrollBarEnabled:false
+          });
+      }
+</script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{$obj.type_title}_{$maccms.site_name}_国内领先的在线视频网站·免VIP在线观看无广告高清视频</title>
+    <meta name="keywords" content="{$obj.type_key}" />
+    <meta name="description" content="{$obj.type_des}" />
+    {include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+    <div class="icon">
+        <div class="container">
+            <section class="art-top clearfix">
+                <div class="art-l">
+                    <div class="tv-hd">
+                        <h2>头条资讯</h2></div>
+                    <div class="tv-bd">{maccms:art num="1" type="current" order="desc" by="time"}
+                        <div class="tv-l imglist_hot">
+                            <a class="pic" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}"><img class="thumb" data-src="{$vo.art_pic|mac_url_img}" alt="{$vo.art_name}"></a>
+                            <div class="tabbox">
+                                <a class="tit" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">{$vo.art_name}</a>
+                            </div>
+                        </div>{/maccms:art}
+                        <div class="tv-r">
+                            <ul class="txtlist clearfix">
+                                <li>{maccms:art num="1" type="current" start="2" order="desc" by="time"}
+                                    <h3><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">{$vo.art_name}</a></h3>{/maccms:art}
+{maccms:art num="2" type="current" start="3" order="desc" by="time"}<p><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">{$vo.art_name|mac_substring=10}</a></p>{/maccms:art}
+                                </li>
+                                <li>{maccms:art num="1" type="current" start="5" order="desc" by="time"}
+                                    <h3><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">{$vo.art_name}</a></h3>{/maccms:art}
+{maccms:art num="2" type="current" start="6" order="desc" by="time"}<p><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">{$vo.art_name|mac_substring=10}</a></p>{/maccms:art}
+                                </li>
+                                <li>{maccms:art num="1" type="current" start="8" order="desc" by="time"}
+                                    <h3><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">{$vo.art_name}</a></h3>{/maccms:art}
+{maccms:art num="2" type="current" start="9" order="desc" by="time"}<p><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">{$vo.art_name|mac_substring=10}</a></p>{/maccms:art}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="art-r">
+                    <div class="tv-hd">
+                        <h2>热门资讯</h2></div>
+                    <div class="tv-bd">
+                        <ul class="imglist clearfix">{maccms:art num="4" type="current" start="11" order="desc" by="time"}
+                            <li>
+                                <a class="pic" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}"><img class="thumb" data-src="{$vo.art_pic|mac_url_img}" alt="{$vo.art_name}"></a>
+                                <div class="tc"><a href="{:mac_url_art_detail($vo)}">{$vo.art_name}</a></div>
+                            </li>{/maccms:art}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="imain clearfix">
+                <div class="tv-hd">
+                    <h2>热映影片</h2></div>
+                <div class="tv-bd js-tab-con-list">
+                    <div class="js-tab-con show">
+                        <ul class="tv-list">{maccms:vod num="8" type="1,2" order="desc" by="hits"}
+						<li><div class="v-pic"><img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a></div><div class="v-txt"><span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span></div></li>{/maccms:vod}
+						</ul>
+                    </div>
+                </div>
+            </section>
+            
+            
+           
+            {maccms:type num="10" ids="child" flag="art" by="sort" order="asc"}
+            <section class="iart clearfix">
+                <div class="tv-hd">
+                    <h2>{$vo.type_name}</h2></div>
+                <div class="tv-bd">
+                    <div class="tv-l imglist_hot">{maccms:art num="1" paging="no" type="'.$vo['type_id'].'" order="asc" by="sort"}
+                        <a class="pic" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}"><img class="thumb" data-src="{$vo.art_pic|mac_url_img}" alt="{$vo.art_name}"></a>{/maccms:art}
+                        <div class="tabbox">{maccms:art num="1" paging="no" type="'.$vo['type_id'].'" order="asc" by="sort"}
+                            <a class="tit" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">{$vo.art_name}</a>{/maccms:art}
+                        </div>
+                    </div>
+                    <div class="tv-r">
+                        <ul class="imglist clearfix">{maccms:art num="8" paging="no" type="'.$vo['type_id'].'" start="2" order="asc" by="sort"}
+                            <li>
+                                <a class="pic" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}"><img class="thumb" data-src="{$vo.art_pic|mac_url_img}" alt="{$vo.art_name}"></a>
+                                <div class="tc"><a href="{:mac_url_art_detail($vo)}">{$vo.art_name}</a></div>
+                            </li>{/maccms:art}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+			{/maccms:type}
+        </div>
+    </div>
+{include file="public/foot"}
+    <script src="{$maccms.path_tpl}js/lazyload.min.js"></script>
+    <script src="{$maccms.path_tpl}js/app.js"></script>
+</body>
+</html>

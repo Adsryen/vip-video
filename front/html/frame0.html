@@ -1,0 +1,1115 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/auislide.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+
+    <style>
+        .empty{ text-align: center; padding: 100px 0; }
+    </style>
+
+    <style>
+
+
+      .m-noRecord {
+        padding: .395rem 0 0;
+        text-align: center;
+    }
+
+    .m-noRecord .c-icon-noRecord {
+        background: url(../image/app/Loading2.gif) no-repeat;
+        background-size: cover;
+      width: 15rem;
+      height: 10rem;
+      /* margin: .485rem auto 0; */
+      margin: 0 auto;
+    }
+    </style>
+
+
+</head>
+							  <div class="aui-searchbar"  id="search" style="background-color:#fff;">
+							    <div class="aui-searchbar-input aui-border-radius" >
+							        <i class="aui-iconfont aui-icon-search"></i>
+
+							            <input type="text" placeholder="输入影片关键词搜索,播放速度更快" id="ff-wd">
+
+							    </div>
+							    <div class="aui-btn aui-btn-info aui-btn-block"  tapmode onclick="ss()" style="width:60px;height:30px;line-height:30px;margin-right:9px;">搜索</div>
+							</div>
+
+                                <div class="br"></div>
+
+<body style="background-color:#fff">
+
+
+
+  <div id="aui-slide" class="fx-box">
+    <div id="slidebox" class="aui-slide-wrap" style="margin: 10px;border-radius:0.5rem;box-shadow:0.1rem 0.1rem 0.4rem rgba(99, 99, 99, 0.3);">
+
+
+                <!--顶部横幅未加载完成时的提示-->
+                  <img id="bpic" src="../image/yujiazai.png"  onClick="UnloadedCompleted()">
+                <!--顶部横幅未加载完成时的提示-->
+
+
+    </div>
+    <div class="aui-slide-page-wrap"><!--分页容器--></div>
+  </div>
+
+
+
+
+              <div class="gonggao">
+    <div class="list-title-l">
+      <i class="iconfont icon-xitonggonggao" style="color:#a00000;font-size: 1rem"></i>
+    </div>
+    <div class="gonggao-r" style="float:right;width: 89%;">
+        <marquee scrollamount="2">
+         <span id="gonggao" style="color:#a00000;font-size: 0.65rem;padding-top:0.3rem;"></span>
+       </marquee>
+                </div>
+
+              </div>
+
+
+
+
+
+
+                                  <div class="list-title">
+                                    <div class="list-title-l">
+                                      <span style="color:#444;font-size: 0.6rem"><i class="iconfont icon-zuirehotchunse" style="color:#ff7600;font-size: 0.8rem"></i>VIP视频观看区</span>
+                                    </div>
+                                    <div class="list-title-r" id="wzbox_top">
+
+                                    </div>
+                                  </div>
+
+
+
+
+
+
+
+  <section class="aui-grid aui-margin-b-15">
+      <div class="aui-row" id="div_list_f">     <!--VIP观影区 调用-->
+
+
+                <!--VIP 观影区未加载完成时的提示-->
+                    <div class="aui-col-xs-3 pt-list" tapmode onClick="UnloadedCompleted()">
+                    <i class="aui-iconfont"><img src="../image/default_picture/iqiyi.png"/></i>
+                    <div class="aui-grid-label">爱奇艺</div>
+                  </div>
+
+                  <div class="aui-col-xs-3 pt-list" tapmode onClick="UnloadedCompleted()">
+                  <i class="aui-iconfont"><img src="../image/default_picture/tengxun.png"/></i>
+                  <div class="aui-grid-label">腾讯视频</div>
+                  </div>
+
+                  <div class="aui-col-xs-3 pt-list" tapmode onClick="UnloadedCompleted()">
+                  <i class="aui-iconfont"><img src="../image/default_picture/youku.png"/></i>
+                  <div class="aui-grid-label">优酷视频</div>
+                  </div>
+
+                  <div class="aui-col-xs-3 pt-list" tapmode onClick="UnloadedCompleted()">
+                  <i class="aui-iconfont"><img src="../image/default_picture/souhu.png"/></i>
+                  <div class="aui-grid-label">搜狐视频</div>
+                  </div>
+
+                   <div class="aui-col-xs-3 pt-list" tapmode onClick="UnloadedCompleted()">
+                  <i class="aui-iconfont"><img src="../image/default_picture/mgtv.png"/></i>
+                  <div class="aui-grid-label">芒果视频</div>
+                  </div>
+
+                  <div class="aui-col-xs-3 pt-list" tapmode onClick="UnloadedCompleted()">
+                  <i class="aui-iconfont"><img src="../image/default_picture/baofeng.png"/></i>
+                  <div class="aui-grid-label">暴风视频</div>
+                  </div>
+
+                  <div class="aui-col-xs-3 pt-list" tapmode onClick="UnloadedCompleted()">
+                  <i class="aui-iconfont"><img src="../image/default_picture/m1905.png"/></i>
+                  <div class="aui-grid-label">1905视频</div>
+                  </div>
+
+                   <div class="aui-col-xs-3 pt-list" tapmode onClick="UnloadedCompleted()">
+                  <i class="aui-iconfont"><img src="../image/default_picture/leshi.png"/></i>
+                  <div class="aui-grid-label">乐视视频</div>
+                  </div>
+
+
+
+                <!--VIP 观影区未加载完成时的提示-->
+
+      </div>
+	 </div>
+		  <div class="aui-row">
+
+                  <div class="aui-col-xs-3 pt-list" tapmode onClick="openVipurl('http://redleave.cn/index.php/vod/type/id/1.html')">
+                  <i class="aui-iconfont"><img src="../image/default_picture/dianying.png"/></i>
+                  <div class="aui-grid-label">电影</div>
+                  </div> 
+                  <div class="aui-col-xs-3 pt-list" tapmode onClick="openVipurl('http://redleave.cn/index.php/vod/type/id/2.html')">
+                  <i class="aui-iconfont"><img src="../image/default_picture/tv.png"/></i>
+                  <div class="aui-grid-label">电视剧</div>
+                  </div>
+                  <div class="aui-col-xs-3 pt-list" tapmode onClick="openVipurl('http://redleave.cn/index.php/vod/type/id/4.html')">
+                  <i class="aui-iconfont"><img src="../image/default_picture/ico_1.png"/></i>
+                  <div class="aui-grid-label">动漫</div>
+                  </div>
+                  <div class="aui-col-xs-3 pt-list" tapmode onClick="openVipurl('http://redleave.cn/index.php/vod/type/id/3.html')">
+                  <i class="aui-iconfont"><img src="../image/default_picture/wan.png"/></i>
+                  <div class="aui-grid-label">综艺</div>
+                  </div>
+
+      </div>
+
+      </div>
+
+      </div>
+
+  </section>
+
+
+  <div  class="fx-box">
+    <div id="lrbox" class="aui-slide-wrap" style="margin: 10px;border-radius:0.5rem;box-shadow:0.1rem 0.1rem 0.4rem rgba(99, 99, 99, 0.3);">
+
+
+                <!--底部横幅未加载完成时的提示-->
+                  <img id="bpic" src="../image/ysdt.jpg"  onClick="UnloadedCompleted()">
+                <!--底部横幅未加载完成时的提示-->
+    </div>
+  </div>
+
+
+  <div class="list-title">
+    <div class="list-title-l" >
+      <span style="color:#444;font-size: 0.6rem">推荐服务</span>
+    </div>
+    <div class="list-title-r" id="wzbox_bottom">  <!--右侧底部右侧文字广告位-->
+     </div>
+  </div>
+  <section class="aui-grid aui-margin-b-15">
+      <div class="aui-row" id="div_list">   <!--首页底部图标广告位-->
+
+
+            <!--未加载完成时的提示-->
+
+           <div class="aui-col-xs-3 pt-list" tapmode onclick="UnloadedCompleted()"">
+            <i class="aui-iconfont"><img src="../image/app/xiala/jiazai.gif"/></i>
+            <div class="aui-grid-label">加载中</div>
+          </div>
+
+          <div class="aui-col-xs-3 pt-list" tapmode onClick="UnloadedCompleted()">
+          <i class="aui-iconfont"><img src="../image/app/xiala/jiazai.gif"/></i>
+          <div class="aui-grid-label">加载中</div>
+          </div>
+
+          <div class="aui-col-xs-3 pt-list" tapmode onClick="UnloadedCompleted()">
+          <i class="aui-iconfont"><img src="../image/app/xiala/jiazai.gif"/></i>
+          <div class="aui-grid-label">加载中</div>
+          </div>
+
+           <div class="aui-col-xs-3 pt-list" tapmode onClick="UnloadedCompleted()">
+          <i class="aui-iconfont"><img src="../image/app/xiala/jiazai.gif"/></i>
+          <div class="aui-grid-label">加载中</div>
+          </div>
+
+            <!--未加载完成时的提示-->
+
+
+      </div>
+
+  </section>
+
+
+</body>
+
+
+
+
+<script type="text/x-dot-template" id="bannertpl">
+  {{~ it.data : value : index }}
+    <div class="aui-slide-node bg-dark" tapmode onclick="toBanner('{{= value. linkurl }}')">
+        <img src="http://959495.xyz/{{= value. picurl }}" />
+    </div>
+  {{~}}
+</script>
+<script type="text/x-dot-template" id="navcattpl">
+  {{~ it.data : value : index }}
+  		<div class="aui-col-xs-3 pt-list" tapmode onclick="openLive('{{= value. linkurl }}')">
+          <i class="aui-iconfont"><img src="http://959495.xyz/{{= value. picurl }}"/></i>
+          <div class="aui-grid-label">{{= value. name }}</div>
+        </div>
+
+  {{~}}
+
+</script>
+<script type="text/x-dot-template" id="lrtpl">
+<img id="bpic" src="http://959495.xyz/{{=it.picurl}}" style="border-radius:0.5rem;box-shadow:0.1rem 0.1rem 0.4rem rgba(99, 99, 99, 0.3);" onclick="imgUrl('{{=it.linkurl}}')">
+</script>
+<script type="text/x-dot-template" id="wzttpl">
+ <span style="color:#f52737;font-size: 0.6rem" onclick="toBanner('{{=it.linkurl}}')">{{=it.name}}</span>
+</script>
+<script type="text/x-dot-template" id="wzbtpl">
+ <span style="color:#f52737;font-size: 0.6rem" onclick="toBanner('{{=it.linkurl}}')">{{=it.name}}</span>
+
+</script>
+<script type="text/x-dot-template" id="navtjtpl">
+/*底部图标模板*/
+  {{~ it.data : value : index }}
+  		<div class="aui-col-xs-3 pt-list" tapmode onclick="toBanner('{{= value. linkurl }}')">
+          <div class="myui-label">{{= value. name }}</div>
+          <div class="myui-label-b">{{= value. content }}</div>
+          <i class="aui-iconfont"><img src="http://959495.xyz/{{= value. picurl }}"/></i>
+        </div>
+
+
+  {{~}}
+</script>
+
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/auipullrefresh.js"></script>
+<script type="text/javascript" src="../script/auislide.js"></script>
+<script type="text/javascript" src="../script/auilazyload.js" ></script>
+<script type="text/javascript">
+
+
+  var imgdz = '';
+
+  var api_url = localStorage.getItem('api_url');
+
+
+
+  apiready = function(){
+
+
+   api.ajax({
+   url: api_url+'/app/nav/tc',
+   method: 'get',
+   },function(ret, err){
+       if (ret) {
+         //渲染模板
+         //var pagefn = doT.template(bannertpl.text);
+         if(ret.kaiguan == 1 ){
+           var tcurl = ret.url;
+           api.confirm({
+             title : ret.title ,
+             msg   : ret.neirong,
+             buttons : ['去看看', '朕知道了']
+           },function(ret, err){
+             if (ret.buttonIndex == 1) {
+               if (api.systemType == "android") {
+                 toBanner(tcurl);
+               }
+               if (api.systemType == "ios") {
+                 toBanner(tcurl);
+               }
+             }
+           });
+         }
+         //alert( JSON.stringify( ret.neirong ) );
+       }
+
+   });
+
+      //下拉刷新
+			api.setCustomRefreshHeaderInfo({
+				bgColor: '#fff',
+				images: [
+					'widget://image/app/xiala/1.png',
+                    'widget://image/app/xiala/2.png',
+                    'widget://image/app/xiala/3.png',
+                    'widget://image/app/xiala/4.png',
+                    'widget://image/app/xiala/5.png',
+                    'widget://image/app/xiala/6.png',
+                    'widget://image/app/xiala/7.png',
+                    'widget://image/app/xiala/8.png',
+				],
+				tips: {
+					pull: '你…你想干什么！你不要过来！',
+					threshold: '讨厌 快放开我 非礼呀！',
+					load: '欣然影视 享受生活'
+				}
+
+			}, function() {
+				//下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+				setTimeout(function() {
+					api.refreshHeaderLoadDone()
+				}, 3000);
+			});
+			//下拉刷新
+
+
+    getBanner();
+    getNav();
+
+    api.parseTapmode();
+    api.ajax({
+        url: api_url+'/login/login/imgad.html',
+        method: 'get'
+    },function(ret, err){
+        if (ret) {
+          //alert( JSON.stringify( ret ) );
+          localStorage.setItem('fxpic1',ret.msg.fxpic1);
+          localStorage.setItem('fxurl1',ret.msg.fxurl1);
+          localStorage.setItem('fxpic2',ret.msg.fxpic2);
+          localStorage.setItem('fxurl2',ret.msg.fxurl2);
+          var bpic = $api.byId('bpic');
+
+        } else {
+
+
+
+        }
+    });
+
+
+
+      new auiLazyload({
+          errorImage:'../image/error-img.jpg'
+      });
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+  function playRadio(){
+    api.hideProgress();
+  }
+
+
+
+
+
+
+
+
+
+
+  var timer = setInterval(function(){
+      DataLoading();
+  },1000)
+
+
+  function DataLoading() {
+
+    api.ajax({
+        url: api_url+'/login/login/banben.html',
+        method: 'get'
+    },function(ret, err){
+        if (ret) {
+
+          getBanner();
+          getNav();
+
+
+clearInterval(timer);
+        }
+
+    });
+
+
+
+
+  }
+
+
+function VipExpiredHint() {
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+    if(user_id<1){
+
+
+      api.toast({
+          msg: '欣然影视提醒！你还没登陆！',
+          duration: 5000
+      });
+      api.openWin({
+          name: 'login',
+          url: './login.html',
+          delay: 2000
+      });
+      return;
+
+    }
+
+
+                  var dialogBox = api.require('dialogBox');
+                  dialogBox.alert({
+                      tapClose: true,
+                      texts: {
+                          content: '超级视频VIP已过期',
+                          leftBtnTitle: '在想想',
+                          rightBtnTitle: '去续费'
+                      },
+                      styles:{
+                bg: '#fff',
+                corner: 10,
+                w: 300,
+                title:{
+                    marginT: 20,
+                    icon: 'widget://image/app/VipExpiredTisi.png',
+                    iconSize: 80,
+                    titleSize: 14,
+                    titleColor: '#000'
+                },
+                content:{
+                    marginT: 20,
+                    marginB: 40,
+                    color: '#ff0072',
+                    size: 12
+                },
+                left:{
+                    marginB: 30,
+                    marginL: 30,
+                    w: 100,
+                    h: 40,
+                    corner: 10,
+                    bg: '#3d3d3d',
+                    color: '#fff',
+                    size: 12
+                },
+                right: {
+                    marginB: 30,
+                    marginL: 40,
+                    w: 100,
+                    h: 40,
+                    corner: 10,
+                    bg: '#ff0072',
+                    color: '#fff',
+                    size: 12
+                }
+            }
+                  }, function(ret) {
+                      if (ret.eventType == 'left') {
+                          var dialogBox = api.require('dialogBox');
+                          dialogBox.close({
+                              dialogName: 'alert'
+                          });
+                      }else if (ret.eventType == 'right') {
+                        api.openWin({
+                            name: 'open_vip_win',
+                            url: './open_vip_win.html',
+                            delay: 300
+                        });
+                        var dialogBox = api.require('dialogBox');
+                        dialogBox.close({
+                            dialogName: 'alert'
+                        });
+                      }
+                  });
+
+}
+  function ss(url){
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+	 var wd = $api.val($api.byId('ff-wd'));
+
+    if(user_id<1){
+
+
+      api.toast({
+          msg: '欣然影视提醒！你还没登陆！',
+          duration: 5000
+      });
+      api.openWin({
+          name: 'login',
+          url: './login.html',
+          delay: 2000
+      });
+      return;
+
+    }
+
+    if (time>timestamp) {
+
+
+                                                            api.ajax({
+                                                                url: api_url+'/login/login/banben.html',
+                                                                method: 'get'
+                                                            },function(ret, err){
+                                                                if (ret) {
+
+
+                                                                             api.toast({
+                                                                                 msg: 'VIP登录'
+                                                                             });
+
+                                                                                   setTimeout("playRadio();",1000);
+                                                                                   var delay = 0;
+                                                                                   if(api.systemType != 'ios'){
+                                                                                       delay = 300;
+                                                                                   }
+                                                                                   api.openWin({
+                                                                                   name: 'h5',
+                                                                                   url: './h5.html',
+                                                                                   pageParam: {
+                                                                                       url: 'http://redleave.cn/index.php/vod/search.html?wd=' + wd + ''
+                                                                                       }
+                                                                                   });
+
+
+
+
+
+                                                                } else {
+
+
+                                                                              api.toast({
+                                                                                  msg: '请检查网络是否畅通'
+                                                                              });
+                                              }
+
+
+                                          });
+
+
+
+    }else if (time == -1) {
+
+
+
+
+                                                      api.ajax({
+                                                          url: api_url+'/login/login/banben.html',
+                                                          method: 'get'
+                                                      },function(ret, err){
+                                                          if (ret) {
+
+
+
+
+
+
+                                                                             api.toast({
+                                                                                 msg: '永久VIP登录'
+                                                                             });
+
+                                                                             setTimeout("playRadio();",2000);
+                                                                             var delay = 0;
+                                                                             if(api.systemType != 'ios'){
+                                                                                 delay = 300;
+                                                                             }
+                                                                             api.openWin({
+                                                                             name: 'h5',
+                                                                             url: './h5.html',
+                                                                             pageParam: {
+                                                                                 url: 'http://redleave.cn/index.php/vod/search.html?wd=' + wd + ''
+                                                                                 }
+                                                                             });
+
+
+
+
+
+                                                          } else {
+
+
+
+                                                                        api.toast({
+                                                                            msg: '请检查网络是否畅通'
+                                                                        });
+                                        }
+
+
+                                    });
+
+
+
+    }else if (time<timestamp){
+        VipExpiredHint();
+    }
+
+  }
+
+
+function getBanner(){
+  var bannerid = $api.byId('slidebox');
+  var bannertpl = $api.byId('bannertpl');
+
+  api.ajax({
+      url: api_url+'/login/login/banben.html',
+      method: 'get'
+  },function(ret, err){
+      if (ret) {
+        localStorage.setItem('user_advert',ret.advert);
+        var advert = $api.byId('gonggao');
+        advert.innerHTML = localStorage.getItem('user_advert');
+          localStorage.setItem('jx_url1',ret.banben);
+          localStorage.setItem('jx_url2',ret.url);
+          localStorage.setItem('jx_url3',ret.url2);
+          localStorage.setItem('jx_url4',ret.url3);
+          localStorage.setItem('jx_url5',ret.url4);
+          localStorage.setItem('jx_url6',ret.url5);
+          localStorage.setItem('hburl',ret.hburl);
+      } else {
+          //alert( JSON.stringify( err ) );
+      }
+  });
+
+
+
+  api.ajax({
+      url: api_url+'/app/nav',
+      method: 'get',
+  },function(ret, err){
+      if (ret) {
+        //渲染模板
+        var pagefn = doT.template(bannertpl.text);
+        bannerid.innerHTML = pagefn(ret.banner);
+//      alert( JSON.stringify( ret.banner ) );
+        banNer();
+
+      }
+
+  });
+}
+
+
+
+
+function getNav(){
+  var navid = $api.byId('div_list_f');
+  var navtpl = $api.byId('navcattpl');
+var navtjid = $api.byId('div_list');
+  var navtjtpl = $api.byId('navtjtpl');
+var lrid = $api.byId('lrbox');
+  var lrtpl = $api.byId('lrtpl');
+  var wztid = $api.byId('wzbox_top');
+  var wzttpl = $api.byId('wzttpl');
+  var wzbid = $api.byId('wzbox_bottom');
+  var wzbtpl = $api.byId('wzbtpl');
+  api.ajax({
+      url: api_url+'/app/nav/index?sid='+localStorage.getItem('user_id'),
+      method: 'get',
+  },function(ret, err){
+      if (ret) {
+        //渲染模板
+        var pagefn = doT.template(navtpl.text);
+        navid.innerHTML = pagefn(ret.vip);
+        var pagefn = doT.template(navtjtpl.text);
+        navtjid.innerHTML = pagefn(ret.tj);
+        var fn = doT.template(lrtpl.text);
+        lrid.innerHTML = fn(ret.lr);
+        var fns = doT.template(wzttpl.text);
+        var wzd=ret.wz;
+        wztid.innerHTML = fns(wzd.data[0]);
+        var fn = doT.template(wzbtpl.text);
+        wzbid.innerHTML = fn(wzd.data[1]);
+//        alert( JSON.stringify( ret ) );
+
+
+      }
+
+
+  });
+}
+
+
+
+function banNer(){
+  var slide = new auiSlide({
+      container:document.getElementById("aui-slide"),
+      // "width":300,
+      "height":150,
+      "speed":300,
+      "pageShow":true,
+      "autoPlay": 5000,
+      "pageStyle":'dot',
+      "loop":true,
+      'dotPosition':'center',
+  });
+}
+
+
+  function imgUrl(url){
+
+
+
+        if (url == '') {
+
+
+          api.toast({
+              msg: '暂无详情'
+          });
+
+        }else {
+
+
+
+
+                              api.ajax({
+                                  url: api_url+'/login/login/banben.html',
+                                  method: 'get'
+                              },function(ret, err){
+                                  if (ret) {
+
+                                               //网络正常   跳转
+
+                                               api.toast({
+                                                   msg: '加载中'
+                                               });
+
+
+
+                                               api.openWin({
+                                                   name: 'h5',
+                                                   url: './h5.html',
+                                                   pageParam: {
+                                                       url: url
+                                                   }
+                                               });
+
+
+
+
+
+                                  } else {
+
+
+
+                                            api.toast({
+                                                msg: '请检查网络是否畅通'
+                                            });
+                }
+
+
+            });
+      //网络连接判断E
+
+        }
+
+
+
+  }
+
+
+
+  function toBanner(url){
+
+    if (url == '') {
+
+
+      api.toast({
+          msg: '暂无详情'
+      });
+
+    }else {
+
+
+                          api.ajax({
+                              url: api_url+'/login/login/banben.html',
+                              method: 'get'
+                          },function(ret, err){
+                              if (ret) {
+
+
+                                           api.toast({
+                                               msg: '加载中'
+                                           });
+
+
+
+                                                 api.openWin({
+                                                     name: 'h5',
+                                                     url: './h5.html',
+                                                     pageParam: {
+                                                         url: url
+                                                     }
+                                                 });
+
+
+
+
+                              } else {
+
+
+
+                                                api.toast({
+                                                    msg: '请检查网络是否畅通'
+                                                });
+            }
+
+
+        });
+
+
+    }
+  }
+
+  function openLive(url){
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+    if(user_id<1){
+
+
+      api.toast({
+          msg: '欣然影视提醒！你还没登陆！',
+          duration: 5000
+      });
+      api.openWin({
+          name: 'login',
+          url: './login.html',
+          delay: 2000
+      });
+      return;
+
+    }
+
+    if (time>timestamp) {
+
+
+                                                            api.ajax({
+                                                                url: api_url+'/login/login/banben.html',
+                                                                method: 'get'
+                                                            },function(ret, err){
+                                                                if (ret) {
+
+
+                                                                             api.toast({
+                                                                                 msg: 'VIP登录'
+                                                                             });
+
+                                                                                   setTimeout("playRadio();",1000);
+                                                                                   var delay = 0;
+                                                                                   if(api.systemType != 'ios'){
+                                                                                       delay = 300;
+                                                                                   }
+                                                                                   api.openWin({
+                                                                                       name: 'video_win',
+                                                                                       url: './video_win.html',
+                                                                                       delay: 800,
+                                                                                       pageParam:{url:url},
+                                                                                       bgColor: 'rgba(0,0,0,0)'
+                                                                                   });
+
+
+
+
+
+                                                                } else {
+
+
+                                                                              api.toast({
+                                                                                  msg: '请检查网络是否畅通'
+                                                                              });
+                                              }
+
+
+                                          });
+
+
+
+    }else if (time == -1) {
+
+
+
+
+                                                      api.ajax({
+                                                          url: api_url+'/login/login/banben.html',
+                                                          method: 'get'
+                                                      },function(ret, err){
+                                                          if (ret) {
+
+
+
+
+
+
+                                                                             api.toast({
+                                                                                 msg: '永久VIP登录'
+                                                                             });
+
+                                                                             setTimeout("playRadio();",2000);
+                                                                             var delay = 0;
+                                                                             if(api.systemType != 'ios'){
+                                                                                 delay = 300;
+                                                                             }
+                                                                             api.openWin({
+                                                                                 name: 'video_win',
+                                                                                 url: './video_win.html',
+                                                                                 delay: 800,
+                                                                                 pageParam:{url:url},
+                                                                                 bgColor: '#000000'
+                                                                             });
+
+
+
+
+
+                                                          } else {
+
+
+
+                                                                        api.toast({
+                                                                            msg: '请检查网络是否畅通'
+                                                                        });
+                                        }
+
+
+                                    });
+
+
+
+    }else if (time<timestamp){
+        VipExpiredHint();
+    }
+
+  }
+
+  function UnloadedCompleted(){
+
+        api.toast({
+            msg: '请检查网络是否畅通'
+        });
+  }
+
+
+    function openVipurl(url){
+      var time = localStorage.getItem('user_time');
+      var user_id = localStorage.getItem('user_id');
+      var username = localStorage.getItem('user_name');
+      var timestamp = Date.parse(new Date())/1000;
+
+
+
+      if (time>timestamp) {
+
+                                                                    api.ajax({
+                                                                        url: api_url+'/login/login/banben.html',
+                                                                        method: 'get'
+                                                                    },function(ret, err){
+                                                                        if (ret) {
+
+
+                                                                                     api.toast({
+                                                                                         msg: '加载中'
+                                                                                     });
+
+
+                                                                                     setTimeout("playRadio();",1000);
+                                                                                     var delay = 0;
+                                                                                     if(api.systemType != 'ios'){
+                                                                                         delay = 300;
+                                                                                     }
+
+                                                                                     api.openWin({
+                                                                                         name: 'h5',
+                                                                                         url: './h5.html',
+                                                                                         delay: 800,
+                                                                                         pageParam:{url:url},
+                                                                                         bgColor: 'rgba(0,0,0,0)'
+                                                                                     });
+
+
+
+
+                                                                        } else {
+
+
+                                                      }
+
+
+                                                  });
+
+
+
+      }else if (time == -1) {
+
+
+                                                                    api.ajax({
+                                                                        url: api_url+'/login/login/banben.html',
+                                                                        method: 'get'
+                                                                    },function(ret, err){
+                                                                        if (ret) {
+
+
+                                                                                     api.toast({
+                                                                                         msg: '加载中'
+                                                                                     });
+
+
+                                                                                     setTimeout("playRadio();",2000);
+                                                                                     var delay = 0;
+                                                                                     if(api.systemType != 'ios'){
+                                                                                         delay = 300;
+                                                                                     }
+                                                                                     api.openWin({
+                                                                                         name: 'h5',
+                                                                                         url: './h5.html',
+                                                                                         delay: 800,
+                                                                                         pageParam:{url:url},
+                                                                                         bgColor: '#000000'
+                                                                                     });
+
+
+
+
+
+                                                                        } else {
+
+
+                                                      }
+
+
+                                                  });
+
+
+      }else if (time<timestamp){
+
+            VipExpiredHint();
+      }
+
+    }
+
+
+
+    function fnRefreshHeaderLoading() {
+        api.refreshHeaderLoading();
+    };
+ function ss(){
+
+             var wd = $api.val($api.byId('ff-wd'));
+ 			api.openWin({
+           name: 'h5',
+           url: './h5.html',
+           pageParam: {
+               url: 'http://959495.xyz/mp4/index.php/vod/search.html?wd=' + wd + ''
+             }
+         });
+     }
+
+    </script>
+
+
+
+</html>

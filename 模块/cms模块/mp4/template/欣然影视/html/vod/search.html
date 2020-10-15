@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>搜索{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}-{$maccms.site_name}-国内领先的在线视频网站·免VIP在线观看无广告高清视频</title>
+    <meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}-{$maccms.site_name},免费在线电影,{$maccms.site_name},视频网站,免VIP,免广告,高清,高清视频,高清视频观看,VIP会员,在线观看,电影,电视剧,综艺,最新电影,最新电视剧" />
+    <meta name="description" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}-{$maccms.site_name},{$maccms.site_name}-国内领先的在线视频网站·平台用户可享受免VIP在线观看无广告高清视频,我们致力打造最优秀的最新影视,最新电视剧,最新综艺节目在线观看服务平台" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link type="image/vnd.microsoft.icon" href="{$maccms.path}favicon.png" rel="shortcut icon" />
+	<link href="{$maccms.path_tpl}css/home.css" rel="stylesheet" type="text/css" />
+    <link href="{$maccms.path_tpl}css/app.css" rel="stylesheet" type="text/css" />
+    <script src="{$maccms.path_tpl}js/jquery.min.js"></script>
+    <script>var maccms={"path":"__ROOT__","mid":"{$maccms['mid']}","url":"{$maccms['site_url']}","wapurl":"{$maccms['site_wapurl']}","mob_status":"{$maccms['mob_status']}"};</script>
+	<script src="{$maccms.path}static/js/home.js"></script>
+</head>
+
+<body class="isearch">
+{include file="public/head"}
+<div class="icon">
+        <section class="idetail isear container">
+            <div class="col-l">
+                <div class="tv-hd v-border">
+                    <h2><span><em>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}</em></span>相关视频</h2><span class="s_num">共有<em class="mac_total"></em>部</span>
+                </div>
+                <div class="tv-bd search-list">
+				{maccms:vod num="10" paging="yes" pageurl="vod/search" half="6" order="desc" by="time"}
+                    <div class="item clearfix">
+                        <div class="item_pic">
+                            <img src="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name}">
+                            <span class="v-tips"><em>{include file="public/serial1"}</em></span><a href="{:mac_url_vod_detail($vo)}" class="v-playBtn"><i></i></a>
+                        </div>
+                        <div class="item_txt">
+                            <div class="intro_con">
+                                <div class="tit">
+                                    <span class="s_score">{$vo.vod_score}分</span> <span class="s_tit"><a href="{:mac_url_vod_detail($vo)}"><strong>{$vo.vod_name}</strong></a></span>
+                                    <span class="s_type">[{if condition="$vo.type_1.type_id neq '' "}{$vo.type_1.type_name}{else /}{$vo.type.type_name}{/if}]</span>
+                                </div>
+                                <ul class="txt_list clearfix">
+                                <li class="clearfix"><em class="em_tit">导演：</em>{$vo.vod_director|mac_url_create='director'}<em class="em_tit">年代：</em><em>{$vo.vod_year|mac_url_create='year'}</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em class="em_tit">语言：</em><em>{$vo.vod_lang|mac_url_create='lang'}</em></li>
+                                    <li class="clearfix"><em class="em_tit">主演：</em>{$vo.vod_actor|mac_url_create='actor'}</li>
+                                    <li class="li_intro clearfix">
+                                        <em class="em_tit">简介：</em>
+                                        <div class="p_intro">{$vo.vod_blurb}</div>
+                                    </li>
+                                </ul>
+                                <p class="p_bottom"><a href="{:mac_url_vod_play($vo)}" class="v_yellow_btn"><i class="iconfont">&#xe630;</i> 立即播放</a></p>
+                            </div>
+                        </div>
+                    </div>
+                {/maccms:vod}
+				{include file="public/paging"}
+                </div>
+            </div>
+            <div class="col-r">
+                <div class="tv-hd"><h2>电影 • 热播榜</h2></div>
+                <div class="tv-bd">
+                    <ul class="v-rank clearfix">{maccms:vod num="10" type="1" order="desc" by="hits_month"}<li><i class="i-rank_num">{$key}</i><em class="v-num">{include file="public/serial1"}</em><span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span></li>{/maccms:vod}
+                    </ul>
+                </div>
+                <div class="tv-hd"><h2>连续剧 • 热播榜</h2></div>
+                <div class="tv-bd">
+                    <ul class="v-rank clearfix">{maccms:vod num="10" type="2" order="desc" by="hits_month"}<li><i class="i-rank_num">{$key}</i><em class="v-num">{include file="public/serial1"}</em><span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span></li>{/maccms:vod}
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $('.mac_total').html('{$__PAGING__.record_total}');
+    </script>
+{include file="public/foot"}
+    <script src="{$maccms.path_tpl}js/lazyload.min.js"></script>
+    <script src="{$maccms.path_tpl}js/app.js"></script>
+</body>
+</html>

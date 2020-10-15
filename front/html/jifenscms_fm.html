@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>购物网</title>
+	<style type="text/css">
+		.aui-bar-tab {
+			position: static;
+		}
+
+		.search-input {
+			height: 1.6rem;
+			line-height: 1.6rem;
+			background: #f5f5f5;
+			border-radius: 30px;
+			position: relative;
+			font-family: "aui_iconfont" !important;
+			text-align: left;
+			padding-left: 1.5rem;
+			color: #999999;
+		}
+
+		.search-input:after {
+			position: absolute;
+			left: 0;
+			padding-left: 0.5rem;
+			content: "\e615";
+		}
+	</style>
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="../shangcheng/css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="../shangcheng/css/aui-slide.css"/>
+	<link rel="stylesheet" type="text/css" href="../shangcheng/css/pop.css"/>
+</head>
+<body style="background:#fff">
+
+<div id="aui-slide2">
+	<div class="aui-slide-wrap">
+		<div class="aui-slide-node aui-slide-node-middle aui-slide-node-center" id="spcs">
+			<img src="../shangcheng/image/sp1.jpg" alt="">
+		</div>
+	</div>
+	<div class="aui-slide-page-wrap">
+		<!--分页容器-->
+	</div>
+</div>
+
+
+
+<div class="aui-title-text ">
+	<a href="#" id="title">
+		<h2>
+			<span>热销</span>
+			荣耀V9play全网通 标配版 3GB+32GB 幻夜黑 移动联通电信4G手机 双卡双待
+		</h2>
+	</a>
+	<div style="font-size:18px; font-weight:800; color:#f34347" id="money">￥1299.00
+	</div>
+</div>
+
+<div class="div-border t-line"></div>
+
+<div class="wrap" id="wrap">
+	<ul style="text-align:center; color:red; font-size:18px;">
+		<li class="active"><b>商品介绍</b></li>
+	</ul>
+  <div class="div-border t-line"></div>
+	<div class="lineBorder">
+		<div class="lineDiv">
+			<!--移动的div-->
+		</div>
+	</div>
+	<div class="tabCon">
+		<div class="tabBox">
+			<div class="tabList" id="shop_list">
+				<div style="margin-top:10px;">
+					<img src="../shangcheng/image/sspp2.jpg" alt="">
+				</div>
+			</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="div-border t-line"></div>
+<div style="height:52px"></div>
+<br/>
+
+<footer class="aui-bar aui-bar-tab aui-margin-t-15  aui-border-t">
+
+	<div class="aui-bar-tab-item aui-bg-danger aui-text-white" tapmode style="width: auto;" tapmode onclick="openLive('')">立即购买</div>
+</footer>
+</body>
+<script type="text/x-dot-template" id="templates">
+  {{~ it.shop : value : index }}
+
+        <div class="aui-slide-node aui-slide-node-middle aui-slide-node-center">
+    			<img src="http://959495.xyz/{{= value. picurl }}" alt="">
+    		</div>
+
+  {{~}}
+
+</script>
+
+<script type="text/x-dot-template" id="titles">
+  {{~ it.shop : value : index }}
+
+      <a href="#">
+        <h2>
+          <span>欣然影视:</span>
+          {{= value. title }}
+        </h2>
+      </a>
+
+  {{~}}
+</script>
+<script type="text/x-dot-template" id="moneys">
+  {{~ it.shop : value : index }}
+
+  <div style="font-size:18px; font-weight:800; color:#f34347" id="money">￥{{= value. money }} / 积分
+  </div>
+
+  {{~}}
+</script>
+<script type="text/x-dot-template" id="template">
+  {{~ it.shop : value : index }}
+
+            <div class="tabList">
+      				<div style="margin-top:10px;">
+                <center>
+      					  {{= value. miaoshu }}
+                </center>
+      				</div>
+      			</div>
+
+
+  {{~}}
+
+</script>
+<script type="text/javascript" src="../shangcheng/script/aui-slide.js"></script>
+<script src="../shangcheng/script/jquery.min.js"></script>
+<script src="../shangcheng/script/ratchet.min.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/auipullrefresh.js"></script>
+<script type="text/javascript" src="../script/auislide.js"></script>
+<script type="text/javascript" src="../script/auilazyload.js" ></script>
+<script type="text/javascript">
+var api_url = localStorage.getItem('api_url');
+apiready = function(){
+  //下拉刷新
+        api.setCustomRefreshHeaderInfo({
+            bgColor : '#fff',
+             images: [
+                  'widget://image/app/xiala/qicai.gif',
+                    ],
+                    tips: {
+                        pull: '你…你想干什么！你不要过来！',
+                        threshold: '讨厌 快放开我 非礼呀！',
+                        load: '欣然影视 享受生活'
+                    }
+
+        }, function() {
+
+            setTimeout(function(){
+        api.refreshHeaderLoadDone()
+            }, 3000);
+        });
+
+  //下拉刷新
+  api.parseTapmode();
+  getShoplist();
+}
+
+function getShoplist(){
+  var shop_list = $api.byId('shop_list');
+  var template = $api.byId('template');
+  var spcs = $api.byId('spcs');
+  var templates = $api.byId('templates');
+  var title = $api.byId('title');
+  var titles = $api.byId('titles');
+  var money = $api.byId('money');
+  var moneys = $api.byId('moneys');
+  api.ajax({
+    url: api_url+'/login/login/shoplist.html?spid='+api.pageParam.spid,
+    method: 'get',
+},function(ret, err){
+    if (ret) {
+      //渲染模板
+      var pagefn = doT.template(template.text);
+      shop_list.innerHTML = pagefn(ret);
+      var pagefn = doT.template(templates.text);
+      spcs.innerHTML = pagefn(ret);
+      var pagefn = doT.template(titles.text);
+      title.innerHTML = pagefn(ret);
+      var pagefn = doT.template(moneys.text);
+      money.innerHTML = pagefn(ret);
+
+    }
+
+
+});
+}
+
+function openLive(){
+  api.openWin({
+     name: 'action',
+     url: './action_win.html',
+     delay: 100,
+     pageParam:{spid:api.pageParam.spid}
+ });
+}
+
+</script>
+<script type="text/javascript">
+    var slide = new auiSlide({
+        container:document.getElementById("aui-slide"),
+        // "width":300,
+        "height":260,
+        "speed":300,
+        "pageShow":true,
+        "pageStyle":'dot',
+        "loop":true,
+        'dotPosition':'center',
+        currentPage:currentFun
+    })
+
+    function currentFun(index) {
+        console.log(index);
+    }
+    var slide2 = new auiSlide({
+        container:document.getElementById("aui-slide2"),
+        // "width":300,
+        "height":290,
+        "speed":300,
+        "autoPlay":4000, //自动播放
+        "pageShow":true,
+        "loop":true,
+        "pageStyle":'dot',
+        'dotPosition':'center'
+    })
+    var slide3 = new auiSlide({
+        container:document.getElementById("aui-slide3"),
+        // "width":300,
+        "height":240,
+        "speed":500,
+        "autoPlay": 3000, //自动播放
+        "loop":true,
+        "pageShow":true,
+        "pageStyle":'line',
+        'dotPosition':'center'
+    })
+    console.log(slide3.pageCount());
+</script>
+</html>

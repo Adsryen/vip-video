@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ckplayer播放器</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+	<style type="text/css">
+	html,body{width:100%;height:100%; padding:0; margin:0;}
+	#playerCnt{width:100%;height:100%;}
+	</style>
+	<script type="text/javascript" src="/static/player/ckplayer/ckplayer.js"></script>
+</head>
+<body marginwidth="0" marginheight="0">
+<div id="playerCnt"></div>
+<script type="text/javascript">
+
+    var video = [
+        [
+            parent.MacPlayer.PlayUrl,
+            "video/mp4"
+        ],
+        [
+            parent.MacPlayer.PlayUrl,
+            "video/m3u8",
+        ],
+        [
+            parent.MacPlayer.PlayUrl,
+            "video/ogg",
+        ],
+        [
+            parent.MacPlayer.PlayUrl,
+            "video/webm",
+        ]
+    ];
+
+    var videoObject = {
+        container: '#playerCnt', //容器的ID或className
+        variable: 'player',//播放函数名称
+        //flashplayer:true,
+        autoplay:true,
+        loaded: 'loadedHandler',
+        video: parent.MacPlayer.PlayUrl
+    };
+    var ck = new ckplayer(videoObject);
+
+    function loadedHandler(){
+        ck.addListener('ended', endedHandler);
+    }
+
+    function endedHandler(){
+        if(parent.MacPlayer.PlayLinkNext!=''){
+            top.location.href = parent.MacPlayer.PlayLinkNext;
+        }
+    }
+
+
+	try{
+		//document.getElementById('playerCnt').style.height = parent.MacPlayer.Height + 'px';
+	}
+	catch(e){}
+</script>
+</body>
+</html>

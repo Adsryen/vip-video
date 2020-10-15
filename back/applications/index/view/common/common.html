@@ -1,0 +1,349 @@
+<?php
+
+
+
+?> 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/public/static/assets2/css/layui.css">
+    <link rel="stylesheet" href="/public/static/assets2/css/admin.css">
+  <link rel="icon" href="/public/static/adminlog/images/favicon.ico" >
+    
+    <title>代理管理</title>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header custom-header">
+
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item slide-sidebar" lay-unselect>
+                <a href="javascript:;" class="icon-font"><i class="ai ai-menufold"></i></a>
+            </li>
+         
+        </ul>
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide-xs" lay-unselect>
+                <a href="javascript:;" class="layui-btn layui-btn-radius layui-btn-danger" style="color: #fff">{:power()}</a>
+
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">{:name()}</a>
+                <dl class="layui-nav-child">
+
+                    <dd><a href="{:url('login/login/dologin')}">退出</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="layui-side custom-admin">
+        <div class="layui-side-scroll">
+
+            <div class="custom-logo">
+                <?php if(session('power')=='0'){?>
+                <img src="/public/static/assets1/images/logo.png" alt=""/>
+                <?php } ?>
+            </div>
+            <ul id="Nav" class="layui-nav layui-nav-tree">
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon"></i>
+                        <em>主页</em>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="{:url('index/index/index')}">管理中心</a></dd>
+                    </dl>
+
+                    <?php if(session('power')=='0'){?>
+                    <dl class="layui-nav-child">
+                        <dd><a href="{:url('vip/advert')}">系统设置</a></dd>
+
+                    </dl>
+                    <dl class="layui-nav-child">
+                        <dd><a href="<?php echo url('admin/index'); ?>">管&nbsp;&nbsp;理&nbsp;&nbsp;员</a></dd>
+                    </dl>
+                    <?php }?>         
+                </li>
+                <?php if(session('power')=='0'){?>
+                <li class="layui-nav-item">
+                    <a  href="javascript:;">
+                        <i class="layui-icon"></i>
+                        <em>弹窗消息</em>
+                    </a>
+                  <dl class="layui-nav-child">
+                        <dd><a href="{:url('index/vip/apptc')}">弹窗消息</a></dd>
+                        <dd><a href="{:url('index/vip/appts')}">消息推送</a></dd>
+                        <dd><a href="{:url('index/vip/tspz')}">推送配置</a></dd>
+                    </dl>                    
+                </li>
+              
+               <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon"></i>
+                        <em>商城管理</em>
+                    </a>
+                    <dl class="layui-nav-child">
+
+                        <dd><a href="{:url('shangcheng/index')}">商品管理</a></dd>
+                        <dd><a href="{:url('shangcheng/dingdan')}">订单管理</a></dd>
+
+                    </dl>
+                </li>
+
+                      <?php }?>
+
+                <?php if(session('power')=='0'){?>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon"></i>
+                        <em>提卡点数管理</em>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="{:url('Km/kmprice')}">提卡点数管理</a></dd>
+                    </dl>
+                </li>
+                <?php }?>
+              
+              <?php if(session('power')=='0' or session('power')=='1'){?>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon"></i>
+                        <em>点卡管理</em>
+                    </a>
+                    <dl class="layui-nav-child">
+
+                        <dd><a href="{:url('dianka/index')}">点卡生成</a></dd>
+                        <dd><a href="{:url('dianka/ylog')}">有效点卡</a></dd>
+                        <dd><a href="{:url('dianka/slog')}">点卡使用记录</a></dd>
+
+                    </dl>
+                </li>
+              <?php }?>
+
+               <?php if(session('power')=='0' or session('power')=='1'){?>
+                <li class="layui-nav-item">
+                    <a  href="javascript:;">
+                        <i class="layui-icon"></i>
+                        <em>APP设置</em>
+                    </a>
+                  <dl class="layui-nav-child">
+                    <dd><a href="{:url('index/user/pass')}">APP设置</a></dd>
+                     <?php if(session('power')=='0'){?>
+                    <dd><a href="{:url('index/user/kami')}">卡密购买价格设置</a></dd>
+                    <dd><a href="{:url('index/user/kamitc')}">卡密提成设置</a></dd>
+                <?php }?>
+                  </dl>                    
+                </li>
+                <li class="layui-nav-item">
+                    <a  href="javascript:;">
+                        <i class="layui-icon"></i>
+                        <em>支付接口</em>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="{:url('index/common/epayview')}">支付管理</a></dd>
+                    </dl>
+                  <dl class="layui-nav-child">
+                        <dd><a href="http://pay.redlk.com/user/login.php">接口申请</a></dd>
+                    </dl>
+                </li>
+                <?php }?>
+               <?php if(session('power')=='0' or session('power')=='1'){?>
+                <li class="layui-nav-item">
+                    <a  href="{:url('/index/banner/index/id/1')}">
+                        <i class="layui-icon"></i>
+                        <em>广告管理</em>
+                    </a>
+                  <dl class="layui-nav-child">
+                    </dl>                    
+                </li>              
+              <?php }?>
+                <?php if(session('power')=='0'){?>          
+              
+            
+              
+                <li class="layui-nav-item">
+                    <a  href="{:url('user/paylog')}">
+                        <i class="layui-icon"></i>
+                        <em>销售记录</em>
+                    </a>
+                  <dl class="layui-nav-child">
+                    </dl>                    
+                </li>                
+                             
+              
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon"></i>
+                        <em>影视管理</em>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="{:url('video/index')}">电影推荐</a></dd>
+                        <dd><a href="{:url('mn/index')}">美女视频</a></dd>
+                        <dd><a href="{:url('tv/index')}">电视直播</a></dd>
+
+                    </dl>
+                </li>
+                <?php } ?>
+              
+                  <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon"></i>
+                        <em>五级分润</em>
+                    </a>
+                    <dl class="layui-nav-child">
+
+                        <dd><a href="{:url('Moneyorders/lists')}">收入明细查询</a></dd>
+                        <dd><a href="{:url('getmoney/lists')}">现金提现记录</a></dd>
+						<dd><a href="{:url('getmoney/tixian')}">现金提现</a></dd>
+                      <?php if(session('power')=='0'){?>
+                        <dd><a href="{:url('classs/index')}">分销设置</a></dd>
+                      <?php }?>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon"></i>
+                        <em>用户管理</em>
+                    </a>
+                    <dl class="layui-nav-child">
+                      
+                        <dd><a href="{:url('vip/index')}">用户管理</a></dd>
+                      	<dd><a href="{:url('user/indexs')}">代理管理</a></dd>
+                        <dd><a href="{:url('user/index')}">合伙人管理</a></dd>
+                      
+                       <?php if(session('power')=='0' or session('power')=='1'){?>
+                        <dd><a href="{:url('user/clog')}">充值记录</a></dd>
+                        <dd><a href="{:url('user/xlog')}">开通记录</a></dd>
+                      <?php }?>
+                        <?php if(session('power')=='0'){?>
+                        <dd><a href="{:url('user/mlog')}">代理记录</a></dd>
+                        <dd><a href="{:url('user/daoqi')}">即将到期</a></dd>
+                        <?php } ?>
+
+                    </dl>
+                  <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon">&#xe857;</i>
+                        <em>对接平台</em>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="http://959495.xyz/mp4/">影视站</a></dd>
+                      <?php if(session('power')=='0'){?>
+                        <dd><a href="http://959495.xyz/mp4/admin.php">影视站管理</a></dd>
+                        <dd><a href="{:url('vip/jxpost')}">全网解析</a></dd>
+                      <?php }?>
+                    </dl>
+                </li>
+				
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon">&#xe66f;</i>
+                        <em>分站系统</em>
+                    </a>
+                    <dl class="layui-nav-child">
+                      
+                        <?php if(session('power')=='0'){?>
+                        <dd><a href="{:url('Moneyorders/fzcx')}">分站查询</a></dd>
+                        <dd><a href="{:url('Moneyorders/fzcx')}">分站授权</a></dd>
+                        <dd><a href="{:url('vip/fenzhan')}">分站列表</a></dd>
+                        <?php } ?>
+
+                    </dl>
+                </li>
+				
+                  <li class="layui-nav-item">
+					<a href="javascript:;">
+						<i class="layui-icon">&#xe857;</i>
+						<em>关于欣然影视</em>
+					</a>
+					<dl class="layui-nav-child">
+	
+						<dd>
+							<a href="{:url('vip/gx')}">版本更新</a>
+						</dd>
+						<dd>
+							<a href="http://tu.redleave.cn/">图片外链</a>
+						</dd>
+					</dl>
+				</li>
+
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <div class="layui-tab app-container" lay-allowClose="true" lay-filter="tabs">
+            <ul id="appTabs" class="layui-tab-title custom-tab"></ul>
+            <div id="appTabPage" class="layui-tab-content">
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="mobile-mask"></div>
+</div>
+<script src="/public/static/assets1/layui.js"></script>
+<script src="/public/static/assets1/index.js" ></script>
+<script src="/public/static/assets1/home.js" ></script>
+<script>
+
+  
+
+  
+  
+  
+    function money(status,id){
+        if(status=='1')
+        {
+            var str = 'all';
+        }else{
+            if(id=='') {
+                var str = "";
+                $("input:checkbox[name='checkname']:checked").each(function () {
+                    str += $(this).val() + ",";
+                });
+
+                if (str == '') {
+                    return false
+                }
+            }else{
+                var str     =   id
+            }
+        }
+
+
+        layer.prompt({title: '请输入充值点数', formType: 3}, function(pass, index) {
+            if(!isNaN(pass))
+            {
+                if(pass<1){
+                    $('.layui-layer-content').append('<br><span style="color: red">最低起充金额1元</span>')
+                    return false;
+                }
+                window.location.href='http://959495.xyz/daili_pay/?id='+id+'&name=代理自助充点&fee='+pass;
+                layer.close(index);
+            }else{
+                $('.layui-layer-content').append('<br><span style="color: red">请填入纯数字</span>')
+                return false;
+            }
+
+
+        })
+
+
+    }
+
+</script>
+</body>
+</html>

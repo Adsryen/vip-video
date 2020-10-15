@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/public/static/assets1/css/layui.css">
+    <link rel="stylesheet" href="/public/static/assets1/css/view.css"/>
+    <!--favicon -->
+		<link rel="icon" href="/public/static/assets2/img/favicon.ico" type="image/x-icon"/>
+
+		<!--Bootstrap.min css-->
+		<link rel="stylesheet" href="/public/static/assets2/plugins/bootstrap/css/bootstrap.min.css">
+
+		<!--Icons css-->
+		<link rel="stylesheet" href="/public/static/assets2/css/icons.css">
+
+		<!--Style css-->
+		<link rel="stylesheet" href="/public/static/assets2/css/style.css">
+
+		<!--mCustomScrollbar css-->
+		<link rel="stylesheet" href="/public/static/assets2/plugins/scroll-bar/jquery.mCustomScrollbar.css">
+
+		<!--Sidemenu css-->
+		<link rel="stylesheet" href="/public/static/assets2/plugins/toggle-menu/sidemenu.css">
+    <title></title>
+</head>
+<body class="layui-view-body">
+<div class="layui-content">
+    <div class="layui-row layui-col-space20">
+        <!--
+        	作者：857082775@qq.com
+        	时间：2019-03-06
+        	描述：
+        -->
+        <div class="row">
+			<div class="col-lg-6 col-xl-3 col-md-6 col-12">
+				<div class="card bg-cyan text-white ">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-6">
+								<div class="icon1 text-center">
+									<i class="ion-ios-people-outline"></i>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="mt-3 text-center">
+									<span class="text-white">总用户数</span>
+									<h2 class="text-white mb-0">{$ycount}</h2>
+								</div>
+							</div>
+							<div class="chart-body">
+								<div class="contentwrap">
+			
+								</div>
+							</div>
+							<div class="chart-footer">
+								<div class="field">
+									<span>今天登录人数</span>
+									<span>{$tzcount}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-xl-3 col-md-6 col-12">
+				<div class="card bg-primary text-white">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-6">
+								<div class="icon1 text-center">
+									<i class="ion-ios-pie-outline"></i>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="mt-3 text-center">
+									<span class="text-white">付费用户</span>
+									<h2 class="text-white mb-0">{$fcount}</h2>
+								</div>
+							</div>
+							<div class="chart-body">
+								<div class="contentwrap">
+			
+								</div>
+							</div>
+							<div class="chart-footer">
+								<div class="field">
+									<span>打开APP次数统计</span>
+									<span>{$open} 次</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-xl-3 col-md-6 col-12">
+				<div class="card bg-orange text-white">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-6">
+								<div class="icon1 text-center">
+									<i class="ion-ios-people-outline"></i>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="mt-3 text-center">
+									<span class="text-white">免费用户</span>
+									<h2 class="text-white mb-0">{$mcount}</h2>
+								</div>
+							</div>
+							<div class="chart-body">
+								<div class="contentwrap">
+			
+								</div>
+							</div>
+							<div class="chart-footer">
+								<div class="field">
+									<span>&nbsp;</span>
+									<span>&nbsp;</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-xl-3 col-md-6 col-12">
+				<div class="card bg-success text-white">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-6">
+								<div class="icon1 text-center">
+									<i class="ion-ios-people-outline"></i>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="mt-3 text-center">
+									<span class="text-white">代理数</span>
+									<h2 class="text-white mb-0">{$dcount}</h2>
+								</div>
+							</div>
+							<div class="chart-body">
+								<div class="contentwrap">
+			
+								</div>
+							</div>
+							<div class="chart-footer">
+								<div class="field">
+									<span></span>
+									<span></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+
+</div>
+<div class="layui-content">
+<div class="layui-col-md12">
+    <div class="layui-card">
+        <div class="layui-card-header">项目进度</div>
+      	<!--<div class="layui-card-header"><a href="javascript:;" onClick="gengxin()" class="layui-btn" style="color: #fff">检测更新</a></div>-->
+      	<div class="layui-card-header">程序当前版本2.45</div>
+        <div class="layui-card-body">
+
+            <ul class="layui-timeline">
+			 <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis"></i>
+                    <div class="layui-timeline-content layui-text">
+                        <div class="layui-timeline-title">
+                            4-5 优化支付方式，全局设置等！
+                        </div>
+                    </div>
+                </li>
+			      <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis"></i>
+                    <div class="layui-timeline-content layui-text">
+                        <div class="layui-timeline-title">
+                            1-30 更新全新UI，待增加功能
+                        </div>
+                    </div>
+                </li>
+			     <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis"></i>
+                    <div class="layui-timeline-content layui-text">
+                        <div class="layui-timeline-title">
+                            11-15 修复上传问题，修复所有后台问题
+                        </div>
+                    </div>
+                </li>
+                <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis"></i>
+                    <div class="layui-timeline-content layui-text">
+                        <div class="layui-timeline-title">
+                            10-9 修复客服获取逻辑；下个版本新增短视频！
+                        </div>
+                    </div>
+                </li>
+                <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis"></i>
+                    <div class="layui-timeline-content layui-text">
+                        <div class="layui-timeline-title">可付费对接微信/QQ登录；</div>
+                    </div>
+                </li>
+                <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis"></i>
+                    <div class="layui-timeline-content layui-text">
+                        <div class="layui-timeline-title">未完待续……</div>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    var element = layui.element;
+  
+  	function gengxin(){
+    	alert('已是最新版本');
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>购物网</title>
+	<link rel="stylesheet" type="text/css" href="../shangcheng/css/aui.css" />
+	<style>
+		header {
+
+
+		}
+		.aui-searchbar {
+			background: transparent;
+		}
+		.aui-bar-nav .aui-searchbar-input {
+			background-color: #ffffff;
+		}
+		.aui-bar-light .aui-searchbar-input {
+			background-color: #f5f5f5;
+		}
+
+		.bg-dark {
+			background: #333333 !important;
+		}
+		.aui-slide-node img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.aui-grid .aui-row-img-wt i { width:38px; height:38px; display:inline-block; margin:0 auto}
+
+	</style>
+	<link rel="stylesheet" href="../shangcheng/css/aui-flex.css">
+	<link rel="stylesheet" href="../shangcheng/css/aui-slide.css">
+</head>
+<body style="background:none">
+
+	<div style="height:10px; background:#efefef"></div>
+	<div class="aui-content">
+		<ul class="aui-list aui-media-list">
+
+			<li class="aui-list-item" id="shop_list">
+				<a href="product.html">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-18"></div>
+							</div>
+							<div class="aui-info aui-padded-b-0">
+								<div class="aui-info-item aui-font-size-12">
+									<span class="aui-margin-l-5"></span>
+								</div>
+								<div class="aui-info-item aui-font-size-12"></div>
+							</div>
+						</div>
+						<div class="aui-list-item-media">
+							<img src="../image/faxian.png">
+						</div>
+					</div>
+				</a>
+			</li>
+
+		</ul>
+	</div>
+
+
+
+	<div style="height:48px"></div>
+
+	<footer class="aui-bar aui-bar-tab aui-bar-tab-cl aui-border-t">
+		<a href="#" class="aui-bar-tab-item aui-active">
+			<i class="aui-iconfont aui-icon-home"></i>
+			<div class="aui-bar-tab-label">首页</div>
+		</a>
+		
+		<a href="#" class="aui-bar-tab-item" tapmode onclick="jifduihuan('')">
+			<i class="aui-iconfont aui-icon-edit"></i>
+			<div class="aui-bar-tab-label">积分兑换</div>
+		</a>
+
+		<a href="#" class="aui-bar-tab-item" tapmode onclick="oPen('')">
+			<i class="aui-iconfont aui-icon-my"></i>
+			<div class="aui-bar-tab-label">我的</div>
+		</a>
+	</footer>
+
+</body>
+<script type="text/x-dot-template" id="template">
+  {{~ it.shop : value : index }}
+
+
+
+
+        <li class="aui-list-item" tapmode onclick="openLive('{{= value. id }}')">
+  				<a>
+  					<div class="aui-media-list-item-inner">
+  						<div class="aui-list-item-inner">
+  							<div class="aui-list-item-text">
+  								<div class="aui-list-item-title aui-font-size-18">{{= value. title }}</div>
+  							</div>
+  							<div class="aui-info aui-padded-b-0">
+  								<div class="aui-info-item aui-font-size-12">
+  									<span class="aui-margin-l-5">￥{{= value. money }} / 积分</span>
+  								</div>
+  								<div class="aui-info-item aui-font-size-12"></div>
+  							</div>
+  						</div>
+  						<div class="aui-list-item-media">
+  							<img src="http://959495.xyz/{{= value. picurl }}">
+  						</div>
+  					</div>
+  				</a>
+  			</li>
+
+  {{~}}
+
+</script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/auipullrefresh.js"></script>
+<script type="text/javascript" src="../script/auislide.js"></script>
+<script type="text/javascript" src="../script/auilazyload.js" ></script>
+
+<!-- -->
+<script type="text/javascript">
+var slide = new auiSlide({
+  container:document.getElementById("aui-slide"),
+  // "width":300,
+//    "height":200,
+  "speed":300,
+  "pageShow":true,
+  "autoPlay": 5000,
+  "pageStyle":'dot',
+  "loop":true,
+  'dotPosition':'center',
+});
+new auiLazyload({
+  errorImage:'../image/error-img.jpg'
+});
+  var api_url = localStorage.getItem('api_url');
+  apiready = function(){
+    //下拉刷新
+    api.setCustomRefreshHeaderInfo({
+    	bgColor: '#fff',
+    	images: [
+    		'widget://image/app/xiala/1.png',
+            'widget://image/app/xiala/2.png',
+            'widget://image/app/xiala/3.png',
+            'widget://image/app/xiala/4.png',
+            'widget://image/app/xiala/5.png',
+            'widget://image/app/xiala/6.png',
+            'widget://image/app/xiala/7.png',
+            'widget://image/app/xiala/8.png',
+    	],
+    	tips: {
+    		pull: '你…你想干什么！你不要过来！',
+    		threshold: '讨厌 快放开我 非礼呀！',
+    		load: '欣然影视 享受生活'
+    	}
+    
+    }, function() {
+    	//下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+    	setTimeout(function() {
+    		api.refreshHeaderLoadDone()
+    	}, 3000);
+    });
+    //下拉刷新
+    api.parseTapmode();
+    getShoplist();
+  }
+
+  function getShoplist(){
+    var shop_list = $api.byId('shop_list');
+    var template = $api.byId('template');
+    api.ajax({
+      url: api_url+'/login/login/shoplist.html',
+      method: 'get',
+  },function(ret, err){
+      if (ret) {
+        //渲染模板
+        var pagefn = doT.template(template.text);
+        shop_list.innerHTML = pagefn(ret);
+        //alert( JSON.stringify( ret ) );
+      }
+
+
+  });
+  }
+
+  function oPen(){
+    api.openWin({
+       name: 'member',
+       url: './member_win.html',
+       delay: 100,
+   });
+  }
+  
+  function jifduihuan(){
+    api.openWin({
+       name: 'jifen_frm',
+       url: './jifen_frm.html',
+       delay: 100,
+   });
+  }
+
+  function openLive(spid){
+    api.openWin({
+       name: 'jifenscms',
+       url: './jifenscms_win.html',
+       delay: 100,
+       pageParam:{
+         spid:spid,
+       }
+   });
+  }
+</script>
+</html>

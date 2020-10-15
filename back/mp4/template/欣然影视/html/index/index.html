@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>{$maccms.site_name}</title>
+    <meta name="keywords" content="{$maccms.site_keywords}" />
+	<meta name="description" content="{$maccms.site_description}" />
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+    <div class="icon">
+        <div class="container">
+{include file="public/banner"}
+			{maccms:type ids="1,2,3,4" order="asc" by="sort"}
+            <section class="imain clearfix">
+                <div class="col-l">
+                    <div class="tv-hd">
+<h2><svg class="iconf" aria-hidden="true">{switch name="vo.type_id"}
+    {case value="1"}<use xlink:href="#icon-luxiang"></use>{/case}
+    {case value="2"}<use xlink:href="#icon-yanglazhuye"></use>{/case}
+	{case value="3"}<use xlink:href="#icon-qita"></use>{/case}
+    {default /}<use xlink:href="#icon-shoucang"></use>
+{/switch}</svg>热播{$vo.type_name}</h2>
+<div class="imore"><a href="javascript:;" class="a_change">换一换<i class="iconfont">&#xe62d;</i></a><a href="{:mac_url_type($vo)}">更多<i class="iconfont">&#xe613;</i></a></div>
+                    </div>
+	<div class="tv-bd a_clist">
+		<div class="aclcon1">
+			<div class="tv-l">{maccms:vod num="1" type="'.$vo['type_id'].'" order="desc" by="time" id="vo2" key="key2"}
+				<div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo2.vod_pic|mac_url_img}" class="thumb" alt="{$vo2.vod_name}"><div class="v-tips">{include file="public/serial"}</div><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name}">{$vo2.vod_name}</a></em>
+        <em class="em-score">{$vo2.vod_score}分</em>
+    </p>
+    <p class="s-des">演员：{$vo2.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">导演：{$vo2.vod_director|mac_url_create='director'}</p>
+</div></div>{/maccms:vod}
+			</div>
+	<div class="tv-r">
+		<ul class="tv-list">
+{maccms:vod num="10" type="'.$vo['type_id'].'" start="2" order="desc" by="time" id="vo2" key="key2"}
+<li>
+    <div class="v-pic">
+        <img data-src="{$vo2.vod_pic|mac_url_img}" class="thumb" alt="{$vo2.vod_name}"><div class="v-tips">{include file="public/serial"}</div><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name}">{$vo2.vod_name}</a></span>
+    </div>
+</li>
+{/maccms:vod}
+		</ul>
+	</div>
+		</div>
+		<div class="aclcon2 hide">
+			<div class="tv-l">{maccms:vod num="1" type="'.$vo['type_id'].'" start="12" order="desc" by="time" id="vo2" key="key2"}
+				<div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo2.vod_pic|mac_url_img}" class="thumb" alt="{$vo2.vod_name}"><div class="v-tips">{include file="public/serial"}</div><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name}">{$vo2.vod_name}</a></em>
+        <em class="em-score">{$vo2.vod_score}分</em>
+    </p>
+    <p class="s-des">演员：{$vo2.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">导演：{$vo2.vod_director|mac_url_create='director'}</p>
+</div></div>{/maccms:vod}
+			</div>
+	<div class="tv-r">
+		<ul class="tv-list">
+{maccms:vod num="10" type="'.$vo['type_id'].'" start="13" order="desc" by="time" id="vo2" key="key2"}
+<li>
+    <div class="v-pic">
+        <img data-src="{$vo2.vod_pic|mac_url_img}" class="thumb" alt="{$vo2.vod_name}"><div class="v-tips">{include file="public/serial"}</div><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name}">{$vo2.vod_name}</a></span>
+    </div>
+</li>
+{/maccms:vod}
+		</ul>
+	</div>
+		</div>
+		<div class="aclcon3 hide">
+			<div class="tv-l">{maccms:vod num="1" type="'.$vo['type_id'].'" start="23" order="desc" by="time" id="vo2" key="key2"}
+				<div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo2.vod_pic|mac_url_img}" class="thumb" alt="{$vo2.vod_name}"><div class="v-tips">{include file="public/serial"}</div><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name}">{$vo2.vod_name}</a></em>
+        <em class="em-score">{$vo2.vod_score}分</em>
+    </p>
+    <p class="s-des">演员：{$vo2.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">导演：{$vo2.vod_director|mac_url_create='director'}</p>
+</div></div>{/maccms:vod}
+			</div>
+	<div class="tv-r">
+		<ul class="tv-list">
+{maccms:vod num="10" type="'.$vo['type_id'].'" start="24" order="desc" by="time" id="vo2" key="key2"}
+<li>
+    <div class="v-pic">
+        <img data-src="{$vo2.vod_pic|mac_url_img}" class="thumb" alt="{$vo2.vod_name}"><div class="v-tips">{include file="public/serial"}</div><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name}">{$vo2.vod_name}</a></span>
+    </div>
+</li>
+{/maccms:vod}
+		</ul>
+	</div>
+		</div>
+	</div>
+                </div>
+                <div class="col-r">
+                    <div class="tv-hd">
+                        <h2>{$vo.type_name} • 排行榜</h2></div>
+                    <div class="tv-bd">
+                        <ul class="v-rank clearfix">
+						{maccms:vod num="10" type="'.$vo['type_id'].'" order="desc" by="hits" id="vo2" key="key2"}
+						<li><i class="i-rank_num">{$key2}</i><em class="v-num">{include file="public/serial"}</em><span class="v-tit"><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name}">{$vo2.vod_name}</a></span></li>
+						{/maccms:vod}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+			{/maccms:type}
+			<!--资讯开始-->
+			{maccms:type ids="5" order="asc" by="sort"}
+			<section class="iart clearfix">
+                <div class="tv-hd"><h2>热门{$vo.type_name}</h2><a href="{:mac_url_type($vo)}" class="more">更多</a></div>
+                <div class="tv-bd">{maccms:art num="1" type="'.$vo['type_id'].'" order="desc" by="time" id="vo2" key="key2"}
+                    <div class="tv-l imglist_hot">
+                        <a class="pic" href="{:mac_url_art_detail($vo2)}" title="{$vo2.art_name}"><img class="thumb" data-src="{$vo2.art_pic}" alt="{$vo2.art_name}"></a>
+                        <div class="tabbox">
+                            <a class="tit" href="{:mac_url_art_detail($vo2)}" title="{$vo2.art_name}">{$vo2.art_name}</a>
+                        </div>
+                    </div>{/maccms:art}
+                    <div class="tv-r">
+                        <ul class="imglist clearfix">{maccms:art num="8" type="'.$vo['type_id'].'" start="2" order="desc" by="time" id="vo2" key="key2"}
+                            <li>
+                                <a class="pic" href="{:mac_url_art_detail($vo2)}" title="{$vo2.art_name}"><img class="thumb" data-src="{$vo2.art_pic}" alt="{$vo2.art_name}"></a>
+                                <div class="tc"><a href="{:mac_url_art_detail($vo2)}">{$vo2.art_name}</a></div>
+                            </li>{/maccms:art}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+			{/maccms:type}
+			<!--资讯end-->
+{include file="public/hot"}
+            <section class="ilinks clearfix">
+                <ul>
+                    <li>友情链接：</li>
+					{maccms:link num="10" type="all" order="desc" by="id"}
+                    <li><a class="text-color-999" href="{$vo.link_url}" target="_blank">{$vo.link_name}</a></li>
+					{/maccms:link}
+                </ul>
+            </section>
+        </div>
+    </div>
+
+{include file="public/foot"}
+    <script src="{$maccms.path_tpl}js/lazyload.min.js"></script>
+    <script src="{$maccms.path_tpl}js/app.js"></script>
+</body>
+</html>

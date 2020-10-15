@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<theme version="php">
+<id>txdida</id>
+<name>天兴工作室视频主题</name>
+<url>http://www.txcstx.cn/post/959.html</url>
+<note>天兴工作室 视频站主题</note>
+<description>天兴工作室：zblog模板，zblog主题，zblog仿站，zblog主题模板开发</description>
+<path></path>
+<include></include>
+<level>1</level>
+<author>
+  <name>天兴工作室</name>
+  <email>admin@txcstx.cn</email>
+  <url>http://www.txcstx.cn/</url>
+</author>
+<source>
+  <name>天兴工作室</name>
+  <email>admin@txcstx.cn</email>
+  <url>http://www.txcstx.cn/</url>
+</source>
+<adapted>151626</adapted>
+<version>6.2</version>
+<pubdate>2015-10-04</pubdate>
+<modified>2018-04-21</modified>
+<price>300</price>
+<phpver>5.2</phpver>
+<advanced>
+  <dependency></dependency>
+  <rewritefunctions></rewritefunctions>
+  <existsfunctions></existsfunctions>
+  <conflict></conflict>
+</advanced>
+<sidebars>
+  <sidebar1></sidebar1>
+  <sidebar2></sidebar2>
+  <sidebar3></sidebar3>
+  <sidebar4></sidebar4>
+  <sidebar5></sidebar5>
+</sidebars>
+</theme>

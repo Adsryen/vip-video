@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><widget id="A6002967576601" security="false" version="0.0.1">
+
+    <name>欣然影视</name>
+
+    <description>
+
+        Example For APICloud.
+
+    </description>
+
+    <author email="developer@apicloud.com" href="http://www.apicloud.com">
+
+        Developer
+
+    </author>
+
+    <content src="index.html"/>
+	<preference name="appCertificateVerify" value="false"/>
+    <preference name="customRefreshHeader" value="UIPullRefreshMotive"/>
+
+    <access origin="*"/>
+
+    <preference name="pageBounce" value="false"/>
+
+	<preference name="appBackground" value="rgba(0,0,0,0.0)"/>
+
+	<preference name="windowBackground" value="rgba(0,0,0,0.0)"/>
+
+	<preference name="frameBackgroundColor" value="rgba(0,0,0,0.0)"/>
+
+	<preference name="hScrollBarEnabled" value="false"/>
+
+	<preference name="vScrollBarEnabled" value="false"/>
+
+	<preference name="forbiddenSchemes" value="youku,iqiyi,mgtv,sohu,pptv,1905,miguvideo,le,bilibili"/>
+
+	<preference name="autoLaunch" value="true"/>
+
+	<preference name="fullScreen" value="false"/>
+
+	<preference name="autoUpdate" value="true"/>
+
+	<preference name="smartUpdate" value="true"/>
+
+	<preference name="debug" value="false"/>
+
+	<preference name="statusBarAppearance" value="true"/>
+
+	<permission name="readPhoneState"/>
+
+	<permission name="camera"/>
+
+	<permission name="record"/>
+
+	<permission name="location"/>
+
+	<permission name="fileSystem"/>
+
+	<permission name="internet"/>
+
+	<permission name="bootCompleted"/>
+
+	<permission name="hardware"/>
+
+ <feature name="QQPlus">
+    <param name="urlScheme" value="d3f7c79ea324deae58fc5a6646e9b23a"/>
+    <param name="apiKey" value="101564307"/>
+  </feature>
+
+	<feature name="wx">
+    <param name="urlScheme" value="wx69a198d639580796"/>
+    <param name="apiKey" value="wx69a198d639580796"/>
+    <param name="apiSecret" value="d107ee0ba0924c796cfb30b9ea5257ec"/>
+	</feature>
+
+  <feature name="ajpush">
+      <param name="app_key" value="e096f19e76791299af428961" />
+      <param name="channel" value="83abe0e075498eaac48c0801" />
+  </feature>
+</widget>

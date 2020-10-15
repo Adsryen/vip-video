@@ -1,0 +1,186 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta content="telephone=no" name="format-detection">
+	<title>结算信息</title>
+
+	<link rel="stylesheet" href="../shangcheng/css/m-common.css">
+	<link rel="stylesheet" href="../shangcheng/css/cart2main.css">
+
+</head>
+<body>
+
+<div>
+	<section class="cart-page main">
+
+
+		<div class="cart-group">
+			<div class="form-href details">
+        <div id="picurl">
+					<img src="image/sp1.jpg">
+      	</div>
+				<div>
+					<p id="title">-</p>
+					<div>
+              <span class="price">
+                  <b id="money">￥-</b>
+                  <i>.00</i>
+              </span>
+					</div>
+				</div>
+			</div>
+
+		<div class="cart-group">
+			<div class="cart-group-item payment">
+				<label>支付方式:</label>
+				<div class="form-href">
+					<p>积分余额支付</p>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="cart-group">
+			<div class="cart-group-item">
+				<ul class="detail">
+					<li class="detail-item">
+						<label>商品总额:</label>
+						<div>
+              <span class="price">
+                  <b id="moneys">￥-</b>
+                  <i>.00</i>
+              </span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+<div>
+    <div class="cart-group" id="aui-header">
+      <div class="cart-group-item">
+        <label>收获信息:</label>
+        <div style="width: 225px;">
+          <input style="width: 100%; height: 50px;" type="text" id="shouhuodz" name="shouhuodz" placeholder="填写收获信息">
+        </div>
+      </div>
+    </div>
+
+		<footer class="cart-footer">
+			<div>
+				<p>
+					实付金额:
+					<span class="price">
+                                <b id="moneyss">￥-</b>
+                                <i>.00</i>
+                            </span>
+				</p>
+			</div>
+
+			<a class="sn-btn sn-btn-assertive" style="" onclick="tijiao()">提交订单</a>
+		</footer>
+  </div>
+	</section>
+</div>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/auipullrefresh.js"></script>
+<script type="text/javascript" src="../script/auislide.js"></script>
+<script type="text/javascript" src="../script/auilazyload.js" ></script>
+<script type="text/javascript">
+var api_url = localStorage.getItem('api_url');
+apiready = function(){
+  var header = $api.byId('aui-header');
+  $api.fixStatusBar(header);
+  var headerPos = $api.offset(header);
+  var body_h = $api.offset($api.dom('body')).h;
+  api.parseTapmode();
+  getShoplist();
+}
+
+function getShoplist(){
+
+  api.ajax({
+    url: api_url+'/login/login/shopxx.html?spid='+api.pageParam.spid,
+    method: 'get',
+},function(ret, err){
+    if (ret) {
+      //渲染模板
+      var picurl = $api.byId('picurl');
+      picurl.innerHTML = '<img style="width: 100px; height: 100px;" src="http://959495.xyz/'+ret.msg['picurl']+'">';
+      var title = $api.byId('title');
+      title.innerHTML = '商品商品商品商品商品商品欣然影视:'+ret.msg['title'];
+      var money = $api.byId('money');
+      money.innerHTML = ret.msg['money'];
+      var moneys = $api.byId('moneys');
+      moneys.innerHTML = ret.msg['money'];
+      var moneyss = $api.byId('moneyss');
+      moneyss.innerHTML = ret.msg['money'];
+    }
+});
+}
+
+function tijiao(){
+  var user_id = localStorage.getItem('user_id');
+  var user_name = localStorage.getItem('user_name');
+  var password = localStorage.getItem('password');
+  var shouhuodz = $api.val($api.byId('shouhuodz'));
+
+
+  api.ajax({
+            url: api_url+'/login/login/shopxd',
+            method: 'get',
+            data: {
+                values: {
+                    username: user_name,
+                    password: password,
+                    userid: user_id,
+                    shdz: shouhuodz,
+                    spid: api.pageParam.spid
+                }
+            }
+        },function(ret, err){
+            if (ret) {
+              if (ret.code == 0) {
+                api.toast({
+                    msg: ret.msg ,
+                    duration: 5000
+                });
+                return;
+              }else if(ret.code == 2 ){
+                api.toast({
+                    msg: ret.msg,
+                    duration: 5000
+                });
+              }else if (ret.code == 1) {
+                api.toast({
+                    msg: '(#^.^#) 购买成功！',
+                    duration: 5000
+                });
+
+								api.openWin({
+						       name: 'dingdan',
+						       url: './dingdan.html',
+						       delay: 100,
+						   });
+                //下单成功
+              }
+            } else {
+              api.hideProgress();
+                  api.toast({
+                      msg: '(欣然影视提醒您！  网络错误 请检查！)',
+                      duration: 5000
+                  });
+              return;
+            }
+        });
+
+//  alert(localStorage.getItem('password'));
+}
+</script>
+</html>

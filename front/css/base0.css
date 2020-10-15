@@ -1,0 +1,535 @@
+*{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+input, textarea {
+  -webkit-touch-callout: inherit;
+  -webkit-user-select: text;
+  outline: none;
+}
+::-webkit-input-placeholder {
+  color: #ccc !important;
+}
+html {
+  height: 100%;
+  -webkit-text-size-adjust: none;
+}
+a {
+  color: #333;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+a:focus {
+  outline: 0
+}
+.clearfix:after, .clearfix:before {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+.hidden {
+  display: none!important;
+  visibility: hidden!important;
+}
+.text-info {
+  color: #539cff;
+}
+.checkbox, .radio {
+  width: 26px;
+  height: 26px;
+  vertical-align: middle;
+}
+label {
+  display: block;
+}
+label .checkbox, label .radio {
+  margin-right: 16px;
+  vertical-align: -4px;
+}
+.dib {
+  display: inline-block;
+  vertical-align: middle;
+}
+.dib-box {
+  font-size: 0
+}
+@media (-webkit-min-device-pixel-ratio: 0) {
+  .dib-box {
+      letter-spacing: -10px
+  }
+}
+.dib-box .dib {
+  vertical-align: top;
+  font-size: 24px;
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  border: 0;
+  vertical-align: top;
+}
+*, :after, :before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+/* common */
+*{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+/* 遮罩层 */
+.mask{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background:rgba(0,0,0,.5);
+}
+.top-bar{
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+}
+
+/*========= 用到icon-font的时候统一添加icon-m 统一小图标的颜色，大小；针对不同的小图标，也统一颜色 =======*/
+.icon-m{
+  font-size: 18px;
+  vertical-align: -1px;
+  color: #999;
+}
+/* 公用头部 */
+.top-bar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+  font-size: 12px;
+  background-image:-webkit-linear-gradient(#fff, #f1f2f3);
+  border-bottom: 1px solid #ccc;
+  z-index: 9;
+}
+.top-bar-bd{
+  padding: 5px 0 0 10px;
+}
+.top-bar-bd img{height: 35px;}
+.top-bar .operation-list{
+  float: right;
+  padding-right: 17px;
+}
+.top-bar .operation-list li{
+  float: left;
+  margin-left: 20px;
+  text-align: center;
+}
+.top-bar .operation-list li.active p{color: #51a7d7;}
+.top-bar .operation-list li.active .icon-m{color: #0daff5;}
+.top-bar .operation-list p{
+  color: #6c6c6c;
+}
+.top-bar .icon-m{
+  font-size: 22px;
+  color: #404041;
+}
+/* 公用底部 */
+.footer{
+  height: 49px;
+  line-height: 49px;
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid #dedfe0;
+  font-size: 14px;
+  padding: 0 10px;
+  color: #777;
+}
+.footer .open-btn{
+  float: right;
+  width: 85px;
+  height: 30px;
+  line-height: 30px;
+  background-image: -webkit-gradient(linear,left top,right bottom,from(#01ceeb),to(#00a7f5));
+  text-align: center;
+  border-radius:20px;
+  color: #fff;
+  margin-top: 9px;
+}
+.footer-copyright{
+  width: 100%;
+  height: 75px;
+  padding-top: 20px;
+  background: #f3f4f5;
+  font-size: 12px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+}
+.footer-copyright p{
+  color: #929293;
+}
+.footer-copyright .company-name{
+  text-decoration: underline;
+  margin-top: 3px;
+  color: #000;
+}
+/*================ 主体页面样式2014-10-16 ==============================*/
+body{
+  font-size: 14px;
+}
+.wrap{
+  width: 100%;
+  height: 100%;
+  font-size: 100%;
+  -webkit-overflow-scrolling:touch;
+  position: relative;
+}
+.main-wrap{
+  width: 100%;
+  height: 100%;
+  font-size: 100%;
+  -webkit-overflow-scrolling:touch;
+}
+
+/* 页面上列表页 */
+.video-list-wrap{
+  padding: 10px;
+}
+.video-list-wrap li{
+  width: 49%;
+  float: left;
+  margin-right: 2%;
+  margin-bottom: 15px;
+  position: relative;
+}
+.video-list-wrap li.active .video-mask-box .img-mask{display: block;}
+.video-list-wrap li:nth-child(2n){
+  margin-right: 0;
+}
+.video-list-wrap li .game-pic{
+  width: 100%;
+  max-height: 120px;
+  height: 100px;
+  min-height:90px;
+}
+.video-list-wrap .til{
+  width: 100%;
+  height: 18px;
+  padding-left: 5px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  margin-top: -18px;
+  font-size: 13px;
+  color: #fff;
+  background-image: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.8));
+  position: absolute;
+}
+.video-list-wrap .detail{
+  margin-top: 6px;
+  font-size: 10px;
+  color: #999;
+}
+.video-list-wrap .detail p,.video-list-wrap .detail span{
+  color: #919495;
+}
+.video-list-wrap .detail .icon-m{
+  font-size: 10px;
+  margin-right: 5px;
+  float: left;
+  vertical-align: bottom;
+}
+.video-list-wrap .detail .audience{
+  float: right;
+}
+.video-list-wrap .anchor{
+  padding-right: 38px;
+}
+.video-list-wrap .cou{
+  margin-left: 3px;
+}
+.video-list-wrap .anchor span{
+  float: left;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  position: relative;
+  margin-top: -1px;
+}
+
+
+/*电影列表*/
+.v-list-wrap .anchor .icon-ic_male{
+  color: #0da2f5;
+}
+.v-list-wrap .anchor .icon-ic_female{
+  color: #ef61c8;
+}
+
+.v-list-wrap{
+  padding: 5px;
+}
+.v-list-wrap li{
+  width: 32%;
+  float: left;
+  margin-right: 2%;
+  margin-bottom: 28px;/*每行之间的高度距离*/
+  position: relative;
+}
+.v-list-wrap li.active .video-mask-box .img-mask{display: block;}
+.v-list-wrap li:nth-child(3n){
+  margin-right: 0;
+}
+.v-list-wrap li .game-pic{
+  width: 100%;
+  max-height: 200px;
+  height: 200px;
+  min-height:200px;/*图片高度*/
+/*  border: solid 2px #fff;  */
+  background:#FFFFFF;
+/*   padding:2px;   */
+  background: url(../image/app/defaultVideoPic.png) no-repeat ;display:block;;
+  background-size: cover;
+}
+
+
+.v-list-wrap .til{
+  width: 100%;
+  height: 20px;/*标题文字背景*/
+  padding-left: 10px;/*标题文字长度*/
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  margin-top: 0px;/*文字与文字背景垂直高度*/
+  font-size: 13px;
+  text-align: center;
+  color: #000;
+background-image: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,1));
+  /*background-image: linear-gradient(rgba(123,104,238,0.8),rgba(123,104,238,0.8));*/
+  position: absolute;
+}
+.v-list-wrap .detail{
+  margin-top: 2px;
+  font-size: 10px;
+  color: #999;
+}
+.v-list-wrap .detail p,.v-list-wrap .detail span{
+  color: #919495;
+}
+.v-list-wrap .detail .icon-m{
+  font-size: 10px;
+  margin-right: 5px;
+  float: left;
+  vertical-align: bottom;
+}
+.v-list-wrap .detail .audience{
+  float: right;
+}
+.v-list-wrap .anchor{
+  padding-right: 38px;
+}
+.v-list-wrap .cou{
+  margin-left: 3px;
+}
+.v-list-wrap .anchor span{
+  float: left;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  position: relative;
+  margin-top: -1px;
+}
+.v-list-wrap .anchor .icon-ic_male{
+  color: #0da2f5;
+}
+.v-list-wrap .anchor .icon-ic_female{
+  color: #ef61c8;
+}
+
+/*美女视频列表*/
+.mn-list-wrap .anchor .icon-ic_male{
+  color: #fc7fa9;
+}
+.mn-list-wrap .anchor .icon-ic_female{
+  color: #ef61c8;
+}
+.mn-list-wrap{
+  padding: 10px;
+}
+.mn-list-wrap li{
+  width: 49%;
+  float: left;
+  margin-right: 2%;
+  margin-bottom: 15px;
+  position: relative;
+}
+.mn-list-wrap li.active .video-mask-box .img-mask{display: block;}
+.mn-list-wrap li:nth-child(2n){
+  margin-right: 0;
+}
+.mn-list-wrap li .game-pic{
+  width: 100%;
+  max-height: 120px;
+  height: 100px;
+  min-height:120px;/*图片高度*/
+}
+.mn-list-wrap .til{
+  width: 100%;
+  height: 22px;
+  padding-left: 15px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  margin-top: -22px;
+  font-size: 14px;
+  color: #fff;/*标题文字颜色*/
+  background-image: linear-gradient(rgba(251,2,107,0.2),rgba(251,2,107,0.8));/*标题背景颜色*/
+  position: absolute;
+}
+.mn-list-wrap .detail{
+  margin-top: 2px;
+  font-size: 10px;
+  color: #999;
+}
+.mn-list-wrap .detail p,.v-list-wrap .detail span{
+  color: #919495;
+}
+.mn-list-wrap .detail .icon-m{
+  font-size: 10px;
+  margin-right: 5px;
+  float: left;
+  vertical-align: bottom;
+}
+.mn-list-wrap .detail .audience{
+  float: right;
+}
+.mn-list-wrap .anchor{
+  padding-right: 38px;
+}
+.mn-list-wrap .cou{
+  margin-left: 3px;
+}
+.mn-list-wrap .anchor span{
+  float: left;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  position: relative;
+  margin-top: -1px;
+}
+.mn-list-wrap .anchor .icon-ic_male{
+  color: #0da2f5;
+}
+.mn-list-wrap .anchor .icon-ic_female{
+  color: #ef61c8;
+}
+
+
+.topyanse .til{
+  width: 100%;
+  height: 22px;
+  padding-left: 40px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  margin-top: -22px;
+  font-size: 15px;
+  color: #fff;
+  background-image: linear-gradient(rgba(220,20,60,0.8),rgba(220,20,60,0.8));
+  position: absolute;
+}
+
+/* ======================== h5 2015-11-04 ========================== */
+.home-page .swiper-wrapper{
+  height: auto !important;
+}
+
+.game-list-wrap{
+  padding: 10px;
+  height:100%;
+  background:#ebf0f3;
+}
+.game-list-wrap ul{
+  width: 100%;
+}
+.game-list-wrap ul li{
+  width: 32%;
+  margin-right: 2%;
+  text-align: center;
+  float: left;
+  margin-bottom: 15px;
+  box-shadow: 0px 1px 1px rgba(0,0,0,.1);
+}
+.game-list-wrap ul li:nth-child(3n){
+  margin-right: 0;
+}
+.game-list-wrap ul li .game-a{
+  display: inline-block;
+  width: 100%;
+  background: #fff;
+  padding-bottom: 1px;
+}
+.game-list-wrap ul li .game-a img{
+  width: 100%;
+  margin-bottom: 6px;
+}
+.game-list-name{
+  display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  font-size: 15px;
+}
+
+
+
+
+
+.game-list-wrap-zhubo{
+  padding: 10px;
+  height:100%;
+/*  background:#ebf0f3;  */
+}
+.game-list-wrap-zhubo ul{
+  width: 100%;
+}
+.game-list-wrap-zhubo ul li{
+  width: 49%;
+  margin-right: 2%;
+  text-align: center;
+  float: left;
+  margin-bottom: 15px;
+  box-shadow: 0px 1px 1px rgba(0,0,0,.1);
+}
+.game-list-wrap-zhubo ul li:nth-child(2n){   /*每行2个元素*/
+  margin-right: 0;
+}
+.game-list-wrap-zhubo ul li .game-a{
+  display: inline-block;
+  width: 100%;
+  background: #fff;
+  padding-bottom: 1px;
+}
+.game-list-wrap-zhubo ul li .game-a img{
+  width: 100%;
+  margin-bottom: 6px;
+}
+.game-list-name-zhubo{
+  display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  font-size: 15px;
+}

@@ -1,0 +1,2 @@
+解压出来放在网站跟目录
+访问：http://您的网站/codepay/install.php  进行安装

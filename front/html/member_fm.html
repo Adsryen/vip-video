@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>购物网</title>
+    <link rel="stylesheet" type="text/css" href="../shangcheng/css/aui.css" />
+    <link rel="stylesheet" href="../shangcheng/css/aui-flex.css">
+    <link rel="stylesheet" href="../shangcheng/css/aui-slide.css">
+    <style type="text/css">
+        .user-info {
+            background-color: #ffffff;
+            padding: 10px 0;
+        }
+        img.avatar {
+            display: block;
+            margin: 0 auto;
+            width: 20%;
+        }
+        .aui-list .aui-list-header {
+            background-color: #ffffff;
+            line-height: 1.2rem;
+        }
+
+    </style>
+</head>
+<body>
+    <section class="aui-content user-info aui-text-center aui-margin-b-15">
+        <img src="../shangcheng/image/2.png" class="avatar aui-img-round">
+        <h2 class="aui-margin-t-15" id="user_name">杂货铺的<small><i class="aui-iconfont aui-icon-cert aui-text-danger"></i></small></h2>
+
+    </section>
+
+    <section class="aui-content aui-grid aui-margin-b-15">
+        <div class="aui-row">
+            <div class="aui-col-xs-6">
+                <big class="aui-text-success" id="sign">0.00<small> 分</small></big>
+                <div class="aui-gird-lable aui-font-size-12">积分</div>
+            </div>
+
+            <div class="aui-col-xs-6">
+                <big class="aui-text-success" id="moneys">0.00<small> 元</small></big>
+                <div class="aui-gird-lable aui-font-size-12">金额</div>
+            </div>
+        </div>
+    </section>
+    <section class="aui-content">
+
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-item">
+                <div class="aui-list-item-label-icon">
+                    <i class="aui-iconfont aui-icon-cart aui-text-info"></i>
+                </div>
+                <div class="aui-list-item-inner aui-list-item-arrow" tapmode onclick="oPen()">
+                    <div class="aui-list-item-title">我的订单</div>
+                    <div class="aui-list-item-right">所有订单在这里</div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-label-icon">
+                    <i class="aui-iconfont aui-icon-cert aui-text-warning"></i>
+                </div>
+                <div class="aui-list-item-inner aui-list-item-arrow">
+                    <div class="aui-list-item-title">会员卡</div>
+                    <div class="aui-list-item-right">未开通</div>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <div style="height:48px"></div>
+
+    <footer class="aui-bar aui-bar-tab aui-bar-tab-cl aui-border-t">
+        <a class="aui-bar-tab-item " tapmode onclick="closeWin()">
+            <i class="aui-iconfont aui-icon-home"></i>
+            <div class="aui-bar-tab-label">首页</div>
+        </a>
+		
+		<a class="aui-bar-tab-item " tapmode onclick="jifduihuan()">
+		    <i class="aui-iconfont aui-icon-edit"></i>
+		    <div class="aui-bar-tab-label">积分兑换</div>
+		</a>
+
+        <a class="aui-bar-tab-item aui-active">
+            <i class="aui-iconfont aui-icon-my"></i>
+            <div class="aui-bar-tab-label">我的</div>
+        </a>
+
+    </footer>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+  var api_url = localStorage.getItem('api_url');
+  apiready = function () {
+    getData();
+  }
+
+  /////////////获取会员数据 方法  getData  S   ////////////
+
+    function getData(){
+      var user_id = localStorage.getItem('user_id');
+      var user_name = localStorage.getItem('user_name');
+      var user_time = localStorage.getItem('user_time');
+      var user_name = $api.byId('user_name');
+      user_name.innerHTML = '<h2 class="aui-margin-t-15">我的账号:' +localStorage.getItem('user_name')+ '&nbsp;<small><i class="aui-iconfont aui-icon-cert aui-text-danger"></i></small></h2>';
+
+
+        //获取积分
+        //如果已经登录就执行下面 获取积分
+         api.parseTapmode();
+         api.ajax({
+             url: api_url+'/login/login/sign.html',
+             method: 'get',
+             data: {
+                 values: {
+                     uid: localStorage.getItem('user_id')
+                 }
+             }
+         },function(ret, err){
+             if (ret) {
+                 var sign = $api.byId('sign');
+                 sign.innerHTML = ret.msg['share']+'积分';
+             }
+         });
+
+		    api.parseTapmode();
+         api.ajax({
+             url: api_url+'/login/login/sign.html',
+             method: 'get',
+             data: {
+                 values: {
+                     uid: localStorage.getItem('user_id')
+                 }
+             }
+         },function(ret, err){
+             if (ret) {
+                 var moneys = $api.byId('moneys');
+                 moneys.innerHTML = ret.msg['je']+'元';
+             }
+         });
+            //积分获取结束
+      }
+/////////////获取会员数据 方法  getData  E   ////////////
+
+  function closeWin(){
+      api.closeWin({
+      });
+  }
+
+function jifduihuan(){
+    api.openWin({
+       name: 'jifen_frm',
+       url: './jifen_frm.html',
+       delay: 100,
+   });
+  }
+  
+  function oPen(){
+    api.openWin({
+       name: 'dingdan',
+       url: './dingdan.html',
+       delay: 100,
+   });
+  }
+</script>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+</head>
+<body>
+    <a class="button" tapmode="active" onclick="open_s()">打开搜索页面</a>
+    <a class="button" tapmode="active" onclick="close_s()">关闭搜索页面</a>
+    <a class="button" tapmode="active" onclick="setText_s()">设置搜索框的文字</a>
+    <a class="button" tapmode="active" onclick="clearHistory_s()">清空当前搜索历史记录</a>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        api.addEventListener({
+            name : 'shake'
+        }, function(ret, err) {
+            console.log(111);
+            close_s()
+        });
+    };
+
+    function open_s() {
+        var UISearchBar = api.require('UISearchBar');
+        UISearchBar.open({
+            placeholder: '请输入搜索关键字',
+            historyCount: 10,
+            showRecordBtn: true,
+            texts: {
+                cancelText: '取消',
+                clearText: '清除搜索记录'
+            },
+            styles: {
+                navBar: {
+                    bgColor: '#FFFFFF',
+                    borderColor: '#ccc'
+                },
+                searchBox: {
+                    bgImg: '',
+                    color: '#000',
+                    height: 44
+                },
+                cancel: {
+                    bg: 'rgba(0,0,0,0)',
+                    color: '#D2691E',
+                    size: 16
+                },
+                list: {
+                    color: '#696969',
+                    bgColor: '#FFFFFF',
+                    borderColor: '#eee',
+                    size: 16
+                },
+                clear: {
+                    color: '#000000',
+                    borderColor: '#ccc',
+                    size: 16
+                }
+            }
+        }, function(ret, err) {
+            if (ret) {
+                alert(JSON.stringify(ret));
+            } else {
+
+                alert(JSON.stringify(err));
+            }
+        });
+    }
+
+
+
+    function close_s() {
+        var UISearchBar = api.require('UISearchBar');
+        UISearchBar.close();
+    }
+
+
+
+    function clearHistory_s() {
+        var UISearchBar = api.require('UISearchBar');
+        UISearchBar.clearHistory();
+    }
+</script>

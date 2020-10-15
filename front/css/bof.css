@@ -1,0 +1,24 @@
+.movie-num-list li {
+    position: relative;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    float: left;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    border: 1px solid #cacaca;
+    font-size: 13px;
+    color: #3b3b3b;
+    overflow: hidden;
+    margin: 0 .6rem .5rem 0;
+}
+
+.movie-num-list {
+    width: 100%;
+    margin-bottom: -.18rem;
+    overflow: hidden;
+    padding: .29rem .19rem 0;
+}

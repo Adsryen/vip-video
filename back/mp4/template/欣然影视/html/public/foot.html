@@ -1,0 +1,22 @@
+<!-- 页脚 -->
+    <footer class="ifoot">
+        <nav class="bnav">
+		{maccms:type ids="parent" order="asc" by="sort"}
+		<a href="{:mac_url_type($vo)}" title="{$vo.type_name}">热播{$vo.type_name}</a>
+		{/maccms:type}
+		<a href="{:mac_url('gbook/index')}" title="留言求片">留言求片</a>
+		</nav>
+        <p>免责声明:本网站所有内容均系收集于各大网站<a href="https://www.620.ooo/">最新电影</a>，本站只提供WEB页面服务，并不提供<a href="https://www.620.ooo/">影片资源</a>储存也不参与录制与上传，若本站收录内容无意侵犯了贵公司版权，请给网页底部邮箱地址来信，我们会及时处理和回复，谢谢合作。</p>
+        <p class="en">{$maccms.site_url}站长邮箱:{$maccms.site_email}</p><script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ce1d804d7dc8bc71ee565f2bcb741f34";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+    </footer>
+<span style="display:none"><script src="{$maccms.path}static/js/tj.js"></script></span>

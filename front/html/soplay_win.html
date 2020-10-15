@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+	<style type="text/css">
+       html,body{background-color:#000000;}
+    </style>
+</head>
+
+<body>
+   <header class="aui-bar aui-bar-nav" id="header" style="background: #000;">
+      <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+          <span class="aui-iconfont aui-icon-left" style=color:#c4c4c4 ></span>
+      </a>
+      <div id="title" class="aui-title" style="color: #c4c4c4;">正在播放</div>
+      <a id="play" class="aui-btn aui-pull-right" style=color:#c4c4c4 tapmode onclick="jieXi()">
+           <i class="icon icon-genghuanxianlu-b"></i>更换线路
+      </a>
+  </header>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+    var jx_url1 = localStorage.getItem('jx_url1');
+    var jx_url2 = localStorage.getItem('jx_url2');
+    apiready = function(){
+
+      api.parseTapmode();
+      var header = $api.byId('aui-header');
+      $api.fixStatusBar(header);
+      var headerPos = $api.offset(header);
+      var body_h = $api.offset($api.dom('body')).h;
+      api.addEventListener({
+          name: 'keyback'
+      }, function(ret, err) {
+        api.setScreenOrientation({
+            orientation: 'portrait_up'
+        });
+        api.closeWin();
+      });
+
+
+      var browser = api.require('webBrowser');
+      browser.openView({
+          url: api.pageParam.url,
+          rect: {
+              x: 0,
+              y: 70,
+              w: 'auto',
+              h: 'auto',
+          }
+      }, function(ret, err) {
+
+          switch (ret.state) {
+              case 0:
+                  break;
+              case 1:
+                  break;
+              case 2:
+                  break;
+              case 3:
+                  break;
+              case 4:
+                  break;
+              default:
+                  break;
+          };
+
+
+      });
+
+
+    }
+
+    function getCaption(obj){
+      var index=obj.lastIndexOf("\=");
+      obj=obj.substring(index+1,obj.length);
+      return obj;
+    }
+
+    function closeWin(){
+      api.setScreenOrientation({
+          orientation: 'portrait_up'
+      });
+      api.closeWin();
+    }
+
+    function jieXi(){
+      api.actionSheet({
+          title: '专线VIP线路',
+          cancelTitle: '取消',
+          buttons: ['VIP线路1', 'VIP线路2', 'VIP线路3', 'VIP线路4', 'VIP线路5']
+      }, function(ret, err) {
+          var index = ret.buttonIndex;
+          if (ret.buttonIndex==1) {
+            vipHuanxian(localStorage.getItem('jx_url2'));
+          }
+          if (ret.buttonIndex==2) {
+            vipHuanxian(localStorage.getItem('jx_url3'));
+          }
+          if (ret.buttonIndex==3) {
+            vipHuanxian(localStorage.getItem('jx_url4'));
+          }
+          if (ret.buttonIndex==4) {
+            vipHuanxian(localStorage.getItem('jx_url5'));
+          }
+          if (ret.buttonIndex==5) {
+            vipHuanxian(localStorage.getItem('jx_url6'));
+          }
+      });
+    }
+
+
+    function vipHuanxian(jiekou){
+      api.hideProgress();
+      var browser = api.require('webBrowser');
+      browser.loadUrl({
+          url: jiekou+api.pageParam.srcUrl
+      });
+    }
+
+</script>
+
+
+
+</html>

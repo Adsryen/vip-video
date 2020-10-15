@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+
+</head>
+<body style=" background-color: #000; ">
+  <!--
+  <header class="aui-bar aui-bar-nav" id="aui-header" style="background:#720eee;font-size:16px">
+      <a class="aui-btn aui-pull-left"  tapmode onclick="closeWin() "style="color:#FFF">
+          <span class="aui-iconfont aui-icon-left" style="color:#FFF"> </span>返回
+      </a>
+
+      <div id="title" class="aui-title" style="color:#FFF">正在为您播放影片...</div>
+  </header>
+-->
+
+
+<header class="aui-navBar aui-navBar-fixed" style="background: #000;" id="aui-header">
+                <a  onclick="closeWin()" class="aui-navBar-item"  >
+              <i class="icon icon-back-b"></i>
+                </a>
+                <div class="aui-center">
+                    <span class="aui-center-title"   id="title"  style=" font-size: 0.7rem; color: #ffffff; ">  正在为您播放TV</span>
+                </div>
+
+
+                <a   class="aui-navBar-item" style="color: #725f5f;"  >
+              <i class="icon"></i>
+                </a>
+
+
+            </header>
+
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+  apiready = function(){
+
+    api.parseTapmode();
+    var header = $api.byId('aui-header');
+    $api.fixStatusBar(header);
+    var headerPos = $api.offset(header);
+    var body_h = $api.offset($api.dom('body')).h;
+    api.openFrame({
+        name: 'tv_play_frm',
+        url: 'tv_play_frm.html',
+        bounces: true,
+        rect: {
+            x: 0,
+            y: headerPos.h,
+            w: 'auto',
+            h: 'auto'
+        },
+
+        pageParam:{video:api.pageParam.video}
+    })
+
+
+  }
+
+
+
+  function closeWin(){
+    api.setScreenOrientation({
+        orientation: 'portrait_up'
+    });
+      api.closeWin({
+      });
+  }
+
+</script>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+    body,html{
+      background-image: url(../image/bj2.png);
+      background-size:100% 800px;
+    }
+    </style>
+</head>
+<body>
+
+<div id="playercontainer"></div>
+    <!-- 视频列表 -->
+  <div class="video-list-wrap" id="liveList">
+    <ul class="clearfix" id="div_list">
+    </ul>
+  </div>
+  <!-- 视频列表 end-->
+</div>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script src="../script/cyberplayer.js"></script>
+<script src="../script/video.min.js"></script>
+<script src="../script/videojs-contrib-hls.min.js"></script>
+<script src="../script/videojs-contrib-quality-levels.min.js"></script>
+
+<script type="text/javascript">
+  var api_url = localStorage.getItem('api_url');
+  apiready = function(){
+
+    var player = cyberplayer("playercontainer").setup({
+        width: api.winWidth,
+        height: 200,
+        file: api.pageParam.video, // <—rtmp or flv直播地址
+        fallbackfile: api.pageParam.video, // <— 备用播放地址，为了手机上能进行直播，设置hls直播流
+        controlbar: {
+            barLogo: false,
+            autostart: true
+        },
+        stretching: "uniform",
+        volume: 100,
+        controls: true,
+        ak: "dfd6c7951d4c477bb2555496c8e97166" // 公有云平台注册即可获得accessKey
+    });
+
+    player.play();
+
+    player.on('fullscreen', function (ret) {
+         //alert( JSON.stringify( ret ) );
+         if (ret.fullscreen) {
+           api.setScreenOrientation({
+               orientation: 'landscape_right'
+           });
+         }else {
+           api.setScreenOrientation({
+               orientation: 'portrait_up'
+           });
+         }
+    });
+
+    api.addEventListener({
+        name: 'keyback'
+    }, function(ret, err) {
+      api.setScreenOrientation({
+          orientation: 'portrait_up'
+      });
+      api.closeWin();
+    });
+
+  }
+
+
+
+</script>
+
+
+</html>

@@ -1,0 +1,46 @@
+简单搭建教程 2.7版本 具体看视频
+域名：qw.mao2234.cn
+APP名字：教程演示
+
+这样就改好了
+直接上传
+这样就搭建好了
+授权直接联系我 发域名和APP名字就可以了
+
+虚拟主机和域名自己准备
+环境php7.0 支持伪静态
+
+location / {
+	if (!-e $request_filename){
+		rewrite  ^(.*)$  /index.php?s=$1  last;   break;
+	}
+}
+
+
+视频及培训模块安装教程
+看教程 
+直接上传
+http://qw.mao2234.cn/xxx/?id=81
+http://qw.mao2234.cn/xxx/?id=1
+http://qw.mao2234.cn/xxx/?id=2
+这几个地址写到前端里面就可以了 
+现在是视频站 同样直接上传
+必须导入播放器要不然无法播放
+我就随便导入了两个
+我就随便绑定两个分类
+这样就可以了
+
+
+
+支付模块搭建教程 码支付
+这里全部填你自己的
+这就搭建好了
+然后叫你们改价格 /codepay/index.php
+该了这里还要改个地方 codepay/notify.php
+补充一下配置好了填一下后台的地址 这样就可以了  记得要挂软件 这是用来监控订单的软件 必须用否则别人付款了后台不会充值
+
+
+前端下载地址修改
+修改地址 后台/applications/app/view/index
+https://share.weiyun.com/5vyrAdc 把这个替换成你的下载地址 然后就是QQ链接https://jq.qq.com/?_wv=1027&k=5VX9126这个替换成你的群链接 
+还有一个文件

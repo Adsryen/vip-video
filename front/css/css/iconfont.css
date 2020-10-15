@@ -1,0 +1,26 @@
+
+@font-face {font-family: "iconfont";
+  src:url('iconfont.ttf') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-index:before {
+  content: "\e900";
+}
+.icon-music:before {
+  content: "\e901";
+}
+.icon-user:before {
+  content: "\e902";
+  color: #73777a;
+}
+.icon-dianshi:before {
+  content: "\e903";
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html style="font-size: 50px;">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/myui.css" />
+</head>
+<body style="background-color:#fff">
+  <!--
+  <div class="">
+    <img src="../image/share_bg.png" alt="" width="100%">
+  </div>
+-->
+  <div class="sp-content">
+
+    <div class="bigImg">
+      <div class="getVip">
+        <button onclick="erweima()">获取二维码</button>
+        <button onclick="copySet()">复制邀请链接</button>
+      </div>
+    </div>
+
+    <div class="rule">
+    		<h3>
+    		<p>
+    			活动规则
+    		</p>
+    		</h3>
+    		<ul>
+    			<li>在本页面复制邀请链接或二维码发送给微信或QQ好友</li>
+    			<li>好友使用链接后您将获得对应积分（在我的-积分兑换里可随时查看积分余额）</li>
+    			<li>在获取积分后您可以在APP积分页面兑换欣然影视全网VIP</li>
+    		</ul>
+    	</div>
+  </div>
+
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+  var api_url = localStorage.getItem('api_url');
+  var copy = '';
+  var shama = '';
+  apiready = function(){
+    api.parseTapmode();
+    api.showProgress({
+        title: '加载中...',
+        text: '请稍等...',
+        modal: false
+    });
+
+
+    api.ajax({
+        url: api_url+'/login/login/share.html',
+        method: 'get',
+        data: {
+            values: {
+                uid: localStorage.getItem('user_id')
+            }
+        }
+    },function(ret, err){
+        if (ret) {
+            copy = ret.msg;
+            shama = ret.share;
+             var url = $api.byId('url');
+             var share = $api.byId('share');
+             url.innerHTML = '<img src="http://qr.liantu.com/api.php?text='+ret.msg+'"/>';
+             share.innerHTML = ret.share;
+            api.hideProgress();
+
+        } else {
+          alert('获取链接失败');
+
+        }
+    });
+
+  }
+
+  function erweima(){
+    var dialogBox = api.require('dialogBox');
+    dialogBox.webView({
+        tapClose: false,
+        path: 'http://qr.liantu.com/api.php?text='+copy,
+        texts: {
+            title: '专属二维码',
+            leftBtnTitle: '关闭',
+            rightBtnTitle: '分享'
+        },
+        styles: {
+            bg: '#fff',
+            corner: 5,
+            w: 300,
+            h: 380,
+            title: {
+                h: 44,
+                size: 14,
+                color: '#000'
+            },
+            upDividingLine: {
+                width: 0.2,
+                color: '#696969'
+            },
+            webView: {
+                h: 300,
+                bg: '#fff',
+            },
+            downDividingLine: {
+                width: 0.2,
+                color: '#696969'
+            },
+            left: {
+                bg: 'rgba(0,0,0,0)',
+                color: '#007FFF',
+                size: 12
+            },
+            right: {
+                bg: 'rgba(0,0,0,0)',
+                color: '#007FFF',
+                size: 12
+            }
+        }
+    }, function(ret) {
+        if (ret.eventType == 'left') {
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'webView'
+            });
+        }else {
+          alert('请截屏后分享');
+        }
+    });
+  }
+
+
+  function copySet(){
+    api.ajax({
+        url: 'http://suo.im/api.php?url=http://http://959495.xyz'+copy,
+        method: 'get'
+    },function(ret, err){
+        if (ret) {
+          var clipBoard = api.require('clipBoard');
+          clipBoard.set({
+              value: '【欣然影视】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：'+ret[0].url_short
+          }, function(ret, err) {
+              if (ret) {
+                api.toast({
+                    msg: '已复制到剪切板',
+                    duration: 2000
+                });
+              } else {
+
+              }
+          });
+        } else {
+          var clipBoard = api.require('clipBoard');
+          clipBoard.set({
+              value: '【欣然影视】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：'+copy
+          }, function(ret, err) {
+              if (ret) {
+                api.toast({
+                    msg: '已复制到剪切板',
+                    duration: 2000
+                });
+              } else {
+
+              }
+          });
+
+        }
+    });
+
+
+  }
+
+
+
+
+  function openWin(name){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+            name: ''+name+'',
+            url: ''+name+'.html',
+            bounces:false,
+            delay: delay,
+            slidBackEnabled:true,
+            vScrollBarEnabled:false
+        });
+    }
+</script>
+</html>

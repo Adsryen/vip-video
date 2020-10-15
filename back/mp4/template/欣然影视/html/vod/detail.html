@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$obj.vod_name}详情介绍-{$obj.vod_name}在线观看-{$obj.vod_name}迅雷下载 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.vod_name}在线收看,{$obj.vod_name}迅雷下载" />
+    <meta name="description" content="{$obj.vod_name}剧情:{$obj.vod_blurb}" />
+    {include file="public/include"}
+</head>
+<body class="mback">
+{include file="public/head"}
+    <div class="icon">
+        <section class="detail_top">
+            <div class="detail_top_con container">
+                <div class="v_path clearfix">当前位置： <a href='{$maccms.path}'>首页</a>&nbsp;&nbsp;&raquo;&nbsp;&nbsp;<a href='{:mac_url_type($obj.type)}'>{$obj.type.type_name}</a>&nbsp;&nbsp;&raquo;&nbsp;&nbsp;<a href='{:mac_url_vod_detail($obj)}'>{$obj.vod_name}</a></div>
+                <div class="clearfix">
+                    <div class="poster_placeholder">
+                        <div class="v-pic">
+                            <img src="{$obj.vod_pic|mac_url_img}" alt="{$obj.vod_name}">
+                            <a href="{:mac_url_vod_detail($obj)}" class="v-playBtn"><i></i></a>
+                        </div>
+                        <p class="p_fun">
+                            <a href="#mac_comment" target="_self"><i class="iconfont"></i>评论<em>({$__PAGING__.record_total|intval})</em></a>
+                            <i class="i_line"></i>
+                            <a onclick="MAC.Fav(location.href,document.name);" href="javascript:void(0);" class="js-addFavorite"><i class="iconfont"></i>收藏</a>
+                        </p>
+                    </div>
+                    <div class="txt_intro_con">
+                        <div class="tit">
+                            <h1 class="clearfix">{$obj.vod_name}</h1>
+                            <p class="p_txt">
+                                <em class="em_num">{include file="public/serial2"}</em><em class="em_score">{$obj.vod_score}<i>分</i></em><em class="hide">播放：<span class="mac_hits hits" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-type="hits"></span></em>
+                            </p>
+                        </div>
+                        <ul class="txt_list clearfix">
+                            <li class="clearfix"><em class="em_tit">主演：</em>{$obj.vod_actor|mac_url_create='actor'}</li>
+                            <li class="clearfix"><em class="em_tit">导演：</em>{$obj.vod_director|mac_url_create='director'}<em class="em_tit">地区：</em>{$obj.vod_area|mac_url_create='area'}&nbsp;&nbsp;&nbsp;<em class="em_tit">类型：</em>{$obj.vod_class|mac_url_create='class'}</li>
+                            <li class="li_intro clearfix"><em class="em_tit">简介：</em>{$obj.vod_blurb}</li>
+                        </ul>
+                    </div>
+                    <div class="play_source">
+					<!-- 选择播放源 -->
+						<div class="play_source_tab clearfix" id="playNumTab">{maccms:foreach name="obj.vod_play_list" id="vo"}
+                        <a href="javascript:void(0);" target="_self" {if condition="$key eq 1"}class="cur"{/if} rel="nofollow" apiname="{$vo.from}" id="api_{$vo.from}" alt="{$vo.player_info.show}"><img width="22" height="22" src="{$maccms.path_tpl}images/{$vo.from}.png">{$vo.player_info.show}</a>{/maccms:foreach}
+                        <i class="iLine"></i>
+						</div>
+					<!-- 选择播放源 -->
+
+                        <div class="v_con_box">{maccms:foreach name="obj.vod_play_list" id="vo"}
+                            <ul class="play_num_list clearfix hide {if condition="$key eq 1"}show{/if}">{maccms:foreach name="vo.urls" id="vo2" key="key2"}
+                                <li><a href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}">{$vo2.name}</a></li>{/maccms:foreach}
+                            </ul>{/maccms:foreach}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="idetail container">
+            <div class="col-l">
+                <div class="tv-hd v-border">
+                    <h2><span>剧情介绍</span></h2>
+                </div>
+                <div class="tv-bd">
+                    <div class="infor_intro">简介：{$obj.vod_content}</div>
+                </div>
+                <div class="tv-hd v-border">
+                    <h2><span>推荐影片</span></h2>
+                </div>
+                <div class="tv-bd">
+                    <ul class="tv-list tv-hotlist">{maccms:vod num="12" type="current" order="desc" by="hits_day"}
+                        <li><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}">
+    <div class="v-tips">{include file="public/serial1"}</div> <a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+</div></li>{/maccms:vod}
+                    </ul>
+                </div>
+                <div class="tv-hd v-border">
+                    <h2><span>影片评论</span></h2><span class="s_num">共有<em>{$__PAGING__.record_total|intval}</em>条影评</span>
+                </div>
+	<div class="mac_comment" id="mac_comment" data-id="{$obj.vod_id}" data-mid="{$maccms.mid}" ></div>
+    <script>
+        $(function(){
+            MAC.Comment.Login = {$comment.login};
+            MAC.Comment.Verify = {$comment.verify};
+            MAC.Comment.Init();
+            MAC.Comment.Show(1);
+        });
+    </script>
+            </div>
+            <div class="col-r">
+                <div class="tv-hd">
+                    <h2>本周 • 热播榜</h2></div>
+                <div class="tv-bd">
+                    <ul class="v-rank clearfix">
+					{maccms:vod num="10" type="current" order="desc" by="hits_week"}
+					<li><i class="i-rank_num">{$key}</i><em class="v-num">{include file="public/serial1"}</em><span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span></li>
+					{/maccms:vod}
+					</ul>
+                </div>
+                <div class="tv-hd">
+                    <h2>本月 • 热播榜</h2></div>
+                <div class="tv-bd">
+                    <ul class="v-rank clearfix">
+					{maccms:vod num="10" type="current" order="desc" by="hits_month"}
+					<li><i class="i-rank_num">{$key}</i><em class="v-num">{include file="public/serial1"}</em><span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span></li>
+					{/maccms:vod}
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+<span style="display:none" class="mac_ulog_set" alt="设置内容页浏览记录" data-type="1" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+<span style="display:none" class="mac_history_set" alt="设置History历史记录" data-name="[{$obj.type.type_name}]{$obj.vod_name}" data-pic="{$obj.vod_pic|mac_url_img|mac_url_img}"></span>
+{include file="public/foot"}
+    <script src="{$maccms.path_tpl}js/lazyload.min.js"></script>
+    <script src="{$maccms.path_tpl}js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+</head>
+<body>
+  <div class="br"></div>
+  <section class="aui-content">
+      <ul class="aui-list aui-list-in">
+          <li class="aui-list-item">
+              <div class="aui-list-item-label-icon">
+                  <i class="aui-iconfont aui-icon-cert aui-text-warning"></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div class="aui-list-item-title">软件版本</div>
+                  <div id="vsion" class="aui-list-item-right"></div>
+              </div>
+          </li>
+          <li class="aui-list-item" tapmode onclick="cleaCache()">
+              <div class="aui-list-item-label-icon">
+                  <i class="aui-iconfont aui-icon-trash aui-text-info"></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div class="aui-list-item-title">清理缓存</div>
+                  <div id="cache" class="aui-list-item-right"></div>
+              </div>
+          </li>
+
+          <li class="aui-list-item" tapmode onclick="checkUpdate()">
+              <div class="aui-list-item-label-icon">
+                  <i class="aui-grid-label"><img src="../image/app/gengxin.png" width="20" height="18"/></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div class="aui-list-item-title">检测更新</div>
+                  <div id="cache" class="aui-list-item-right"></div>
+              </div>
+          </li>
+
+          <li class="aui-list-item" tapmode onclick="openWin('back_pwd')">
+              <div class="aui-list-item-label-icon">
+              <i class="aui-grid-label"><img src="../image/app/xiugaimima.png"width="20" height="18"/></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div class="aui-list-item-title">修改密码</div>
+                  <div id="cache" class="aui-list-item-right"></div>
+              </div>
+          </li>
+
+      </ul>
+      <div id="otbtn" class="aui-content-padded" tapmode onclick="exitLogin()">
+          <div class="aui-btn-tuichu aui-btn-block">退出登录</div>
+      </div>
+
+
+  </section>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+  var api_url = localStorage.getItem('api_url');
+
+  apiready = function(){
+    var appVersion = api.appVersion;
+    var vsion = $api.byId('vsion');
+    vsion.innerHTML = 'V'+appVersion;
+    api.parseTapmode();
+    //计算缓存
+    getCache();
+
+  }
+
+  //清楚缓存
+  function cleaCache(){
+    api.clearCache(function() {
+        api.toast({
+            msg: '清除完成'
+        });
+        getCache();
+    });
+  }
+  //计算缓存
+  function getCache(){
+    api.getCacheSize(function(ret) {
+        var size = ret.size/1024/1024;
+        var mb = size.toFixed(2)
+        var cache = $api.byId('cache');
+        cache.innerHTML = mb+'MB';
+
+    });
+  }
+  //退出登录
+  function exitLogin(){
+    api.sendEvent({
+      name: 'newLoingdata',
+      extra: {
+      }
+    });
+    api.showProgress({
+        title: '稍后...',
+        text: '正在退出...',
+        modal: false
+    });
+    localStorage.setItem('user_id','');
+    localStorage.setItem('user_name','');
+    localStorage.setItem('user_time','');
+    api.toast({
+        msg: '请重新登陆'
+    });
+    api.closeWin({
+    });
+
+  }
+
+  function checkUpdate() {
+var mam = api.require('mam');
+mam.checkUpdate(function(ret, err) {
+if (ret) {
+  var result = ret.result;
+  if (result.update == true && result.closed == false) {
+      var str = '新版本号:' + result.version + ';更新提示:' + result.updateTip + ';发布时间:' + result.time;//下载地址:' + result.source + '; 需要的可以加上去
+      api.confirm({
+          title : '有新的版本,是否下载并安装 ',
+          msg : str,
+          buttons : ['确定', '取消']
+      }, function(ret, err) {
+          if (ret.buttonIndex == 1) {
+              if (api.systemType == "android") {
+                  api.download({
+                      url : result.source,
+                      report : true
+                  }, function(ret, err) {
+                      if (ret && 0 == ret.state) {/* 下载进度 */
+                          api.toast({
+                              msg : "正在下载应用" + ret.percent + "%",
+                              duration : 2000
+                          });
+                      }
+                      if (ret && 1 == ret.state) {/* 下载完成 */
+                          var savePath = ret.savePath;
+                          api.installApp({
+                              appUri : savePath
+                          });
+                      }
+                  });
+              }
+              if (api.systemType == "ios") {
+                  api.installApp({
+                      appUri : result.source
+                  });
+              }
+          }
+      });
+  } else {
+      api.alert({
+          msg : "暂无更新"
+      });
+  }
+} else {
+  api.alert({
+      msg : err.msg
+  });
+}
+});
+}
+
+  function openWin(name){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+            name: ''+name+'',
+            url: ''+name+'.html',
+            bounces:false,
+            delay: delay,
+            slidBackEnabled:true,
+            vScrollBarEnabled:false
+        });
+    }
+</script>
+</html>

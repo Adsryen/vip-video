@@ -1,0 +1,113 @@
+
+<div class="page-title">
+
+    <div class="title-env">
+        <h1 class="title">平台列表</h1>
+    </div>
+
+    <div class="breadcrumb-env">
+
+        <ol class="breadcrumb bc-1">
+            <li>
+                <a href="{:url('/')}"><i class="fa-home"></i>Home</a>
+            </li>
+
+            <li class="active">
+
+                <strong>Banner</strong>
+            </li>
+        </ol>
+
+    </div>
+
+</div>
+<!-- Responsive Table -->
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+
+                <div class="panel-options">
+
+
+                    <a href="#" data-toggle="panel">
+                        <span class="collapse-icon">&ndash;</span>
+                        <span class="expand-icon">+</span>
+                    </a>
+
+                    <a href="#" data-toggle="reload">
+                        <i class="fa-rotate-right"></i>
+                    </a>
+
+                    <a href="#" data-toggle="remove">
+                        &times;
+                    </a>
+                </div>
+            </div>
+            <form method="post" action="{:url('htyy/index')}">
+            <div class="table-responsive" data-pattern="priority-columns" data-focus-btn-icon="fa-asterisk"
+                 data-sticky-table-header="true" data-add-display-all-btn="true" data-add-focus-btn="true">
+
+                <div class="btn-toolbar">
+                    <div class="btn-group focus-btn-group">
+
+                        <button class="btn btn-default"><i class="el-pencil"></i> 保存</button>
+
+                    </div>
+
+
+                </div>
+            <div class="panel-body">
+                <div class="table-responsive" data-pattern="priority-columns" data-focus-btn-icon="fa-asterisk"
+                     data-sticky-table-header="true" data-add-display-all-btn="true" data-add-focus-btn="true">
+
+                    <div class="table-responsive" data-pattern="priority-columns" data-focus-btn-icon="fa-asterisk"
+                         data-sticky-table-header="true" data-add-display-all-btn="true" data-add-focus-btn="true">
+                        <table cellspacing="0" class="table table-small-font table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th style="width: 120px">平台名称</th>
+
+
+                                <th style="width: 150px">排序</th>
+                                <th style="width: 150px">屏蔽列表</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {volist name="list" id="vo"}
+                            <tr>
+
+
+                                <th >
+                                    {$vo.name}
+                                </th>
+
+                                <th >
+                                    <input style="width: 50px" type="number" name="order[]" value="{$vo.orderid}" min="1">
+                                </th>
+                                <th>      <a href="/index.php/index/htyy/lie.php?pid={$vo.id}"><button type="button" class="btn btn-white">查看</button></a></th>
+                                <?php if(!empty($_GET['_tokenjinhe'])){?><th> <a href="/index.php/index/htyy/lie.php?pid={$vo.id}&_tokenjinhe=1"><button type="button" class="btn btn-white">查看</button></a></th><?php }?>
+
+    <input type="hidden" name="id[]" value="{$vo.id}">
+
+                            </tr>
+                            {/volist}
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+
+            </div>
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+</div>

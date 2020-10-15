@@ -1,0 +1,490 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <style type="text/css">
+        p {
+            margin-bottom: 0.5rem;
+        }
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            color:    #eaeaea;
+        }
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color:    #eaeaea;
+        }
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color:    #eaeaea;
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10+ */
+            color:    #eaeaea;
+        }
+			.logo_box li {
+				float: left;
+				/*
+        	width: 33.33%;*/
+				width: 50%;
+				text-align: center;
+			}
+			
+			.logo_box li img {
+				width: 40%;
+				margin: 20px auto;
+			}
+			
+			.logo_box1 li {
+				float: left;
+				/*
+        	width: 33.33%;*/
+				width: 100%;
+				text-align: center;
+			}
+			
+			.logo_box1 li img {
+				width: 20%;
+				margin: 20px auto;
+			}
+    </style>
+</head>
+<body class="login-bg2">
+
+  <header class="aui-bar aui-bar-nav" id="aui-header" style="background-color:rgba(0,0,0,0) !important">
+      <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+          <span class="aui-iconfont aui-icon-left"></span>
+      </a>
+      <div id="title" class="aui-title">会员登录</div>
+  </header>
+  <!--<div align="center"><img src="../image/app/logo1.png" style="
+    width: 35%;"></div>-->
+  <div class="myui-from">
+    <ul class="myui-from-list">
+      <li class="myui-from-list-item">
+        <input type="tel" minlength="11" maxlength="11" id="username" placeholder="请输入手机号" class="myui-from-list-item-input" value ="">
+      </li>
+      <li class="myui-from-list-item">
+        <input id="password" type="password" placeholder="请输入密码" class="myui-from-list-item-input" value ="">
+      </li>
+      <li class="myui-from-list-item">
+        <button type="button" name="button" class="myui-from-list-item-button" onclick="loginTo()">马上登录</button>
+      </li>
+    </ul>
+  </div>
+  <div class="to-login-box">
+    <div class="to-login" tapmode onclick="openWin('repass')">
+      找回密码
+    </div>
+    <div class="to-login-l" tapmode onclick="openWin('reg_frm')">
+    	
+      注册账号
+    </div>
+  </div>
+  
+		<div id="login_ios" class="myui-from" style="margin-top:-80px;">
+			<p style="text-align: center;color: #CCCCCC;">—— 合作账号一键登录 ——</p>
+			<ul class="myui-from-list logo_box">
+				<li class="myui-from-list-item" tapmode onclick="QQ_login()">
+					<img src="../image/login/QQ.png" />
+				</li>
+				<li class="myui-from-list-item" tapmode onclick="WX_login()">
+					<img src="../image/login/wx.png" />
+				</li>
+			</ul>
+		</div>
+		
+		<div id="login_az" class="myui-from" style="margin-top:-80px;">
+			<p style="text-align: center;color: #CCCCCC;">—— QQ微信账号一键登录 ——</p>
+			<ul class="myui-from-list logo_box">
+				<li class="myui-from-list-item" tapmode onclick="QQ_login()">
+					<img src="../image/login/QQ.png" />
+				</li>
+				<li class="myui-from-list-item" tapmode onclick="WX_login()">
+					<img src="../image/login/wx.png" />
+				</li>
+
+			</ul>
+		</div>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+    var api_url = localStorage.getItem('api_url');
+    apiready = function () {
+      api.parseTapmode();
+      var header = $api.byId('aui-header');
+      $api.fixStatusBar(header);
+      var headerPos = $api.offset(header);
+      var body_h = $api.offset($api.dom('body')).h;
+
+
+      if (api.pageParam.user) {
+        var username = $api.byId('username');
+        var password = $api.byId('password');
+        password.value = api.pageParam.pass;
+        username.value = api.pageParam.user;
+
+      }
+
+
+    }
+    function closeWin(){
+        api.closeWin({
+        });
+    }
+
+    // function toWin(name){
+    //   api.closeToWin({
+    //       name: name
+    //   });
+    // }
+
+
+
+    function openWin(name){
+          var delay = 0;
+          if(api.systemType != 'ios'){
+              delay = 300;
+          }
+          api.openWin({
+              name: name,
+              url: name+'.html',
+              bounces:false,
+              delay: delay,
+              slidBackEnabled:true,
+              bgColor: '#000',
+              animation:{
+                type:"reveal",                //动画类型（详见动画类型常量）
+                subType:"from_bottom",       //动画子类型（详见动画子类型常量）
+                duration:400
+              },
+              vScrollBarEnabled:false
+          });
+      }
+
+		//QQ登陆
+		function QQ_login() {
+			qq.login(function(ret, err) {
+				if(ret.status) {
+					Other_type = 'QQ';
+					QQ_getUserInfo(ret.openId);
+				} else {
+					//alert(JSON.stringify(err))
+					alert('QQ授权失败，请尝试重新登陆！')
+				}
+			});
+		}
+		//获取qq信息
+		function QQ_getUserInfo(QID) {
+			// city ：用户所在城市
+			// figureurl_qq_2   ：用户大头像（100）地址
+			// gender        ：用户性别
+			// is_yellow_vip  ：是否为黄钻用户
+			// level         ：用户账号级别
+			// nickname  ：用户昵称
+			// province    ：用户所在省份
+			// yellow_vip_level   ：用户账户黄钻等级
+			qq.getUserInfo(function(ret, err) {
+				if(ret.status) {
+					//alert(JSON.stringify(ret));
+					ret.info = JSON.parse(ret.info)
+					localStorage.setItem('Other_name', ret.info.nickname); // nickname  ：用户昵称
+					localStorage.setItem('qq_city', ret.info.city); // city ：用户所在城市
+					localStorage.setItem('Other_img', ret.info.figureurl_qq_2); // figureurl_qq_2   ：用户大头像（100）地址
+					localStorage.setItem('Other_openid', QID); // openid ：用户openid
+					Other_Reg();
+				} else {
+					//alert(JSON.stringify(err))
+					alert('用户信息获取失败，请尝试重新登陆！')
+				}
+			});
+		}
+
+		//微信调用登陆
+		function WX_login() {
+			wx.auth(function(ret, err) {
+				if(ret.status) {
+					//alert(JSON.stringify(ret));
+					WX_auth(ret.code)
+				} else {
+					if(err.code == 1) {
+						alert('微信授权失败！请稍后重试！');
+					}
+				}
+			});
+		}
+
+		function WX_auth(code) {
+
+			var auth_code = code;
+			wx.getToken({
+				apiKey: 'wx69a198d639580796',
+				apiSecret: '3f79fee8312bcdfeee6565ccea1cff37',
+				code: auth_code
+			}, function(ret, err) {
+				if(ret.status) {
+					//alert(JSON.stringify(ret));
+					Other_type = '微信';
+					localStorage.setItem('Other_accessToken', ret.accessToken); // openid ：用户openid
+					var openId = ret.openId;
+					var accessToken = ret.accessToken;
+					WX_getUserInfo(openId, accessToken);
+				} else {
+					alert(err.code);
+				}
+			});
+		}
+		//获取微信信息
+		function WX_getUserInfo(Other_openid, Other_accessToken) {
+			//布尔型；true||false
+			//openid: '',        //字符串类型；普通用户的标识，对当前开发者帐号唯一
+			//nickname: '',      //字符串类型；普通用户昵称
+			//sex: 1,            //数字类型；普通用户性别，1为男性，2为女性
+			//headimgurl: '',    //字符串类型；用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空
+			//privilege: [],     //数组类型；用户特权信息，如微信沃卡用户为（chinaunicom）
+			//unionid: ''        //字符串类型；用户统一标识。针对一个微信开放平台帐号下的应用，同一用户的unionid是唯一的。
+			var accessToken = Other_accessToken;
+			var openId = Other_openid;
+			wx.getUserInfo({
+				accessToken: accessToken,
+				openId: openId
+			}, function(ret, err) {
+				if(ret.status) {
+					//alert(JSON.stringify(ret));
+					localStorage.setItem('Other_name', ret.nickname); // nickname  ：用户昵称
+					localStorage.setItem('Other_img', ret.headimgurl); // figureurl_qq_2   ：用户大头像（100）地址
+					localStorage.setItem('Other_openid', openId); // openid ：用户openid
+					Other_Reg();
+				} else {
+					alert(err.code);
+				}
+			});
+		}
+
+		function Other_Reg() {
+			var user = localStorage.getItem('Other_openid');
+			var pass = localStorage.getItem('Other_openid');
+			api.ajax({
+				url: 'http://dtms.xjqxz.top/login/login/create.html',
+				method: 'get',
+				data: {
+					values: {
+						name: user,
+						password: pass,
+						share_ma: '000001',
+						type: Other_type + '@' + localStorage.getItem('Other_name')
+					}
+				}
+			}, function(ret, err) {
+				if(ret) {
+					if(ret.code == 0) {
+						if(ret.cun == 1) { //当前用户已存在
+							api.showProgress({
+								title: Other_type + '登录中...',
+								text: '请稍等...',
+								modal: false
+							});
+							api.ajax({
+								url: 'http://dtms.xjqxz.top/login/login/veifys.html',
+								method: 'get',
+								data: {
+									values: {
+										username: localStorage.getItem('Other_openid'),
+										passwd: localStorage.getItem('Other_openid'),
+										imei: api.deviceId
+									}
+								}
+							}, function(ret, err) {
+								if(ret) {
+									if(ret.code == 0) {
+										api.hideProgress();
+										alert('账号或密码不正确');
+										return;
+									} else if(ret.code == 1) {
+										//alert( JSON.stringify( ret ) );
+										
+										localStorage.setItem('accountLogin',1);
+										localStorage.setItem('user_id', ret.msg['id']);
+										localStorage.setItem('user_name', user);
+										localStorage.setItem('password', pass);
+										localStorage.setItem('user_time', ret.msg['time']);
+										localStorage.setItem('user_share', ret.msg['share']);
+										localStorage.setItem('user_advert', ret.msg['advert']);
+										localStorage.setItem('user_code', ret.msg['code']);
+										localStorage.setItem('user_weichat', ret.msg['weichat']);
+										localStorage.setItem('url', ret.msg['url']);
+										localStorage.setItem('url1', ret.msg['url1']);
+										localStorage.setItem('url2', ret.msg['url2']);
+										localStorage.setItem('url3', ret.msg['url3']);
+										localStorage.setItem('url4', ret.msg['url4']);
+										localStorage.setItem('imei', api.deviceId);
+										localStorage.setItem('user_nickname', ret.msg['nick_name']);
+										localStorage.setItem('user_jinb', ret.msg['share']);
+										localStorage.setItem('tud', ret.msg['tudi']);
+										
+										
+										api.sendEvent({
+											name: 'newLoingdata',
+											extra: {}
+										});
+										api.hideProgress();
+										api.closeWin();
+									}
+								} else {
+									api.hideProgress();
+									alert('网络错误！');
+									//alert( JSON.stringify( err ) );
+									return;
+								}
+							});
+						} else {
+							api.hideProgress();
+							api.alert({
+								title: '错误~',
+								msg: ret.msg,
+							});
+						}
+
+					} else {
+						denglu()
+					}
+				} else {
+					api.hideProgress();
+					api.alert({
+						title: '糟糕~',
+						msg: '网络错误！',
+					});
+				}
+			});
+		}
+
+      function loginTo(){
+        var username = $api.val($api.byId('username'));
+				var password = $api.val($api.byId('password'));
+
+        if(username == ''){
+      /*    api.alert({
+              title: '警告！',
+              msg: '请输入登录账号',
+          });
+        原弹窗提示  */
+        api.toast({
+            msg: 'ε=(´ο｀*))) 调皮~   账号都没输入',
+            duration: 5000
+        });
+          return;
+        }
+        if(password == ''){
+        /*           api.alert({
+              title: '警告！',
+              msg: '请输入密码',
+          });
+  原弹窗提示  */
+        api.toast({
+            msg: 'ε=(´ο｀*))) 哎呀~   密码还没输入',
+            duration: 5000
+        });
+          return;
+        }
+  /*       api.showProgress({
+            title: '努力验证中',
+            text: '请骚等...',
+            modal: false
+        });
+原弹窗提示  */
+
+api.toast({
+    msg: 'ヾ(◍°∇°◍)ﾉﾞ 努力验证中……',
+    duration: 5000
+});
+
+
+        api.closeWin({
+            name: 'reg_frm'
+        });
+        //请求数据库并存储用户信息
+        var api_url = localStorage.getItem('api_url');
+        api.ajax({
+            url: 'http://dtms.xjqxz.top/login/login/veifys.html',
+            method: 'get',
+            data: {
+                values: {
+                    username: username,
+                    passwd: password,
+                    imei:api.deviceId
+                }
+            }
+        },function(ret, err){
+            if (ret) {
+              if (ret.code == 0) {
+            /*    api.hideProgress();
+                alert('账号或密码不正确');
+  原弹窗提示  */
+                api.toast({
+                    msg: '(欣然影视提醒您！ 账号或密码不正确)',
+                    duration: 5000
+                });
+
+
+                return;
+              }else if (ret.code == 1) {
+          /*       alert('登录成功');
+                原弹窗提示  */
+                api.toast({
+                    msg: '(#^.^#) 登陆成功！',
+                    duration: 5000
+                });
+
+
+                //alert( JSON.stringify( ret ) );
+                  localStorage.setItem('user_id',ret.msg['id']);
+                  localStorage.setItem('user_name',username);
+                  localStorage.setItem('password',password);
+                  localStorage.setItem('user_time',ret.msg['time']);
+                  localStorage.setItem('user_share',ret.msg['share']);
+                  localStorage.setItem('user_advert',ret.msg['advert']);
+                  localStorage.setItem('user_code',ret.msg['code']);
+                  localStorage.setItem('user_weichat',ret.msg['weichat']);
+                  localStorage.setItem('url',ret.msg['url']);
+                  localStorage.setItem('url1',ret.msg['url1']);
+                  localStorage.setItem('url2',ret.msg['url2']);
+                  localStorage.setItem('url3',ret.msg['url3']);
+                  localStorage.setItem('url4',ret.msg['url4']);
+                  api.sendEvent({
+                    name: 'newLoingdata',
+                    extra: {
+                    }
+                  });
+
+
+                  api.hideProgress();
+
+                  api.closeWin({
+                  });
+
+                  // api.openWin({
+                  //     name: 'index',
+                  //     url: '../index.html',
+                  // });
+
+
+              }
+            } else {
+              api.hideProgress();
+            /*   alert('网络错误！');
+                  原弹窗提示*/
+                  api.toast({
+                      msg: '(欣然影视提醒您！  网络错误 请检查！)',
+                      duration: 5000
+                  });
+
+              //alert( JSON.stringify( err ) );
+              return;
+            }
+        });
+      }
+
+
+</script>
+</html>

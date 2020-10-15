@@ -1,0 +1,1 @@
+{"count": 517, "sshd": true, "scan": false, "phpini": [], "outime": 27, "userini": false, "error": 2, "path": "/www/wwwroot/959495.xyz", "data": [{"msg": "WebShell\u884c\u4e3a", "code": "(u\"function_exists('proc_open')\", u'proc_open')", "filename": "/www/wwwroot/959495.xyz/thinkphp/library/think/Process.php", "etime": "2018-11-14 01:11:38", "level": "\u5371\u9669"}]}

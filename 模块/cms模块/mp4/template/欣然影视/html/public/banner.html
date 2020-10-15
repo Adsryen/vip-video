@@ -1,0 +1,14 @@
+            <section class="ibanner">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+					{maccms:vod num="8" paging="no" type="all" level="9" order="desc" by="sort"}
+                    <div class="swiper-slide"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}"><img src="{$vo.vod_pic_slide|mac_url_img}" ><p>{$vo.vod_name}</p></a></div>
+					{/maccms:vod}
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="button">
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+            </section>

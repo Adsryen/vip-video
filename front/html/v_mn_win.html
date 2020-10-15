@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+</head>
+<body>
+  <!--
+    <header class="aui-bar aui-bar-nav" id="aui-header">
+        <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+            <span class="aui-iconfont aui-icon-left" style="color:#FFF">返回</span>
+        </a>
+        <div id="title" class="aui-title" style="color:#FFF">电视直播</div>
+    </header>
+
+  -->
+
+  <header class="aui-navBar aui-navBar-fixed" style="background: #fff;" id="aui-header">
+                  <a  onclick="closeWin()" class="aui-navBar-item"  >
+                <i class="icon icon-back"></i>
+                  </a>
+                  <div class="aui-center">
+                      <span class="aui-center-title"   id="title" >  影院在线</span>
+                  </div>
+
+
+                  <a   class="aui-navBar-item" style="color: #725f5f;"  >
+                <i class="icon"></i>
+                  </a>
+
+
+              </header>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+
+
+/////  初始化执行   S /////
+/////  apiready  一打开就执行的 函数
+  apiready = function(){
+
+    api.parseTapmode();
+    var header = $api.byId('aui-header');
+    $api.fixStatusBar(header);
+    var headerPos = $api.offset(header);
+    var body_h = $api.offset($api.dom('body')).h;
+    api.openFrame({
+        name: 'v_mn_frm',
+        url: 'v_mn_frm.html',
+        bounces: true,
+        rect: {
+            x: 0,
+            y: headerPos.h,
+            w: 'auto',
+            h: 'auto'
+        }
+    });
+
+
+  }
+
+/////  初始化执行   E /////
+
+//////////////////////   返回按钮  方法    closeWin     S //////////////////////
+  function closeWin(){
+      api.closeWin({
+      });
+  }
+//////////////////////   返回按钮  方法    closeWin     E //////////////////////
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/zhibo.css">
+
+    <style>
+
+    	/*新加空提示信息*/
+
+    	.m-noRecord {
+        padding: .395rem 0 0;
+        text-align: center;
+    }
+
+    .m-noRecord .c-icon-noRecord {
+        background: url(../image/app/Loading2.gif) no-repeat;
+        background-size: cover;
+      width: 15rem;
+      height: 10rem;
+      /* margin: .485rem auto 0; */
+      margin: 0 auto;
+    }
+    .m-noRecord .c-info {
+        background: linear-gradient(to right, #ffd74c, #c7752e);
+        -webkit-background-clip: text;
+        color: transparent;
+        /* color: #cecfce;  */
+        line-height: 4rem;
+        padding: .25rem 0;
+        font-size: .8rem;
+    }
+
+    </style>
+</head>
+<body>
+
+
+
+  <div class="aui-tab" style=" background: #fff; ">
+          <div class="tab-panel">
+              <div class="tab-panel-item tab-active">
+                  <div class="tab-item">
+                      <a class="aui-flex b-line">
+                          <div class="aui-flex-iphone">
+                              <img src="../image/app/game.png" alt="">
+                          </div>
+                          <div class="aui-flex-box">
+                            <p>
+                                <em class="aui-group-three" style=" font-size: 12px; "> 游戏在线直播</em>
+                            </p>
+                              <h3 style=" font-size: 10px; ">各类游戏 海量主播</h3>
+                              <p>
+                                  <em class="aui-group-one" style=" font-size: 12px; ">实时更新</em> <em class="aui-group-two" style=" font-size: 12px; ">知名主播</em>
+                              </p>
+
+                          </div>
+                          <div class="aui-flex-support" style=" font-size: 12px; " onclick="baocuo()"  >报错</div>
+                      </a>
+
+
+                  </div>
+              </div>
+
+
+          </div>
+      </div>
+
+
+
+
+
+
+  <div class="wrap">
+    <!-- 游戏 -->
+    <div class="game-page">
+      <!-- 游戏列表 -->
+      <div class="game-list-wrap" id="gameList" style=" background: #ffffff; ">
+        <ul class="clearfix" id="div_list">
+          <!--
+         <li>
+            <div class="game-a">
+              <img src="https://m.zhanqi.tv/static/new-html5/image/default_pic.png" alt="">
+              <p class="game-list-name">加载中...</p>
+            </div>
+          </li>-->
+
+          <!--加载提示-->
+          <section class="m-noRecord"><div class="c-icon-noRecord"></div> <div class="c-info">奋力加载中...</div></section>
+          <!--加载提示-->
+
+        </ul>
+      </div>
+      <!-- 游戏列表 end-->
+
+    </div>
+    <!-- 游戏 end-->
+  </div>
+</body>
+<script type="text/x-dot-template" id="template">
+{{~ it : value : index }}
+    <li>
+      <div class="game-a" onclick="openWin('{{= value. id }}')">
+        <img src="{{= value. img }}" alt="">
+        <p class="game-list-name">{{= value. name }}</p>
+      </div>
+    </li>
+{{~}}
+</script>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript">
+  var api_url = localStorage.getItem('api_url');
+  var i = 1;
+  apiready = function(){
+    getList();
+
+  }
+
+
+
+//////////////////////   获取游戏列表  方法   getList    S //////////////////////
+  function getList(){
+    i = 1;
+    var div_list = $api.byId('div_list');
+    var template = $api.byId('template');
+    api.ajax({
+        url: 'http://959495.xyz/api/gamezhibo.php',
+        method: 'get',
+        data: {
+            values: {
+                lx: 'hqpt',
+                ys:1
+            }
+        }
+    },function(ret, err){
+        if (ret) {
+            //alert( JSON.stringify( ret ) );
+            var pagefn = doT.template(template.text);
+            div_list.innerHTML = pagefn(ret);
+            showData();
+        } else {
+            //alert( JSON.stringify( err ) );
+        }
+    });
+
+
+  }
+
+  function showData(){
+    var div_list = $api.byId('div_list');
+    var template = $api.byId('template');
+    api.ajax({
+        url: 'http://959495.xyz/api/gamezhibo.php',
+        method: 'get',
+        data: {
+            values: {
+                lx: 'hqpt',
+                ys:2
+            }
+        }
+    },function(ret, err){
+        if (ret) {
+            //alert( JSON.stringify( ret ) );
+            var pagefn = doT.template(template.text);
+            div_list.innerHTML += pagefn(ret);
+        } else {
+            //alert( JSON.stringify( err ) );
+        }
+    });
+
+  }
+
+
+//////////////////////   获取游戏列表  方法   getList    E //////////////////////
+
+
+//////////////////////   打开APP时 获取游戏列表  方法    GetGamelistDataLoading    定时     S //////////////////////
+
+//定时执行数据加载
+var GetGamelistTimer = setInterval(function(){
+    GetGamelistDataLoading();
+},2000)
+
+//判断是否服务器通信成功
+function GetGamelistDataLoading() {
+
+  api.ajax({
+      url: api_url+'/login/login/banben.html',
+      method: 'get'
+  },function(ret, err){
+      if (ret) {
+
+        getList();   //获取电影列表
+        //alert( JSON.stringify( ret ) );
+/*  关闭提示
+        api.toast({
+            msg: '数据已更新',
+            duration: 1000
+        });
+*/
+
+clearInterval(GetGamelistTimer); // 获取成功 清除定时器
+      } /*else {
+        api.toast({
+            msg: '数据获取失败 请检查网络',
+            duration: 1000
+        });
+
+          //alert( JSON.stringify( err ) );
+      }
+      */
+  });
+
+
+}
+
+//////////////////////   打开APP时 获取游戏列表  方法    GetGamelistDataLoading    定时     E //////////////////////
+
+
+
+
+//////////////////////   打开游戏列表  方法     S //////////////////////
+
+  function openWin(name){
+    //网络连接判断S
+
+
+                        api.ajax({
+                            url: api_url+'/login/login/banben.html',
+                            method: 'get'
+                        },function(ret, err){
+                            if (ret) {
+
+                                         //网络正常   跳转
+
+
+
+
+
+                                               /*
+                                               api.showProgress({
+                                                   title: 'VIP登录中',
+                                                   modal: false
+                                               });
+
+                                         api.toast({
+                                             msg: '加载中'
+                                         });
+                                         */
+
+                                         var delay = 0;
+                                         if(api.systemType != 'ios'){
+                                             delay = 300;
+                                         }
+                                         api.openWin({
+                                             name: 'zhubo_list_win',
+                                             url: 'zhubo_list_win.html',
+                                             bounces:false,
+                                             delay: delay,
+                                             slidBackEnabled:true,
+                                             vScrollBarEnabled:false,
+                                             pageParam:{id:name}
+                                         });
+
+
+                            } else {
+
+                                        //网络连接失败 进行提示
+                                        NetworkConnectionFailurePrompt();
+
+          }
+
+
+      });
+  //网络连接判断E
+
+
+
+
+
+    }
+
+//////////////////////   打开游戏列表  方法     E //////////////////////
+
+//////////////////////    网络连接失败提示  方法  NetworkConnectionFailurePrompt   S  //////////////////////
+function NetworkConnectionFailurePrompt() {
+
+                  /*无网络弹窗提示*/
+                            var dialogBox = api.require('dialogBox');
+                            dialogBox.alert({
+                                tapClose: true,  //描述：（可选项）是否点击遮罩层关闭该对话框  默认值：false
+                                texts: {
+                                    content: '请检查网络是否顺畅',
+                                    leftBtnTitle: '先不管',
+                                    rightBtnTitle: '网络设置'
+                                },
+                                styles:{
+                          bg: '#fff',            //（可选项）字符串类型；对话框整体背景配置，支持#、rgb、rgba、img；默认：#fff
+                          corner: 10,             //（可选项）数字类型；对话框背景圆角大小；默认：2
+                          w: 300,                //（可选项）数字类型；对话框的宽；默认：300
+                          title:{                //（可选项）JSON对象；弹窗标题栏样式配置，不传则不显示标题区域
+                              marginT: 20,       //（可选项）数字类型；标题栏与对话框顶端间距；默认：20
+                              icon: 'widget://image/app/dialogBoxTisi.jpg',          //（可选项）字符串类型；标题前面的图标路径，要求本地路径（widget://、fs://）；图片为正方形的，如：50*50、100*100，建议开发者传大小合适的图片以适配高分辨率手机屏幕，不传则不显示
+                              iconSize: 80,      //（可选项）数字类型；icon 图标边长大小,若 icon 不存在则此参数无效；默认：24
+                              titleSize: 14,     //（可选项）数字类型；标题字体大小；默认：14
+                              titleColor: '#000' //（可选项）字符串类型；标题字体颜色，支持#、rgb、rgba；默认：#fff
+                          },
+                          content:{              //（可选项）JSON 对象；文本内容配置，若不传则不显示该区域
+                              marginT: 20,       //（可选项）数字类型；内容文本顶端与标题栏底端的距离，如果标题栏不存在，则是到窗口顶端的距离；默认：20
+                              marginB: 40,       //（可选项）数字类型；内容文本底端与 left/right 顶端的距离，如果 left/right 都不存在，则是到对话框底端的距离；默认：20
+                              color: '#ff0103',     //（可选项）字符串类型；内容文本字体颜色，支持 rgb、rgba、#；默认：#eee
+                              size: 12           //（可选项）数字类型：内容文本字体大小；默认：12
+                          },
+                          left:{                 //（可选项）JSON 对象；左边按钮样式配置，不传则不显示左边按钮
+                              marginB: 30,        //（可选项）数字类型；左边按钮的下边距；默认：7
+                              marginL: 30,       //（可选项）数字类型；左边按钮的左边距；默认：20
+                              w: 100,            //（可选项）数字类型；左边按钮的宽；默认：130
+                              h: 40,             //（可选项）数字类型；左边按钮的高；默认：35
+                              corner: 10,         //（可选项）数字类型；左边按钮圆角半径；默认：0.0
+                              bg: '#3d3d3d',        //（可选项）字符串类型；左边按钮的背景，支持rgb、rgba、#、img；默认：'#e0e'
+                              color: '#fff',  //（可选项）字符串类型；左边按钮标题字体颜色，支持rgb，rgba、#；默认：'#007FFF'
+                              size: 12           //（可选项）数字类型；左边按钮标题字体大小；默认：12
+                          },
+                          right: {               //（可选项）JSON 对象；右边按钮样式配置，不传则不显示右边按钮
+                              marginB: 30,        //（可选项）数字类型；右边按钮的下边距；默认：7
+                              marginL: 40,      //（可选项）数字类型；右边按钮左边距；默认：10
+                              w: 100,            //（可选项）数字类型；右边按钮的宽；默认：130
+                              h: 40,             //（可选项）数字类型；右边按钮的高；默认：35
+                              corner: 10,         //（可选项）数字类型；右边按钮圆角半径；默认：0.0
+                              bg: '#ff0103',        //（可选项）字符串类型；右边按钮的背景，支持rgb、rgba、#、img；默认：'#e0e'
+                              color: '#fff',  //（可选项）字符串类型；右边按钮标题字体颜色，支持rgb、rgba、#；默认：'#007FFF'
+                              size: 12           //（可选项）数字类型；右边按钮标题字体大小；默认：12
+                          }
+                      }
+                            }, function(ret) {
+                                if (ret.eventType == 'left') {
+                                    var dialogBox = api.require('dialogBox');
+                                    dialogBox.close({
+                                        dialogName: 'alert'
+                                    });
+                                }else if (ret.eventType == 'right') {
+
+
+                                  var openset = api.require('openSet');
+                                  openset.open({
+                                      id: 1
+                                  });
+
+
+                                  var dialogBox = api.require('dialogBox');
+                                  dialogBox.close({
+                                      dialogName: 'alert'
+                                  });
+                                }
+                            });
+                  /*    无网络弹窗提示结束    */
+
+}
+//////////////////////    网络连接错误提示 方法 NetworkConnectionFailurePrompt  E  //////////////////////
+
+//////////////////////    报错按钮打开 方法 baocuo  S  //////////////////////
+function baocuo(){
+
+      api.toast({
+          msg: '开发中'
+      });
+}
+//////////////////////    报错按钮打开 方法 baocuo  E  //////////////////////
+
+
+
+
+</script>
+</html>

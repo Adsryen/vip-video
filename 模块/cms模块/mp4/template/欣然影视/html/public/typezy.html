@@ -1,0 +1,573 @@
+<div class="icon">
+        <div class="container">
+		
+            <section class="imain clearfix">
+                <div class="col-l">
+                    <div class="tv-hd">
+                        <h2>最热综艺</h2>
+                        <div class="imore"><a href="javascript:;" class="a_change">换一换<i class="iconfont"></i></a><a href="{:mac_url_type($obj,[],'show')}">更多<i class="iconfont"></i></a></div>
+                    </div>
+                    <div class="tv-bd a_clist">
+                        <div class="aclcon1">{maccms:vod num="1" type="current" order="desc" by="hits_week"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+	<p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div></div>
+        </div>{/maccms:vod}
+            <div class="tv-r">
+				<ul class="tv-list">
+				{maccms:vod num="10" type="current" start="2" order="desc" by="hits_week"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+			</div>
+                        </div>
+                        <div class="aclcon2 hide">{maccms:vod num="1" type="current" start="12" order="desc" by="hits_week"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+	<p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div>
+                                </div>
+                            </div>{/maccms:vod}
+                            <div class="tv-r">
+                <ul class="tv-list">
+				{maccms:vod num="10" type="current" start="13" order="desc" by="hits_week"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+                            </div>
+                        </div>
+                        <div class="aclcon3 hide">{maccms:vod num="1" type="current" start="23" order="desc" by="hits_week"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+	<p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div>
+                                </div>
+                            </div>{/maccms:vod}
+                            <div class="tv-r">
+                <ul class="tv-list">
+				{maccms:vod num="10" type="current" start="24" order="desc" by="hits_week"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-r">
+                    <div class="tv-hd">
+                        <h2>最新期数</h2></div>
+                    <div class="tv-bd">
+                        <ul class="v-rank-zy clearfix">{maccms:vod num="10" type="current" order="desc" by="time"}
+						<li><span class="s_tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span><span class="s_des">{include file="public/serial1"}</span></li>{/maccms:vod}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+             
+            <section class="sort_list clearfix">
+                <dl class="radio">
+                    <dt>地<br>区</dt>
+                    <dd>{maccms:foreach name=":explode(',',$obj.type_extend.area)"}
+					<a href="{:mac_url_type($obj,['area'=>$vo],'show')}">{$vo}</a>{/maccms:foreach}
+					</dd>
+        
+                
+                </dl>
+                <dl class="radio">
+					<dt>年<br>代</dt>
+                    <dd>{maccms:foreach name=":explode(',',$obj.type_extend.year)"}
+					<a href="{:mac_url_type($obj,['year'=>$vo],'show')}">{$vo}</a>{/maccms:foreach}
+					</dd>
+                </dl>
+                <dl class="recommend">
+                    <dt>推<br>荐</dt>
+                    <dd>{maccms:vod num="5" type="current" order="desc" by="hits"}
+					<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a>{/maccms:vod}
+					</dd>
+                </dl>
+            </section>
+			
+            <section class="imain clearfix">
+                <div class="col-l">
+                    <div class="tv-hd">
+                        <h2>内地综艺</h2>
+                        <div class="imore"><a href="javascript:;" class="a_change">换一换<i class="iconfont"></i></a><a href="{:mac_url_type($obj,['area'=>大陆],'show')}">更多<i class="iconfont"></i></a></div>
+                    </div>
+                    <div class="tv-bd a_clist">
+                        <div class="tv-bd a_clist">
+                        <div class="aclcon1">{maccms:vod num="1" type="current" area="大陆" order="desc" by="time"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div></div>
+        </div>{/maccms:vod}
+            <div class="tv-r">
+                <ul class="tv-list">
+				{maccms:vod num="10" type="current" area="大陆" start="2" order="desc" by="time"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+                            </div>
+                        </div>
+                        <div class="aclcon2 hide">{maccms:vod num="1" type="current" start="12" area="大陆" order="desc" by="time"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div>
+                                </div>
+                            </div>{/maccms:vod}
+                            <div class="tv-r">
+                <ul class="tv-list">
+				{maccms:vod num="10" type="current" area="大陆" start="13" order="desc" by="time"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+                            </div>
+                        </div>
+                        <div class="aclcon3 hide">{maccms:vod num="1" type="current" start="23" area="大陆" order="desc" by="time"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div>
+                                </div>
+                            </div>{/maccms:vod}
+                            <div class="tv-r">
+                <ul class="tv-list">
+				{maccms:vod num="10" type="current" area="大陆" start="24" order="desc" by="time"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-r">
+                    <div class="tv-hd">
+                        <h2>内地 • 排行榜</h2></div>
+                    <div class="tv-bd">
+                        <ul class="v-rank clearfix">
+						{maccms:vod num="10" type="current" area="大陆" order="desc" by="hits"}
+						<li><i class="i-rank_num">{$key}</i><em class="v-num">{include file="public/serial1"}</em><span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span></li>
+						{/maccms:vod}
+						</ul>
+                    </div>
+                </div>
+            </section>
+			 
+            <section class="imain clearfix">
+                <div class="col-l">
+                    <div class="tv-hd">
+                        <h2>台湾综艺</h2>
+                        <div class="imore"><a href="javascript:;" class="a_change">换一换<i class="iconfont"></i></a><a href="{:mac_url_type($obj,['area'=>台湾],'show')}">更多<i class="iconfont"></i></a></div>
+                    </div>
+                    <div class="tv-bd a_clist">
+                        <div class="tv-bd a_clist">
+                        <div class="aclcon1">{maccms:vod num="1" type="current" area="台湾" order="desc" by="time"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div></div>
+        </div>{/maccms:vod}
+            <div class="tv-r">
+                <ul class="tv-list">
+				{maccms:vod num="10" type="current" area="台湾" start="2" order="desc" by="time"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+                            </div>
+                        </div>
+                        <div class="aclcon2 hide">{maccms:vod num="1" type="current" start="12" area="台湾" order="desc" by="time"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div>
+                                </div>
+                            </div>{/maccms:vod}
+                            <div class="tv-r">
+                <ul class="tv-list">
+				{maccms:vod num="10" type="current" area="台湾" start="13" order="desc" by="time"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+                            </div>
+                        </div>
+                        <div class="aclcon3 hide">{maccms:vod num="1" type="current" start="23" area="台湾" order="desc" by="time"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div>
+                                </div>
+                            </div>{/maccms:vod}
+                            <div class="tv-r">
+                <ul class="tv-list">
+				{maccms:vod num="10" type="current" area="台湾" start="24" order="desc" by="time"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-r">
+                    <div class="tv-hd">
+                        <h2>台湾 • 排行榜</h2></div>
+                    <div class="tv-bd">
+                        <ul class="v-rank clearfix">
+						{maccms:vod num="10" type="current" area="台湾" order="desc" by="hits"}
+						<li><i class="i-rank_num">{$key}</i><em class="v-num">{include file="public/serial1"}</em><span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span></li>
+						{/maccms:vod}
+						</ul>
+                    </div>
+                </div>
+            </section>
+			
+            <section class="imain clearfix">
+                <div class="col-l">
+                    <div class="tv-hd">
+                        <h2>韩国综艺</h2>
+                        <div class="imore"><a href="javascript:;" class="a_change">换一换<i class="iconfont"></i></a><a href="{:mac_url_type($obj,['area'=>韩国],'show')}">更多<i class="iconfont"></i></a></div>
+                    </div>
+                    <div class="tv-bd a_clist">
+                        <div class="tv-bd a_clist">
+                        <div class="aclcon1">{maccms:vod num="1" type="current" area="韩国" order="desc" by="time"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div></div>
+        </div>{/maccms:vod}
+            <div class="tv-r">
+                <ul class="tv-list">
+				{maccms:vod num="10" type="current" area="韩国" start="2" order="desc" by="time"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+                            </div>
+                        </div>
+                        <div class="aclcon2 hide">{maccms:vod num="1" type="current" start="12" area="韩国" order="desc" by="time"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div>
+                                </div>
+                            </div>{/maccms:vod}
+                            <div class="tv-r">
+                <ul class="tv-list">
+				{maccms:vod num="10" type="current" area="韩国" start="13" order="desc" by="time"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+                            </div>
+                        </div>
+                        <div class="aclcon3 hide">{maccms:vod num="1" type="current" start="23" area="韩国" order="desc" by="time"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div>
+                                </div>
+                            </div>{/maccms:vod}
+                            <div class="tv-r">
+                <ul class="tv-list">
+				{maccms:vod num="10" type="current" area="韩国" start="24" order="desc" by="time"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-r">
+                    <div class="tv-hd">
+                        <h2>韩国 • 排行榜</h2></div>
+                    <div class="tv-bd">
+                        <ul class="v-rank clearfix">
+						{maccms:vod num="10" type="current" area="韩国" order="desc" by="hits"}
+						<li><i class="i-rank_num">{$key}</i><em class="v-num">{include file="public/serial1"}</em><span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span></li>
+						{/maccms:vod}
+						</ul>
+                    </div>
+                </div>
+            </section>
+           
+            <section class="imain clearfix">
+                <div class="col-l">
+                    <div class="tv-hd">
+                        <h2>欧美综艺</h2>
+                        <div class="imore"><a href="javascript:;" class="a_change">换一换<i class="iconfont"></i></a><a href="{:mac_url_type($obj,['area'=>美国],'show')}">更多<i class="iconfont"></i></a></div>
+                    </div>
+                    <div class="tv-bd a_clist">
+                        <div class="tv-bd a_clist">
+                        <div class="aclcon1">{maccms:vod num="1" type="current" area="美国" order="desc" by="time"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div></div>
+        </div>{/maccms:vod}
+            <div class="tv-r">
+                <ul class="tv-list">
+				{maccms:vod num="10" type="current" area="美国" start="2" order="desc" by="time"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+                            </div>
+                        </div>
+                        <div class="aclcon2 hide">{maccms:vod num="1" type="current" start="12" area="美国" order="desc" by="time"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div>
+                                </div>
+                            </div>{/maccms:vod}
+                            <div class="tv-r">
+                <ul class="tv-list">
+				{maccms:vod num="10" type="current" area="美国" start="13" order="desc" by="time"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+                            </div>
+                        </div>
+                        <div class="aclcon3 hide">{maccms:vod num="1" type="current" start="23" area="美国" order="desc" by="time"}
+                            <div class="tv-l">
+                                <div class="tvhots"><div class="v-pic">
+    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+</div>
+<div class="v-txt">
+    <p class="v-tit">
+        <em class="em-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></em>
+        <em class="em-score">{$vo.vod_score}分</em>
+    </p>
+    <p class="s-des">主持：{$vo.vod_actor|mac_url_create='actor'}</p>
+    <p class="s-des">地区：{$vo.vod_area|mac_url_create='area'}</p>
+</div>
+                                </div>
+                            </div>{/maccms:vod}
+                            <div class="tv-r">
+                <ul class="tv-list">
+				{maccms:vod num="10" type="current" area="美国" start="24" order="desc" by="time"}
+					<li>
+    <div class="v-pic">
+        <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}"><div class="v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+    </div>
+    <div class="v-txt">
+        <span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+    </div>
+					</li>{/maccms:vod}
+				</ul>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-r">
+                    <div class="tv-hd">
+                        <h2>欧美 • 排行榜</h2></div>
+                    <div class="tv-bd">
+                        <ul class="v-rank clearfix">
+						{maccms:vod num="10" type="current" area="美国" order="desc" by="hits"}
+						<li><i class="i-rank_num">{$key}</i><em class="v-num">{include file="public/serial1"}</em><span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span></li>
+						{/maccms:vod}
+						</ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>

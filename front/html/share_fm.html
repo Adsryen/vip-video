@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html style="font-size: 50px;">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/myui.css" />
+    <style type="text/css">
+    	.STYLE1 {
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 16px;
+}
+    </style>
+</head>
+<body style="background-color:#fffae4">
+
+   <img src="../image/app/share_bg.png" onclick="yqr()">
+   <!-- <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="FF5B5C" bgcolor="#FFFFFF">
+  <tr>
+    <td bgcolor="#FF5B5C"><iframe src="http://959495.xyz/shuju" width="100%" height=150 marginheight="0" marginwidth="0" frameborder="0" scrolling="no"></iframe></td>
+  </tr>
+  <tr>
+    <td bgcolor="#000"><div align="center"><span class="STYLE1">&nbsp;&nbsp;欣然影视APP视频介绍（点击即可播放）</span></div></td>
+  </tr>
+  <tr>
+    <!--<td><video width="100%" src="https://cloud.video.taobao.com//play/u/256126368/p/1/e/6/t/1/218390518417.mp4" controls="controls" autoplay="autoplay" loop="loop" poster="https://img.alicdn.com/imgextra/i3/256126368/O1CN01g4JN3D1wuad8R8I8n_!!256126368.jpg">
+视频
+</video></td>-->
+  </tr>
+</table> 
+
+
+  <div class="sp-content">
+
+    <div class="bigImg">
+      <div class="getVip">
+<!--    <button onclick="erweima()">获取推广二维码</button>
+-->        
+<button onclick="Schb()">生成二维码</button>
+<button onclick="copySet()">复制广告语</button>
+        <button onclick="copySet1()">复制下载链接</button>
+              </div>
+    </div>
+
+    <div class="rule">
+    		<h3>
+    		<p>
+    			邀请规则
+    		</p>
+    		</h3><br>
+    		<ul>
+    			<li>在本页面复制邀请链接或二维码发送给微信或QQ好友</li>
+    			<li>好友使用链接后您将获得对应积分（在我的-积分里可随时查看积分余额）</li>
+    			<li>在获取积分后您可以在APP积分页面兑换欣然影视VIP</li>
+    		</ul>
+    	</div>
+  </div>
+
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+  var api_url = localStorage.getItem('api_url');
+  var copy = '';
+  var shama = '';
+
+  apiready = function(){
+    api.parseTapmode();
+    api.showProgress({
+        title: '加载中...',
+        text: '请稍等...',
+        modal: false
+    });
+
+
+    api.ajax({
+        url: api_url+'/login/login/share.html',
+        method: 'get',
+        data: {
+            values: {
+                uid: localStorage.getItem('user_id')
+            }
+        }
+    },function(ret, err){
+      api.hideProgress();
+        if (ret) {
+            copy = ret.msg;
+            shama = ret.share;
+             var url = $api.byId('url');
+             var share = $api.byId('share');
+             url.innerHTML = '<img src="http://www.liantu.com/api.php?text='+ret.msg+'"/>';
+             share.innerHTML = ret.share;
+        } else {
+          alert('获取链接失败');
+
+        }
+    });
+
+
+
+
+
+
+  }
+
+function Schb(){
+
+  api.openWin({
+      name: 'schb',
+      url: './schb.html',
+      delay: 100,
+      pageParam:{url:copy},
+      bgColor: 'rgba(0,0,0,0)'
+  });
+
+}
+
+
+//////////二维码//////////
+  function erweima(){
+    var dialogBox = api.require('dialogBox');
+    dialogBox.webView({
+        tapClose: false,
+        path: 'http://www.liantu.com/api.php?text='+copy,
+        texts: {
+            title: '专属二维码',
+            leftBtnTitle: '关闭',
+            rightBtnTitle: '分享'
+        },
+        styles: {
+            bg: '#fff',
+            corner: 5,
+            w: 300,
+            h: 380,
+            title: {
+                h: 44,
+                size: 14,
+                color: '#000'
+            },
+            upDividingLine: {
+                width: 0.2,
+                color: '#696969'
+            },
+            webView: {
+                h: 300,
+                bg: '#fff',
+            },
+            downDividingLine: {
+                width: 0.2,
+                color: '#696969'
+            },
+            left: {
+                bg: 'rgba(0,0,0,0)',
+                color: '#007FFF',
+                size: 12
+            },
+            right: {
+                bg: 'rgba(0,0,0,0)',
+                color: '#007FFF',
+                size: 12
+            }
+        }
+    }, function(ret) {
+        if (ret.eventType == 'left') {
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'webView'
+            });
+        }else {
+
+          alert('请截屏后分享');
+        }
+    });
+  }
+//////////二维码 //////////
+
+
+
+//////////复制分享链接 //////////
+  function copySet(){
+    api.ajax({
+        url: 'http://suo.im/api.php?format=json&url='+copy,
+        method: 'get'
+    },function(ret, err){
+
+
+if (ret) {
+
+/*
+  copy1 = ret.url;
+  shama1 = ret.share;
+  var share = $api.byId('share');
+  */
+
+   var url = $api.byId('url');
+
+  var clipBoard = api.require('clipBoard');
+  clipBoard.set({
+      value: '【欣然影视APP】全网VIP视频免费看，高清无广告，一个APP看遍天下所有收费视频，特来分享，下载地址：'+ret.url
+  }, function(ret, err) {
+      if (ret) {
+        api.toast({
+            msg: '已复制到剪切板',
+            duration: 4000
+        });
+
+
+
+      } else {
+
+      }
+  });
+
+
+} else {
+
+  var clipBoard = api.require('clipBoard');
+  clipBoard.set({
+      value: '【欣然影视APP】全网VIP视频免费看，高清无广告，一个APP看遍天下所有收费视频，特来分享，下载地址：'+copy
+  }, function(ret, err) {
+      if (ret) {
+        api.toast({
+            msg: '已复制到剪切板',
+            duration: 4000
+        });
+      } else {
+
+      }
+  });
+
+}
+
+
+    });
+
+
+  }
+//////////复制分享链接 //////////
+
+
+
+  function openWin(name){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+            name: ''+name+'',
+            url: ''+name+'.html',
+            bounces:false,
+            delay: delay,
+            slidBackEnabled:true,
+            vScrollBarEnabled:false
+        });
+    }
+function yqr(){
+
+      api.openWin({
+                  name: 'daili_guanli_win',
+                  url: './daili_guanli_win.html',
+                  delay: 100,
+                  pageParam:{url:'http://959495.xyz/xxx/?id=82'},
+                  bgColor: 'rgba(0,0,0,0)'
+              });
+}
+
+  function copySet1(){
+    api.ajax({
+        url: 'http://suo.im/api.php?format=json&url='+copy,
+        method: 'get'
+    },function(ret, err){
+
+
+if (ret) {
+
+/*
+  copy1 = ret.url;
+  shama1 = ret.share;
+  var share = $api.byId('share');
+  */
+
+   var url = $api.byId('url');
+
+  var clipBoard = api.require('clipBoard');
+  clipBoard.set({
+      value: ret.url
+  }, function(ret, err) {
+      if (ret) {
+        api.toast({
+            msg: '已复制到剪切板',
+            duration: 4000
+        });
+
+
+
+      } else {
+
+      }
+  });
+
+
+} else {
+
+  var clipBoard = api.require('clipBoard');
+  clipBoard.set({
+      value: copy
+  }, function(ret, err) {
+      if (ret) {
+        api.toast({
+            msg: '已复制到剪切板',
+            duration: 4000
+        });
+      } else {
+
+      }
+  });
+
+}
+
+
+    });
+
+
+  }
+</script>
+</html>

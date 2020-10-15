@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>个人中心</title>
+		<link rel="stylesheet" type="text/css" href="../andi/iconfont/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../andi/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../andi/css/page.css" />
+		<!--update-->
+	</head>
+	<body class="bg-gray">
+		<!-- personal-top -->
+		<div class="personal-top">
+			<!-- wrap -->
+			<div class="wrap flex">
+				<div class="top-left">
+					<img src="../andi/img/tx.png">
+				</div>
+				<div class="top-right">
+					<div class="level-wrap flex">
+						<div class="level">
+							<h3>欣然影视<img src="../andi/img/vip.png" ></h3>
+							<p>到期时间 <span>2019-12-12</span></p>
+						</div>
+						<div class="sign-in" onClick="qianDao('')">
+							<a href="#">签到</a>
+						</div>
+					</div>
+
+					<div class="personal_tit flex">
+						<a onClick="openWin('jifen_win')">
+							<h3 id="sign">-</h3>
+							<p>积分</p>
+						</a>
+						<a onClick="DailiGuanLi()">
+							<h3 id="moneys">-</h3>
+							<p>收入</p>
+						</a>
+						<a onClick="diansu()">
+							<h3 id="money">-</h3>
+							<p>点数</p>
+						</a>
+						<a onClick="dl()">
+							<h3>合伙人</h3>
+							<p>点击查看</p>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="subnav flex">
+				<a onclick="toLogin()">
+					<i class="iconfont icon-huiyuan"></i>
+					<p>会员升级</p>
+				</a>
+				<a onClick="openWin('share_win')">
+					<i class="iconfont icon-jinbi"></i>
+					<p>分享下载</p>
+				</a>
+				<a onClick="look_record()">
+					<i class="iconfont icon-shipin"></i>
+					<p>观看记录</p>
+				</a>
+				<a onClick="openWin('jifensc_win')">
+					<i class="iconfont icon-jifenshangcheng"></i>
+					<p>积分商城</p>
+				</a>
+			</div>
+			<div class="subnav flex">
+				<a onclick="toLogin()">
+					<i class="iconfont icon-yonghuzhangce"></i>
+					<p>名下用户</p>
+				</a>
+				<a onClick="openWin('share_win')">
+					<i class="iconfont icon-qiamizhifu"></i>
+					<p>提取卡密</p>
+				</a>
+				<a onClick="look_record()">
+					<i class="iconfont icon-tixian"></i>
+					<p>现金提现</p>
+				</a>
+				<a onClick="openWin('jifensc_win')">
+					<i class="iconfont icon-shezhi"></i>
+					<p>软件设置</p>
+				</a>
+			</div>
+		</div>
+
+		<div class="personal_list">
+			<a>
+				<span><img src="../andi/img/20.png" alt=""></span>
+				<h3 id="isloginOrOut">立即登录</h3>
+			</a>
+
+			<a onClick="openWin('back_pwd')">
+				<span><img src="../andi/img/14.png" alt=""></span>
+				<h3>修改密码</h3>
+			</a>
+			<!--<a href="../html/frame5.html">
+				<img src="img/16.png" alt="">
+				<h3>切换模版</h3>
+			</a>-->
+			<a onClick="openWin('guankan_help_win')">
+				<span><img src="../andi/img/17.png" alt=""></span>
+				<h3>常见问题</h3>
+			</a>
+			<!--<a onClick="liuyan()">
+				<img src="img/18.png" alt="">
+				<h3>留言反馈</h3>
+			</a>-->
+			<a onClick="kefuWeixin()">
+				<span><img src="../andi/img/15.png" alt=""></span>
+				<h3>专属客服</h3>
+				<p id="weichat"></p>
+
+			</a>
+			<a onClick="cleaCache()">
+				<span><img src="../andi/img/19.png" alt=""></span>
+				<h3>清理缓存</h3>
+				<p id="cache"></p>
+			</a>
+			<a onClick="checkUpdate()">
+				<span><img src="../andi/img/20.png" alt=""></span>
+				<h3>在线更新</h3>
+				<p id="vsion"></p>
+			</a>
+			<a onClick="api.alert({title: '免责声明',msg: '本站所有视频均来自互联网，版权归原创者所有，如果侵犯了您的权益，请通知我们，我们将会在3个正常工作日内删除其侵权内容，谢谢合作。',  });">
+				<span><img src="../andi/img/21.png" alt=""></span>
+				<h3>关于我们</h3>
+				<p>欣然影视</p>
+			</a>
+
+		</div>
+
+
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../andi/js/function.js"></script>
+</html>

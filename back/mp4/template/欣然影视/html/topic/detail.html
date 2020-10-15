@@ -1,0 +1,67 @@
+<!-- 专题详情页 --><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>{$obj.topic_name}专题详情- {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.topic_name}电影专题,{$obj.topic_name}电视剧专题,{$obj.topic_name}综艺专题,{$obj.topic_name}动漫专题,{$obj.topic_name}推荐专题">
+<meta name="description" content="本站提供{$obj.topic_name},最新最全精品专题数据">
+{include file="public/include"}
+</head>
+<body class="mback">
+{include file="public/head"}
+<div class="icon">
+	<div class="detail_top_con" style="background: url({$obj.topic_pic|mac_url_img});height: 380px;background-position: 50% 50%;background-size: cover;">
+		<div id="zhuanti">
+			<h3>{$obj.topic_name}</h3>
+			<p>
+			</p>
+		</div>
+	</div>
+	<section class="idetail container">
+	<div class="col-l">
+		<div class="tv-hd v-border">
+		<h2><span>专题介绍</span></h2>
+	</div>
+	<div class="tv-bd">
+		<div class="infor_intro">
+			{$obj.topic_content}
+		</div>
+	</div>
+	<div class="tv-hd v-border">
+		<h2><span>本专题共<strong style="color:#ffb400">{$obj.vod_list|count}</strong>部视频</span></h2>
+	</div>
+	<div class="tv-bd">
+		<ul class="tv-list tv-hotlist">{maccms:foreach name="$obj.vod_list"}
+			<li>
+			<div class="v-pic">
+				<img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}">
+				<div class="v-tips">{include file="public/serial1"}</div>
+				<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+			</div>
+			<div class="v-txt">
+				<span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+			</div>
+			</li>{/maccms:foreach}
+		</ul>
+		<!--div id="page_list">
+			{include file="public/paging"}
+		</div-->
+	</div>
+</div>
+<div class="col-r">
+	<div class="tv-hd">
+		<h2>热门专题推荐</h2>
+	</div>
+	<div class="tv-bd">
+		<ul class="v-rank clearfix">{maccms:topic num="6" paging="no" order="asc" by="sort" ids="all"}
+			<li><a href="{:mac_url_topic_detail($vo)}"><img class="img" src="{$vo.topic_pic|mac_url_img}"></a><span class="v-tit"><a href="{:mac_url_topic_detail($vo)}">{$vo.topic_name}</a></span></li>{/maccms:topic}
+		</ul>
+	</div>
+</div>
+</section>
+</div>
+{include file="public/foot"}
+<script src="{$maccms.path_tpl}js/lazyload.min.js"></script>
+<script src="{$maccms.path_tpl}js/app.js"></script>
+</body>
+</html>

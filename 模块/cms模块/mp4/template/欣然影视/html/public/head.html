@@ -1,0 +1,17 @@
+    <header class="itopbar">
+        <div class="container">
+            <h1 class="ilogo"><a href="{$maccms.path}" title="logo"><img src="{$maccms.path_tpl}images/logo.png" alt="{$maccms.site_name}"><span>{$maccms.site_name}</span></a></h1>
+            <nav class="sitenav"><a href="{$maccms.path}" {if condition="$maccms.aid eq 1"}class="cur"{/if}>首页</a>{maccms:type ids="parent" order="asc" by="sort"}<a href="{:mac_url_type($vo)}" {if condition="$obj.type_id eq $vo.type_id"}class="cur"{/if}>{$vo.type_name}</a>{/maccms:type}<a href="/live/" {if condition="$maccms.aid eq 7"}class="cur"{/if}>游戏直播</a><a href="{:mac_url('label/zhibo')}" {if condition="$maccms.aid eq 7"}class="cur"{/if}>电视直播</a><a href="{:mac_url('gbook/index')}" {if condition="$maccms.aid eq 4"}class="cur"{/if}>留言</a></nav></nav>
+            <div class="itr">
+                <div class="mod">
+                    <a href="javascript:;" class="mac_history"><i class="iconfont"></i>看过<span class="caret"></span></a>
+                </div>
+                <div class="mod"><a href="javascript:;" class="mac_user"><i class="iconfont"></i>会员</a></div>
+            </div>
+            <span class="searchstart-on"><i class="iconfont"></i></span><span class="searchstart-off"><i class="iconfont"></i></span>
+            <form name="formsearch" class="searchform" action="{:mac_url('vod/search')}" method="post" autocomplete="off">
+                <input class="ipt" placeholder="输入影片片名或演员名称。" name="wd" type="text" id="wd" required="">
+                <input type="submit" id="searchbutton" value="" class="hide"><a href="javascript:" class="ibtn" title="搜索" onClick="$('.searchform').submit();"><i class="iconfont"></i> 搜索</a>
+            </form>
+        </div>
+    </header>

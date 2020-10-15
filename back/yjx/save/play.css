@@ -1,0 +1,12 @@
+/*  添加遮挡层   background-color:背景颜色, width: 宽度 ，height:高度,   */  
+.fixed{
+position:absolute;
+z-index: 9999999999;
+left:0px;
+top:0px;
+background-color:#000;
+width:100%;
+height:108px;
+}
+ /*  移动设备自适应宽高  */  
+@media screen and (max-width: 650px) {.fixed {height:36%;}}

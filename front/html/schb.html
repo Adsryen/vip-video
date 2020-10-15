@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html style="font-size: 50px;">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/myui.css" />
+</head>
+<body style="background-color:#ff5a24">
+
+  <div>
+    <img src="../image/1.png" alt="" width="100%">
+  </div>
+  <div style="width:200px; margin:0 auto; height:0 auto;" id="box">
+    <p style="text-align:center">
+    <img src="../image/faxian.png" />
+  </p>
+  </div>
+
+  <div>
+    <img src="../image/2.png" alt="" width="100%">
+  </div>
+
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+  var api_url = localStorage.getItem('api_url');
+  apiready = function(){
+      var url = api.pageParam.url;
+      var hongbaoid = $api.byId('box');
+      var img = '<img src="http://www.liantu.com/api.php?text='+url+'"/>';
+    //  alert(img);
+      hongbaoid.innerHTML = img;
+    }
+</script>
+</html>

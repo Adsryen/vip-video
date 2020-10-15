@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>购物网</title>
+    <link rel="stylesheet" type="text/css" href="../shangcheng/css/aui.css" />
+</head>
+<body>
+<header class="aui-bar aui-bar-nav" id="aui-header">
+    <a class="aui-btn aui-pull-left" tapmode="" onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">订单列表</div>
+</header>
+    <div class="aui-content aui-margin-b-15">
+        <ul class="aui-list aui-media-list">
+            <li class="aui-list-item" id="shop_list">
+                <a href="product.html">
+                    <div class="aui-media-list-item-inner">
+                        <div class="aui-list-item-media" style="width:6rem">
+                            <img src="image/demo/pa1.jpg">
+                        </div>
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-text">
+                                <div class="aui-list-item-title">[为你推荐]kaman抽屉式化妆品收纳盒大号创意护肤桌面收纳盒塑料口红置物架</div>
+                            </div>
+                            <div><span class="aui-margin-l-5">￥39.00</span></div>
+                            <div class="aui-info-item " style="font-size:15px; color:#999">订单号:</div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</body>
+<script type="text/x-dot-template" id="template">
+  {{~ it.list : value : index }}
+  <li class="aui-list-item" id="shop_list">
+      <a>
+          <div class="aui-media-list-item-inner">
+              <div class="aui-list-item-media" style="width:6rem">
+                  <img src="http://959495.xyz/{{= value. picurl }}">
+              </div>
+              <div class="aui-list-item-inner">
+                  <div class="aui-list-item-text">
+                      <div class="aui-list-item-title">{{= value. title }}</div>
+                  </div>
+                  <div><span class="aui-margin-l-5">￥{{= value. money }}</span></div>
+                  <div class="aui-info-item " style="font-size:15px; color:#999">订单号:{{= value. oderid }}</div>
+                  <div class="aui-info-item " style="font-size:15px; color:#999">购买时间:{{= value. time }}</div>
+                  <div class="aui-info-item " style="font-size:15px; color:#999">发货状态:{{= value. fahuoxinxi }}</div>
+              </div>
+          </div>
+      </a>
+  </li>
+  {{~}}
+</script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../shangcheng/script/aui-lazyload.js" ></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+  var api_url = localStorage.getItem('api_url');
+  apiready = function(){
+    //下拉刷新
+          api.setCustomRefreshHeaderInfo({
+              bgColor : '#fff',
+               images: [
+                    'widget://image/app/xiala/qicai.gif',
+                      ],
+                      tips: {
+                          pull: '你…你想干什么！你不要过来！',
+                          threshold: '讨厌 快放开我 非礼呀！',
+                          load: '欣然影视 享受生活'
+                      }
+
+          }, function() {
+
+              setTimeout(function(){
+          api.refreshHeaderLoadDone()
+              }, 3000);
+          });
+    //下拉刷新
+    api.parseTapmode();
+    getShoplist();
+  }
+
+  function getShoplist(){
+    var shop_list = $api.byId('shop_list');
+    var template = $api.byId('template');
+    api.ajax({
+      url: api_url+'/login/login/dingdanlist.html?userid='+localStorage.getItem('user_id'),
+      method: 'get',
+  },function(ret, err){
+      if (ret) {
+        //渲染模板
+        var pagefn = doT.template(template.text);
+        shop_list.innerHTML = pagefn(ret);
+        //alert( JSON.stringify( ret ) );
+      }
+
+
+  });
+  }
+
+    new auiLazyload({
+        errorImage:'../shangcheng/image/error-img.png'
+    });
+    function closeWin(){
+        api.closeWin({
+        });
+    }
+</script>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <title>title</title>
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+      <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+      <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+      <style>
+          body{
+
+          }
+          .error{
+          	padding-top:4rem;
+          	font-size: 0.7rem;
+              margin: 1.1rem 0 0;
+              color: #666666;
+              font: 20px/1.5 'Microsoft YaHei',arial,tahoma,\5b8b\4f53,sans-serif;
+              text-align:center;
+          }
+          .error i{
+          	font-size:6rem;
+          }
+      </style>
+  </head>
+  <body>
+
+    <!--
+    <header class="aui-bar aui-bar-nav" id="header" style=" background: linear-gradient(#ff5e3e , #ff1679 );color:#fff;position: relative;padding-top:25px;">
+      <span  onclick="ios_inwin('closeWin')" tapmode style="position: absolute;left:10px;">
+        <i class="aui-iconfont aui-icon-left" style="color:#fff"></i>返回
+      </span>
+      <span onclick="ios_inwin('tuichu')" tapmode style="position: absolute;left:80px;">关闭
+      </span>
+    平台浏览
+    <span style="position: absolute;right: 10px;" class="shuaxin" onclick="ios_inwin('shuaxin')" tapmode >刷新
+    </span></header>
+-->
+
+<header class="aui-navBar aui-navBar-fixed" style="background: #fff;" id="header" >
+
+
+                <a    tapmode onclick="closeWin()" class="aui-navBar-item-db"  >
+              <i class="icon icon-back"></i>
+
+                </a>
+
+  							<a  tapmode onclick="closeWd()" class="aui-navBar-item-s"  style="color: #FF0000;"  >
+  							<i class="icon icon-Close-b"></i>关闭
+  								</a>
+
+								<div class="aui-center">
+										<span class="aui-center-title" >  合伙人管理 </span>
+								</div>
+
+								<a   onclick="shuaxin()" tapmode  class="aui-navBar-item" style="color: #000000;"  >
+						 	<i class="icon icon-blackRefresh"></i> 刷新
+								</a>
+
+						</header>
+
+
+
+
+    <div id="err"></div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+
+          //
+    var api_url = localStorage.getItem('api_url');
+
+/////初始化 S /////
+apiready = function(){
+
+$api.fixStatusBar(header);
+var headerPos = $api.offset(header);
+var body_h = $api.offset($api.dom('body')).h;
+
+
+///登录判断
+var user_id = localStorage.getItem('user_id');
+if (user_id>1) {
+
+  api.ajax({
+      url: api_url+'/login/login/imei.html',
+      method: 'get',
+      data: {
+          values: {
+              uid: user_id
+          }
+      }
+  },function(ret, err){
+      if (ret) {
+          if (ret.msg.imei!=api.deviceId) {
+            localStorage.setItem('user_id','');
+            localStorage.setItem('user_name','');
+            localStorage.setItem('user_time','');
+            api.sendEvent({
+              name: 'newLoingdata',
+              extra: {
+              }
+            });
+
+            api.closeWin({
+            });
+
+            api.alert({
+                title: '您已在其他设备登陆！账号已强制下线',
+                msg: '请重新登陆',
+            });
+            return;
+          }
+      } else {
+
+
+
+      }
+  });
+
+
+
+}
+////登录判断
+
+        api.openFrame({
+           name: 'daili_guanli_win',
+            url: api.pageParam.url,
+            progress:{
+              type:"page",
+              color:"#6dd26d"
+            },
+            rect: {
+                x: 0,
+                y: $api.offset($api.byId('header')).h,
+                w: 'auto',
+                h: 'auto'
+            }
+        });
+
+
+};
+/////初始化结束/////
+
+//////////////////////   返回  方法    closeWin     S //////////////////////
+ function closeWin(){
+   api.historyBack({
+ frameName: 'video_frame'
+}, function(ret, err) {
+ if (!ret.status) {
+   api.closeWin();
+ }
+});
+
+ }
+//////////////////////   返回  方法    closeWd     E //////////////////////
+
+//////////////////////   关闭  方法    closeWd     S //////////////////////
+ function closeWd(){
+   api.closeWin();
+ }
+//////////////////////   关闭  方法    closeWd     E //////////////////////
+
+
+//////////////////////   刷新  方法    shuaxin     S //////////////////////
+ function shuaxin(){
+   var jsfuns='history.go(0);';
+   api.execScript({
+   frameName: 'video_frame',
+   script: jsfuns
+ });
+ }
+//////////////////////   刷新  方法    shuaxin     E //////////////////////
+
+
+
+
+  </script>
+  </html>

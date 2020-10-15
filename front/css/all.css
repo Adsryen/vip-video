@@ -1,0 +1,313 @@
+﻿@charset "UTF-8";
+/*css 初始化 */
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img {
+    margin: 0;
+    padding: 0;
+}
+fieldset, img, input, button ,select{
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline-style: none;
+}
+ul, ol {
+    list-style: none;
+}
+input , button{
+    padding-top: 0;
+    padding-bottom: 0;
+    font-family: "微软雅黑";
+}
+button{
+    cursor:pointer;
+}
+select, input {
+    vertical-align: middle;
+}
+select, input, textarea {
+    font-size: 12px;
+    margin: 0;
+}
+/*防止拖动*/
+textarea {
+    resize: none;
+}
+img {
+    border: 0;
+    vertical-align: middle;
+}
+table {
+    border-collapse: collapse;
+}
+body {
+    font: 14px/150% "微软雅黑"!important;
+    color: #000;
+    background-color: #f5f5f5;
+    padding: 0px;
+}
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1; /*IE/7/6*/
+}
+.f-l{
+    float: left;
+}
+.f-r{
+    float: right;
+}
+a {
+    text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 100%;
+}
+em ,i{
+    font-style: normal;
+    text-decoration: none;
+}
+.my{
+    background: #f5f5f5 url(../images/1.png) no-repeat top center;
+    -webkit-background-size: 100% auto;
+    background-size: 100% auto;
+}
+header{
+    padding: 0 .5rem;
+    width: 100%;
+    box-sizing: border-box;
+    height: 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background-color: #fd385b;
+}
+header a.back{
+    display: block;
+    width: 1rem;
+    height: 1.5rem;
+    position: absolute;
+    top: 0;
+    left: .5rem;
+}
+header a.back img{
+    height: .6rem;
+    margin-top: .45rem;
+}
+header p{
+    font-size: .6rem;
+    text-align: center;
+    width: 100%;
+    line-height: 1.5rem;
+    color: #fff;
+}
+.my_info{
+    width: 94%;
+    margin: .3rem auto 0;    
+    border-radius: 6px;
+    overflow: hidden;
+    background: url(../images/6.png) no-repeat top center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    padding-bottom: 1.4rem;
+    -webkit-background-origin: content-box;
+    background-origin: content-box;
+    position: relative;
+}
+.my_info .top{
+    padding: .2rem .5rem;
+}
+.my_info .top a{
+    display: block;
+    background: url(../images/5.png) no-repeat right .3rem;
+    -webkit-background-size: .3rem .5rem;
+    background-size: .3rem .5rem;
+}
+.my_info .top a>img{
+    float: left;
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-right: .2rem;
+}
+.my_info .top .right{
+    float: left;
+    width: 8.5rem;
+}
+.my_info .top .right h3{
+    font-size: .55rem;
+    line-height: 1rem;
+    color: #8c5c2d;
+}
+.my_info .top .right h3 img{
+    height: .6rem;
+    margin: -.1rem 0 0 .1rem;
+}
+.my_info .top .right p{
+    font-size: .4rem;
+    line-height: .4rem;
+    color: #a86024;
+}
+.my_info .top .right p.no{
+    display: none;
+}
+.my_info .center a{
+    float: left;
+    width: 25%;
+    text-align: center;
+    padding: .7rem 0 .3rem 0;
+    position: relative;
+}
+.my_info .center a::after{
+    content: "";
+    display: block;
+    width: 1px;
+    height: .6rem;
+    background-color: #dab56f;
+    position: absolute;
+    top: 50%;
+    margin-top: -.3rem;
+    right: 0;
+}
+.my_info .center a:last-child::after{
+    display: none;
+}
+.my_info .center a h3{
+    font-size: .45rem;
+    line-height: .7rem;
+    color: #874a18;
+}
+.my_info .center a p{
+    font-size: .44rem;
+    line-height: .7rem;
+    color: #fff;
+}
+.my_info .bottom{
+    background-color: #333;
+    padding: 0 .55rem;
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+.my_info .bottom img{
+    float: left;
+    height: .45rem;
+    margin: .47rem .1rem 0 0;
+}
+.my_info .bottom h3{
+    float: left;
+    font-size: .4rem;
+    color: #dbb671;
+    line-height: 1.4rem;
+}
+.my_info .bottom a{
+    float: right;
+    font-size: .4rem;
+    line-height: .7rem;
+    background-color: #ffefc4;
+    color: #333;
+    border-radius: 10px;
+    padding: 0 .3rem;
+    margin-top: .35rem;
+}
+.tool{
+    width: 94%;
+    margin: .2rem auto 0;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+}
+.tool_tit{
+    padding: 0 .5rem;
+    font-size: .5rem;
+    line-height: 1.3rem;
+    color: #333;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+}
+.tool_nav a{
+    float: left;
+    width: 25%;
+    text-align: center;
+    padding-top: .75rem;
+}
+.tool_nav a img{
+    height: 1rem;
+}
+.tool_nav a p{
+    font-size: .4rem;
+    line-height: 1rem;
+    color: #666;
+}
+.my_ul{
+    width: 94%;
+    margin: .2rem auto 0;
+    background-color: #fff;
+    border-radius: 2px;
+    overflow: hidden;
+}
+.my_ul li{
+    border-bottom: 1px solid #ddd;
+    padding: 0 .5rem;
+    overflow: hidden;
+}
+.my_ul li a{
+    display: block;
+    height: 1.7rem;
+    padding-right: .7rem;
+    background: url(../images/22.png) no-repeat right center;
+    -webkit-background-size: .3rem .5rem;
+    background-size: .3rem .5rem;
+}
+.my_ul li img{
+    width: .5rem;
+    float: left;
+    margin: .6rem .4rem 0 0;
+}
+.my_ul li h3{
+    float: left;
+    font-size: .45rem;
+    line-height: 1.7rem;
+    color: #333;
+}
+.my_ul li p{
+    float: right;
+    font-size: .4rem;
+    line-height: 1.7rem;
+    color: #999;
+}
+footer{
+    width: 100%;
+    border-top: 1px solid #ddd;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    background-color: #f4f6f8;
+}
+footer a{
+    float: left;
+    width: 25%;
+    text-align: center;
+    padding: .1rem 0;
+}
+footer a img{
+    height: .75rem;
+}
+footer a p{
+    font-size: .4rem;
+    line-height: .8rem;
+    color: #7d7d7e;
+}
+footer a.on p{
+    color: #ff2b56;
+}

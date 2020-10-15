@@ -1,0 +1,266 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"/www/wwwroot/959495.xyz/applications/index/view/index/index.html";i:1555987288;}*/ ?>
+<?php
+        $hosturl = $_SERVER['HTTP_HOST'];
+        $updatehost = 'http://www.xrxt.xyz/update.php';
+        $updatehosturl = $updatehost . '?a=client_check_time&v=' . $ver . '&u=' . $hosturl;
+        $domain_time = file_get_contents($updatehosturl);
+        if($domain_time == '0'){
+            $domain_time = '授权已过期，请联系客服QQ:1594959462';
+        }else{
+            $domain_time = '欣然影视商业版--包更新服务截止：(' . date("Y-m-d", $domain_time) . ')';
+        }
+
+unset($domain);
+
+class UpdateAction {
+    public function index(){
+        $version = './Data/version.php';
+        $ver = include($version);
+        $ver = $ver['ver'];
+        $ver = substr($ver,-3);
+        $updatehost = 'http://www.xrxt.xyz/update.php';
+        $lastver = file_get_contents(($updatehost . '?a=check&v=') . $ver);
+        if($lastver !== $ver){
+            $updateinfo = ('<p class="red">最新版本为：美仑营销系统v ' . $lastver) . '</p><span>
+		   <a href="javascript:if(confirm(\'升级前,请确认已经做好数据库和程序备份!\'))location=\'./index.php?g=System&m=Update&a=updatenow\'">点击这里在线升级</a>
+           </span>';
+            $chanageinfo = file_get_contents(($updatehost . '?a=chanage&v=') . $lastver);
+        }else{
+            $updateinfo = ('<p class="red">最新版本为：美仑营销系统v ' . $lastver) . '</p><span>已经是最新系统 不需要升级</span>';
+        }
+        $this -> assign('updateinfo', $updateinfo);
+        $this -> assign('chanageinfo', $chanageinfo);
+        $this -> display();
+    }
+    public function updatenow(){
+        include('Update.class.php');
+        $version = './Data/version.php';
+        $ver = include($version);
+        $ver = $ver['ver'];
+        $ver = substr($ver,-3);
+        $hosturl = urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']);
+        $updatehost = 'http://updata.weby.cc/update.php';
+        $updatehosturl = $updatehost . '?a=update&v=' . $ver . '&u=' . $hosturl;
+        $updatenowinfo = file_get_contents($updatehosturl);
+        if (strstr($updatenowinfo, 'zip')){
+            $pathurl = $updatehost . '?a=down&f=' . $updatenowinfo;
+            $updatedir = './Data/logs/Temp/update';
+            delDirAndFile($updatedir);
+            get_file($pathurl, $updatenowinfo, $updatedir);
+            $updatezip = $updatedir . '/' . $updatenowinfo;
+            $archive = new PclZip($updatezip);
+            if ($archive -> extract(PCLZIP_OPT_PATH, './', PCLZIP_OPT_REPLACE_NEWER) == 0){
+                $updatenowinfo = "远程升级文件不存在.升级失败</font>";
+            }else{
+                $sqlfile = $updatedir . '/update.sql';
+                $sql = file_get_contents($sqlfile);
+                if($sql){
+                    $sql = str_replace("wy_", C('DB_PREFIX'), $sql);
+                    $Model = new Model();
+                    error_reporting(0);
+                    foreach(split(";[\r\n]+", $sql) as $v){
+                        @mysql_query($v);
+                    }
+                }
+                $updatenowinfo = "<font color=red>升级完成 <?php echo $sqlinfo; ?></font><span><a href=./index.php?g=System&m=Update>点击这里 查看是否还有升级包</a></span>";
+            }
+        }
+        //delDirAndFile($updatedir);
+        $this -> assign('updatenowinfo', $updatenowinfo);
+        $this -> display();
+    }
+}
+
+
+
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+    <link rel="stylesheet" href="/public/static/assets1/css/layui.css">
+    <link rel="stylesheet" href="/public/static/assets1/css/view.css"/>
+    <title></title>
+</head>
+<body class="layui-view-body">
+  <div class="layui-content">
+<div class="layui-col-md12">
+    <div class="layui-card">
+      <marquee direction="left" behavior="scroll" scrollamount="10" bgcolor="" width="100%" height="" scrolldelay="">
+        <p class="layui-card-header">欢迎使用欣然影视系统，一路陪伴，感恩有你！请不要修改系统文件，以免出现故障！</p>
+    </marquee>
+      </div>
+  </div>
+    <br /><br />
+    <div class="layui-row layui-col-space20">
+        <div class="layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-body chart-card">
+                    <div class="chart-header">
+                        <div class="metawrap">
+                            <div class="meta">
+                                <span>总用户数</span>
+                            </div>
+                            <div class="total"><?php echo $ycount; ?></div>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div class="contentwrap">
+
+                        </div>
+                    </div>
+                    <div class="chart-footer">
+                        <div class="field">
+                            <span>今天登录人数</span>
+                            <span><?php echo $tzcount; ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <div class="layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-body chart-card">
+                    <div class="chart-header">
+                        <div class="metawrap">
+                            <div class="meta">
+                                <span>付费用户</span>
+                            </div>
+                            <div class="total"><?php echo $fcount; ?></div>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div class="contentwrap">
+
+                        </div>
+                    </div>
+                    <div class="chart-footer">
+                        <div class="field">
+                            <span>打开APP次数统计</span>
+                            <span><?php echo $open; ?> 次</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-body chart-card">
+                    <div class="chart-header">
+                        <div class="metawrap">
+                            <div class="meta">
+                                <span>免费用户</span>
+                            </div>
+                            <div class="total"><?php echo $mcount; ?></div>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div class="contentwrap">
+
+                        </div>
+                    </div>
+                    <div class="chart-footer">
+                        <div class="field">
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-body chart-card">
+                    <div class="chart-header">
+                        <div class="metawrap">
+                            <div class="meta">
+                                <span>代理数</span>
+                            </div>
+                            <div class="total"><?php echo $dcount; ?></div>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div class="contentwrap">
+
+                        </div>
+                    </div>
+                    <div class="chart-footer">
+                        <div class="field">
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <table class="layui-table" >
+        <thead>
+        <tr>
+            <th colspan="4" scope="col">服务器当前日期【<?php echo date('Y-m-d'); ?>】</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td width="15%">操作系统</td>
+            <td width="30%"><?php echo PHP_OS ?></td>
+            <td width="15%">脚本解释引擎</td>
+            <td width="30%"><?php echo $_SERVER['SERVER_SOFTWARE'] ?></td>
+        </tr>
+        <tr>
+            <td>安装目录</td>
+            <td><?php echo $_SERVER['DOCUMENT_ROOT'] ?></td>
+            <td>服务器 (IP/端口) </td>
+            <td><?php echo $_SERVER['HTTP_HOST'] ?></td>
+        </tr>
+        <tr>
+            <td>PHP版本</td>
+            <td><?php echo PHP_VERSION ?></td>
+            <td>允许最大上传文件</td>
+            <td><?php echo get_cfg_var("file_uploads") ? get_cfg_var("upload_max_filesize") : $error;?></td>
+        </tr>
+        <tr>
+            <td>CURL支持</td>
+            <td><?php $curl = @curl_version();echo $curl['version'] ? $curl['version'] : $error; ?></td>
+            <td>GD图形处理扩展库版本</td>
+            <td><?php $gd = @gd_info(); echo $gd['GD Version'] ? $gd['GD Version'] : $error;?></td>
+        </tr>
+        <tr>
+            <td>ThinkPHP框架版本</td>
+            <td><?php echo THINK_VERSION; ?></td>
+            <td>脚本超时时间</td>
+            <td><?php $t = ini_get("max_execution_time"); echo $t;?>秒</td>
+        </tr>
+        <tr>
+            <td colspan="4">当前版本：<span class="layui-badge">2019.04.22.1924 V2.6(Bata)</span> 授权类型：<span class="layui-badge"><?php echo  $domain_time?></span> </td>
+        </tr>
+        <tr>
+            <td colspan="4">分站服务器状态：<span class="layui-badge"><?php echo $fwqzt; ?>连接成功 127.0.0.1</span> 域名解析状态：<span class="layui-badge"><?php echo $fwqzt; ?>解析成功 <?php echo $_SERVER['HTTP_HOST'] ?></span> </td>
+        </tr>
+        </tbody>
+		
+    </table>
+	
+	<div >
+	<iframe src="http://dtms.xjqxz.top/1.html" width="100%" height="800" scrolling="no" frameborder="no" ></iframe>
+	</div>
+	
+
+</div>
+<script src="/public/static/assets1/layui.all.js"></script>
+<script src="/public/static/assets1/ycgg.js"></script>
+<script>
+    var element = layui.element;
+  
+  	function gengxin(){
+    	alert('已是最新版本');
+    }
+</script>
+</body>
+</html>

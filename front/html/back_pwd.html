@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <style type="text/css">
+        p {
+            margin-bottom: 0.5rem;
+        }
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            color:    #eaeaea;
+        }
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color:    #eaeaea;
+        }
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color:    #eaeaea;
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10+ */
+            color:    #eaeaea;
+        }
+    </style>
+</head>
+<body class="login-bg2">
+  <header class="aui-bar aui-bar-nav" id="aui-header" style="background-color:rgba(0,0,0,0) !important">
+      <a class="aui-btn aui-pull-left" tapmode onClick="closeWin()">
+          <span class="aui-iconfont aui-icon-left"></span>
+      </a>
+      <div id="title" class="aui-title">修改密码</div>
+  <!--</header>
+  <div align="center"><img src="../image/app/logo1.png" style="
+    width: 35%;"></div>-->
+
+  <div class="myui-from">
+    <ul class="myui-from-list">
+      <li class="myui-from-list-item">
+        <div class="myui-code">
+          <input id="username" type="tel" minlength="11" maxlength="11" placeholder="输入手机号码" class="myui-from-code-input">
+          <button id="btn1" type="button" name="button" style="width:20%;float:left;height: 2.2rem;" class="myui-from-code-button" onClick="getCode()">获取</button>
+        </div>
+      </li>
+      <li class="myui-from-list-item">
+        <input id="yzcode" type="tel" minlength="6" maxlength="6" placeholder="请输入验证码" class="myui-from-list-item-input">
+      </li>
+      <li class="myui-from-list-item">
+        <input id="password" type="password" placeholder="请输入新密码" class="myui-from-list-item-input">
+      </li>
+      <li class="myui-from-list-item">
+        <button id="btn2" type="button" name="button" class="myui-from-list-item-button" onClick="toReg()">修改密码</button>
+      </li>
+    </ul>
+  </div>
+
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+    var api_url = localStorage.getItem('api_url');
+    var onoff = true;
+    var code_data = '';
+    apiready = function () {
+      api.parseTapmode();
+      var header = $api.byId('aui-header');
+      $api.fixStatusBar(header);
+      var headerPos = $api.offset(header);
+      var body_h = $api.offset($api.dom('body')).h;
+
+      var username = $api.byId('username');
+      username.value = localStorage.getItem('user_name');
+
+    }
+    function closeWin(){
+        api.closeWin({
+        });
+    }
+
+
+    function toReg(){
+      var password = $api.val($api.byId('password'));
+      var username = $api.val($api.byId('username'));
+      var yzcode = $api.val($api.byId('yzcode'));
+      var user_id = localStorage.getItem('user_id');
+      var lao_pswd = localStorage.getItem('password');
+      if(username == ''){
+        api.alert({
+            title: '调皮~',
+            msg: '请输入登录账号',
+        });
+        return;
+      }
+      if(yzcode == ''){
+        api.alert({
+            title: '调皮~',
+            msg: '请输入验证码',
+        });
+        return;
+      }
+      if(password == ''){
+        api.alert({
+            title: '调皮~',
+            msg: '请输入密码',
+        });
+        return;
+      }
+      if(username.length != 11){
+        api.alert({
+            title: '调皮~',
+            msg: '请输入11位手机号码',
+        });
+        return;
+      }
+      if(username.length < 6){
+        api.alert({
+            title: '调皮~',
+            msg: '请输入6位以上密码',
+        });
+        return;
+      }
+      if (yzcode != code_data) {
+        api.alert({
+            title: '糟糕~',
+            msg: '短信验证码不正确',
+        });
+        return;
+
+      }
+      api.ajax({
+          url: api_url+'/login/login/repass.html',
+          method: 'get',
+          data: {
+              values: {
+                  username:username,
+                  password:password,
+                  key: yzcode
+              }
+          }
+      },function(ret, err){
+          if (ret) {
+              if (ret.code == 0) {
+                api.alert({
+                    title: '修改失败！',
+                    msg: ret.msg,
+                });
+              }else {
+                localStorage.setItem('password',password);
+                api.alert({
+                    title: '修改成功',
+                    msg: '请重新登录！',
+                });
+                api.sendEvent({
+                  name: 'outLogin',
+                  extra: {
+                  }
+                });
+
+                api.closeWin();
+              }
+          } else {
+            api.alert({
+                title: '糟糕~',
+                msg: '网络错误！',
+            });
+          }
+      });
+    }
+
+
+    function openLogin(name,password){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+            name: 'login',
+            url: './login.html',
+            pageParam:{name:name,password:password},
+        });
+    }
+
+    //获取验证码
+    function getCode(){
+      var yzcode = $api.val($api.byId('yzcode'));
+
+      var username = $api.val($api.byId('username'));
+      if (!onoff) {
+        return;
+      }
+      onoff = false;
+
+      if(username == ''){
+        api.alert({
+            title: '调皮~',
+            msg: '请输入手机号码',
+        });
+        onoff = true;
+        return;
+      }
+      if(username.length != 11){
+        api.alert({
+            title: '调皮~',
+            msg: '请输入11位手机号码',
+        });
+        onoff = true;
+        return;
+      }
+      code_data = RndNum(6);
+      var content = escape('#code#='+code_data);
+      //alert(content);
+      api.ajax({
+          url: 'http://959495.xyz/login/login/yzcode.html',
+          method: 'get',
+          data: {
+              values: {
+                  username: username,
+                  key: code_data
+              }
+          }
+      },function(ret, err){
+        if (ret.code==0) {
+          onoff = true;
+          api.alert({
+              title: '提示',
+              msg: ret.msg,
+          });
+          return;
+        }else {
+          onoff = true;
+          getApicode(username,content);
+        }
+      });
+
+    }
+    //生成验证码
+    function RndNum(n){
+      var rnd="";
+      for(var i=0;i<n;i++)
+          rnd+=Math.floor(Math.random()*10);
+      return rnd;
+    }
+
+     function getApicode(username,content) {
+          var btn1 = $api.byId('btn1');
+          api.ajax({
+         url: 'https://yun.tim.qq.com/sms/smscallback'+username+'&tpl_id=313121&tpl_value='+content+'&key=5ab30eb4b7a4d709d1d1e7eb111dc4b3',
+              method: 'get'
+          },function(ret, err){
+                  api.toast({
+                      msg: '发送成功',
+                      duration: 1000,
+                      location: 'middle'
+                  });
+                  var nuw = 120;
+                  var timer = setInterval(function(){
+                    nuw --;
+
+                    if (nuw < 1) {
+                      btn1.innerHTML = '获取';
+                      clearInterval(timer);
+                      onoff = true;
+                    }else {
+                      btn1.innerHTML = nuw+'s';
+                    }
+
+
+                  },1000)
+          });
+        }
+
+
+
+
+    function openWin(name){
+          var delay = 0;
+          if(api.systemType != 'ios'){
+              delay = 300;
+          }
+          api.openWin({
+              name: ''+name+'',
+              url: ''+name+'.html',
+              bounces:false,
+              delay: delay,
+              slidBackEnabled:true,
+              vScrollBarEnabled:false
+          });
+      }
+</script>
+</html>

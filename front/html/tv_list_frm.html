@@ -1,0 +1,946 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+  <!--  <link rel="stylesheet" type="text/css" href="../css/aui.css" />  -->
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/zhibo.css">
+
+    <style>
+
+      /*新加空提示信息*/
+
+      .m-noRecord {
+        padding: .395rem 0 0;
+        text-align: center;
+    }
+
+    .m-noRecord .c-icon-noRecord {
+        background: url(../image/app/Loading2.gif) no-repeat;
+        background-size: cover;
+      width: 15rem;
+      height: 10rem;
+      /* margin: .485rem auto 0; */
+      margin: 0 auto;
+    }
+    .m-noRecord .c-info {
+        background: linear-gradient(to right, #ffd74c, #c7752e);
+        -webkit-background-clip: text;
+        color: transparent;
+        /* color: #cecfce;  */
+        line-height: 4rem;
+        padding: .25rem 0;
+        font-size: .8rem;
+    }
+
+
+
+
+
+/*TV列表样式*/
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a, label, button, input, select {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+img {
+    border: 0;
+}
+
+
+html, body, div, dl, dt, dd, ol, ul, li, h1, h2, h3, h4, h5, h6, p, blockquote, pre, button, fieldset, form, input, legend, textarea, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #08acee;
+}
+
+button {
+    outline: 0;
+}
+
+img {
+    border: 0;
+}
+
+button,input,optgroup,select,textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    outline: none;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: #666;
+}
+
+.clearfix::after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.clearfix {
+}
+
+/* 蹇呰甯冨眬鏍峰紡css */
+.aui-flexView {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.aui-navBar {
+    height: 50px;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    background: url("../images/icon-nav-toop-bg.png") repeat-x;
+    background-size: contain;
+}
+
+.aui-navBar-bg {
+    height: 44px;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    background: url("../images/icon-nav-boot-bg.png") repeat-x;
+    background-size: contain;
+    width: 100%;
+    /* margin-top: 60px; */
+    z-index: 1002;
+    position: absolute;
+    left: 0;
+    top: 50px;
+}
+
+.aui-scrollView {
+    width: 100%;
+    height: 100%;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    margin-bottom: 54px;
+    margin-bottom: 54px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    background-size: 20px;
+    background-repeat: no-repeat;
+}
+
+.aui-center {
+    -webkit-box-ordinal-group: 3;
+    -webkit-order: 2;
+    -ms-flex-order: 2;
+    order: 2;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 50px;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.aui-center-title {
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.aui-tabBar {
+    width: 100%;
+    position: relative;
+    z-index: 100;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 54px;
+    background-color: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 -11px 32px rgba(0,0,0,.08);
+}
+
+.aui-tabBar:before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    height: 1px;
+    width: 100%;
+    background: rgba(0,0,0,.08);
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    -webkit-transform: scaleY(.66667);
+    transform: scaleY(.66667);
+}
+
+.aui-tabBar-item {
+    background: #fff;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #979797;
+    height: 54px;
+}
+
+.aui-tabBar-item a {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    height: 54px;
+}
+
+.aui-tabBar-item a img {
+    display: block;
+    margin: 9px auto 4px;
+    width: 20px;
+}
+
+.aui-tabBar-item a h4 {
+    color: #9a9a9a;
+    font-size: 27px;
+    height: 40px;
+    position: relative;
+    width: 300%;
+    left: -100%;
+    line-height: 40px;
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-transform: scale(.33333);
+    transform: scale(.33333);
+}
+
+.aui-tabBar ul {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.active {
+    background: linear-gradient(0deg,hsla(0,0%,100%,.05),rgba(0,0,0,.05));
+    position: relative;
+    box-shadow: inset 5px 0 3px -3px rgba(0,0,0,.01), inset -5px 0 3px -3px rgba(0,0,0,.01);
+}
+
+.active:before {
+    content: "";
+    width: 1px;
+    position: absolute;
+    top: -25%;
+    height: 150%;
+    left: 0;
+    -webkit-transform: scale(.66667);
+    transform: scale(.66667);
+    background: linear-gradient(0deg,hsla(0,0%,100%,.03),rgba(0,0,0,.03));
+}
+
+.active:after {
+    content: "";
+    width: 1px;
+    position: absolute;
+    top: -25%;
+    height: 150%;
+    right: 0;
+    -webkit-transform: scale(.66667);
+    transform: scale(.66667);
+    background: linear-gradient(0deg,hsla(0,0%,100%,.03),rgba(0,0,0,.03));
+}
+
+.aui-tabBar-fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 49;
+}
+
+.aui-class-list-title {
+    padding: 5px 15px;
+    background: #f2efee;
+    width: 100%;
+    position: relative;
+    font-size: 0.7rem;
+}
+
+.aui-class-list-title:before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid #e1e0de;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.aui-class-list-title:after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #e1e0de;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+}
+
+.aui-class-list-item {
+    padding: 0 15px;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    width: 50%;
+    float: left;
+    position: relative;
+    z-index: 0;
+    font-size: 0.28rem;
+    height: 62px;
+}
+
+.aui-class-list-item:before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    height: 100%;
+    border-right: 1px solid #D9D9D9;
+    -webkit-transform: scaleX(0.5);
+    transform: scaleX(0.5);
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+}
+
+.aui-class-list-item:after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #e1e0de;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+}
+
+.aui-class-list-box {
+    background: #fff;
+    overflow: hidden;
+}
+
+.aui-cell-fl img {
+    width: 40px;
+    margin-right: 15px;
+    display: block;
+    border: none;
+}
+
+.aui-cell-fr {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    color: #333;
+    font-size: 0.85rem;
+}
+
+.aui-cell-tr {
+    padding-right: 13px;
+    position: relative;
+}
+
+.aui-cell-tr:after {
+    content: " ";
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+    border-width: 2px 2px 0 0;
+    border-color: #C8C8CD;
+    border-style: solid;
+    -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    position: relative;
+    top: -2px;
+    position: absolute;
+    top: 50%;
+    margin-top: -4px;
+    right: 0;
+    border-radius: 1px;
+}
+
+    </style>
+
+</head>
+<body>
+
+
+
+                    <div class="aui-tab" style=" background: #fff; ">
+      	                    <div class="tab-panel">
+      	                        <div class="tab-panel-item tab-active">
+      	                            <div class="tab-item">
+      	                                <a class="aui-flex b-line">
+      	                                    <div class="aui-flex-iphone">
+      	                                        <img src="../image/app/tv.png" alt="">
+      	                                    </div>
+      	                                    <div class="aui-flex-box">
+      																				<p>
+      																						<em class="aui-group-three" style=" font-size: 12px; "> 全国电视直播</em>
+      																				</p>
+      	                                        <h3 style=" font-size: 10px; ">在线收看高清CCTV、地方卫视</h3>
+      	                                        <p>
+      	                                            <em class="aui-group-one" style=" font-size: 12px; ">实时更新</em> <em class="aui-group-two" style=" font-size: 12px; ">电视TV</em>
+      	                                        </p>
+
+      	                                    </div>
+      	                                    <div class="aui-flex-support" style=" font-size: 12px; " onclick="baocuo()"  >报错</div>
+      	                                </a>
+
+
+      	                            </div>
+      	                        </div>
+
+
+      	                    </div>
+      	                </div>
+
+
+
+  <div class="wrap">
+    <!-- 游戏 -->
+    <div class="game-page">
+
+      <!-- 视频列表 -->
+    <div class="video-list-wrap" id="liveList">
+  <ul class="clearfix">
+        <div class="aui-class-list-box" id="div_list">
+
+
+
+
+
+
+            <!--加载提示-->
+            <section class="m-noRecord"><div class="c-icon-noRecord"></div> <div class="c-info">奋力加载中...</div></section>
+            <!--加载提示-->
+
+
+
+
+<!--
+                                        <a href="javascript:;" class="aui-class-list-item">
+                                              <div class="aui-cell-fl">
+                                                  <img src="images/icon-cell01.png" alt="">
+                                              </div>
+                                              <div class="aui-cell-fr">系统工具</div>
+                                              <div class="aui-cell-tr"></div>
+                                          </a>
+
+                        -->
+
+
+                          </div>
+
+  </ul>
+    </div>
+    <!-- 视频列表 end-->
+
+    </div>
+    <!-- 游戏 end-->
+  </div>
+</body>
+
+
+<!-- 原模板 -->
+
+<script type="text/x-dot-template" id="template">
+{{~ it.msg : value : index }}
+
+/*
+    <li onclick="openWin('{{= value. url }}')">
+      <div class="video-mask-box">
+        <img src="{{= value. img }}" alt="" class="game-pic">
+      </div>
+      <div class="til">{{= value. title }}</div>
+
+    </li>
+    */
+
+    <a  onclick="openWin('{{= value. url }}')" class="aui-class-list-item">
+                <div class="aui-cell-fl">
+                    <img src="{{= value. img }}" alt="">
+                </div>
+                <div class="aui-cell-fr">{{= value. title }}</div>
+                <div class="aui-cell-tr"></div>
+            </a>
+
+{{~}}
+</script>
+
+
+
+
+
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript">
+
+var imgdz = '';
+var api_url = localStorage.getItem('api_url');
+
+/////  初始化执行   S /////
+/////  apiready  一打开就执行的 函数
+  apiready = function(){
+
+
+    getList();  //调用TV直播列表
+
+
+  }
+
+/////  初始化执行   E /////
+
+
+//////////////////////   获取电视TV直播列表  方法   getList    S //////////////////////
+  function getList(){
+
+    api.showProgress({
+        title: '加载中...',
+        modal: false
+    });
+    var div_list = $api.byId('div_list');
+    var template = $api.byId('template');
+    api.ajax({
+        url: 'http://959495.xyz/login/login/tvlist.html',
+        method: 'get'
+    },function(ret, err){
+        if (ret) {
+          //alert( JSON.stringify( ret ) );
+          var pagefn = doT.template(template.text);
+          div_list.innerHTML = pagefn(ret);
+          api.hideProgress();
+        } else {
+          api.hideProgress();
+            //alert( JSON.stringify( err ) );
+        }
+    });
+
+
+  }
+
+//////////////////////   获取电视TV直播列表  方法   getList    E //////////////////////
+
+
+
+//////////////////////   打开APP时 获取推荐电影列表  方法    GetTvlistDataLoading    定时     S //////////////////////
+
+//定时执行数据加载
+var GetTvlistTimer = setInterval(function(){
+    GetTvlistDataLoading();
+},2000)
+
+//判断是否服务器通信成功
+function GetTvlistDataLoading() {
+
+  api.ajax({
+      url: api_url+'/login/login/banben.html',
+      method: 'get'
+  },function(ret, err){
+      if (ret) {
+
+        getList();   //获取电视直播列表
+        //alert( JSON.stringify( ret ) );
+/*  关闭提示
+        api.toast({
+            msg: '数据已更新',
+            duration: 1000
+        });
+*/
+
+clearInterval(GetTvlistTimer); // 获取成功 清除定时器
+      } /*else {
+        api.toast({
+            msg: '数据获取失败 请检查网络',
+            duration: 1000
+        });
+
+          //alert( JSON.stringify( err ) );
+      }
+      */
+  });
+
+
+}
+
+//////////////////////   打开APP时 获取推荐电影列表  方法    GetVlistDataLoading    定时     E //////////////////////
+
+
+
+//////////////////////   打开电视TV直播播放页  方法         S //////////////////////
+  function openWin(name){
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+//判断是否登录
+    if(user_id==0){
+
+  /*    api.alert({
+          title: '温馨提示',
+          msg: '请先登陆后使用',
+      });
+
+      原弹窗提示*/
+
+      /*新提示*/
+      api.toast({
+          msg: '(欣然影视提醒您！    你还没登陆！)',
+          duration: 2000
+      });
+      api.openWin({
+          name: 'login',
+          url: './login.html',
+          delay: 2000
+      });
+      return;
+
+    }
+
+
+//判断是否会员
+    if (time>timestamp || time == -1) {
+
+
+                                                        //网络连接判断S
+
+
+                                                                            api.ajax({
+                                                                                url: api_url+'/login/login/banben.html',
+                                                                                method: 'get'
+                                                                            },function(ret, err){
+                                                                                if (ret) {
+
+                                                                                             //网络正常   跳转
+
+
+
+
+
+                                                                                                   /*
+                                                                                                   api.showProgress({
+                                                                                                       title: 'VIP登录中',
+                                                                                                       modal: false
+                                                                                                   });
+
+                                                                                             api.toast({
+                                                                                                 msg: '加载中'
+                                                                                             });
+                                                                                             */
+
+                                                                                             var delay = 0;
+                                                                                             if(api.systemType != 'ios'){
+                                                                                                 delay = 300;
+                                                                                             }
+                                                                                             api.openWin({
+                                                                                                 name: 'tv_play_win',
+                                                                                                 url: 'tv_play_win.html',
+                                                                                                 bounces:false,
+                                                                                                 delay: delay,
+                                                                                                 slidBackEnabled:true,
+                                                                                                 vScrollBarEnabled:false,
+                                                                                                 pageParam:{video:name}
+                                                                                             });
+
+
+                                                                                } else {
+
+                                                                                            //网络连接失败 进行提示
+                                                                                            NetworkConnectionFailurePrompt();
+
+                                                              }
+
+
+                                                          });
+                                                      //网络连接判断E
+
+
+
+
+
+
+    }else if (time<timestamp){
+                  VipExpiredHint();   //会员过期弹窗提示
+    }
+
+  }
+
+//////////////////////   打开电视TV直播播放页  方法        E //////////////////////
+
+
+
+
+//////////////////////    会员过期提示  方法  VipExpiredHint   S  //////////////////////
+function VipExpiredHint() {
+
+                  /*会员过期弹窗提示*/
+                  var dialogBox = api.require('dialogBox');
+                  dialogBox.alert({
+                      tapClose: true,  //描述：（可选项）是否点击遮罩层关闭该对话框  默认值：false
+                      texts: {
+                          content: '您的VIP会员已过期',
+                          leftBtnTitle: '在想想',
+                          rightBtnTitle: '去续费'
+                      },
+                      styles:{
+                bg: '#fff',            //（可选项）字符串类型；对话框整体背景配置，支持#、rgb、rgba、img；默认：#fff
+                corner: 10,             //（可选项）数字类型；对话框背景圆角大小；默认：2
+                w: 300,                //（可选项）数字类型；对话框的宽；默认：300
+                title:{                //（可选项）JSON对象；弹窗标题栏样式配置，不传则不显示标题区域
+                    marginT: 20,       //（可选项）数字类型；标题栏与对话框顶端间距；默认：20
+                    icon: 'widget://image/app/dialogBoxTisi.jpg',          //（可选项）字符串类型；标题前面的图标路径，要求本地路径（widget://、fs://）；图片为正方形的，如：50*50、100*100，建议开发者传大小合适的图片以适配高分辨率手机屏幕，不传则不显示
+                    iconSize: 80,      //（可选项）数字类型；icon 图标边长大小,若 icon 不存在则此参数无效；默认：24
+                    titleSize: 14,     //（可选项）数字类型；标题字体大小；默认：14
+                    titleColor: '#000' //（可选项）字符串类型；标题字体颜色，支持#、rgb、rgba；默认：#fff
+                },
+                content:{              //（可选项）JSON 对象；文本内容配置，若不传则不显示该区域
+                    marginT: 20,       //（可选项）数字类型；内容文本顶端与标题栏底端的距离，如果标题栏不存在，则是到窗口顶端的距离；默认：20
+                    marginB: 40,       //（可选项）数字类型；内容文本底端与 left/right 顶端的距离，如果 left/right 都不存在，则是到对话框底端的距离；默认：20
+                    color: '#ff0103',     //（可选项）字符串类型；内容文本字体颜色，支持 rgb、rgba、#；默认：#eee
+                    size: 12           //（可选项）数字类型：内容文本字体大小；默认：12
+                },
+                left:{                 //（可选项）JSON 对象；左边按钮样式配置，不传则不显示左边按钮
+                    marginB: 30,        //（可选项）数字类型；左边按钮的下边距；默认：7
+                    marginL: 30,       //（可选项）数字类型；左边按钮的左边距；默认：20
+                    w: 100,            //（可选项）数字类型；左边按钮的宽；默认：130
+                    h: 40,             //（可选项）数字类型；左边按钮的高；默认：35
+                    corner: 10,         //（可选项）数字类型；左边按钮圆角半径；默认：0.0
+                    bg: '#3d3d3d',        //（可选项）字符串类型；左边按钮的背景，支持rgb、rgba、#、img；默认：'#e0e'
+                    color: '#fff',  //（可选项）字符串类型；左边按钮标题字体颜色，支持rgb，rgba、#；默认：'#007FFF'
+                    size: 12           //（可选项）数字类型；左边按钮标题字体大小；默认：12
+                },
+                right: {               //（可选项）JSON 对象；右边按钮样式配置，不传则不显示右边按钮
+                    marginB: 30,        //（可选项）数字类型；右边按钮的下边距；默认：7
+                    marginL: 40,      //（可选项）数字类型；右边按钮左边距；默认：10
+                    w: 100,            //（可选项）数字类型；右边按钮的宽；默认：130
+                    h: 40,             //（可选项）数字类型；右边按钮的高；默认：35
+                    corner: 10,         //（可选项）数字类型；右边按钮圆角半径；默认：0.0
+                    bg: '#ff0103',        //（可选项）字符串类型；右边按钮的背景，支持rgb、rgba、#、img；默认：'#e0e'
+                    color: '#fff',  //（可选项）字符串类型；右边按钮标题字体颜色，支持rgb、rgba、#；默认：'#007FFF'
+                    size: 12           //（可选项）数字类型；右边按钮标题字体大小；默认：12
+                }
+            }
+                  }, function(ret) {
+                      if (ret.eventType == 'left') {
+                          var dialogBox = api.require('dialogBox');
+                          dialogBox.close({
+                              dialogName: 'alert'
+                          });
+                      }else if (ret.eventType == 'right') {
+                        api.openWin({
+                            name: 'open_vip_win',
+                            url: './open_vip_win.html',
+                            delay: 300
+                        });
+                        var dialogBox = api.require('dialogBox');
+                        dialogBox.close({
+                            dialogName: 'alert'
+                        });
+                      }
+                  });
+                  /*    会员过期弹窗提示结束    */
+
+}
+//////////////////////    会员过期提示 方法 VipExpiredHint  E  //////////////////////
+
+
+//////////////////////    网络连接失败提示  方法  NetworkConnectionFailurePrompt   S  //////////////////////
+function NetworkConnectionFailurePrompt() {
+
+                  /*无网络弹窗提示*/
+                            var dialogBox = api.require('dialogBox');
+                            dialogBox.alert({
+                                tapClose: true,  //描述：（可选项）是否点击遮罩层关闭该对话框  默认值：false
+                                texts: {
+                                    content: '请检查网络是否顺畅',
+                                    leftBtnTitle: '先不管',
+                                    rightBtnTitle: '网络设置'
+                                },
+                                styles:{
+                          bg: '#fff',            //（可选项）字符串类型；对话框整体背景配置，支持#、rgb、rgba、img；默认：#fff
+                          corner: 10,             //（可选项）数字类型；对话框背景圆角大小；默认：2
+                          w: 300,                //（可选项）数字类型；对话框的宽；默认：300
+                          title:{                //（可选项）JSON对象；弹窗标题栏样式配置，不传则不显示标题区域
+                              marginT: 20,       //（可选项）数字类型；标题栏与对话框顶端间距；默认：20
+                              icon: 'widget://image/app/dialogBoxTisi.jpg',          //（可选项）字符串类型；标题前面的图标路径，要求本地路径（widget://、fs://）；图片为正方形的，如：50*50、100*100，建议开发者传大小合适的图片以适配高分辨率手机屏幕，不传则不显示
+                              iconSize: 80,      //（可选项）数字类型；icon 图标边长大小,若 icon 不存在则此参数无效；默认：24
+                              titleSize: 14,     //（可选项）数字类型；标题字体大小；默认：14
+                              titleColor: '#000' //（可选项）字符串类型；标题字体颜色，支持#、rgb、rgba；默认：#fff
+                          },
+                          content:{              //（可选项）JSON 对象；文本内容配置，若不传则不显示该区域
+                              marginT: 20,       //（可选项）数字类型；内容文本顶端与标题栏底端的距离，如果标题栏不存在，则是到窗口顶端的距离；默认：20
+                              marginB: 40,       //（可选项）数字类型；内容文本底端与 left/right 顶端的距离，如果 left/right 都不存在，则是到对话框底端的距离；默认：20
+                              color: '#ff0103',     //（可选项）字符串类型；内容文本字体颜色，支持 rgb、rgba、#；默认：#eee
+                              size: 12           //（可选项）数字类型：内容文本字体大小；默认：12
+                          },
+                          left:{                 //（可选项）JSON 对象；左边按钮样式配置，不传则不显示左边按钮
+                              marginB: 30,        //（可选项）数字类型；左边按钮的下边距；默认：7
+                              marginL: 30,       //（可选项）数字类型；左边按钮的左边距；默认：20
+                              w: 100,            //（可选项）数字类型；左边按钮的宽；默认：130
+                              h: 40,             //（可选项）数字类型；左边按钮的高；默认：35
+                              corner: 10,         //（可选项）数字类型；左边按钮圆角半径；默认：0.0
+                              bg: '#3d3d3d',        //（可选项）字符串类型；左边按钮的背景，支持rgb、rgba、#、img；默认：'#e0e'
+                              color: '#fff',  //（可选项）字符串类型；左边按钮标题字体颜色，支持rgb，rgba、#；默认：'#007FFF'
+                              size: 12           //（可选项）数字类型；左边按钮标题字体大小；默认：12
+                          },
+                          right: {               //（可选项）JSON 对象；右边按钮样式配置，不传则不显示右边按钮
+                              marginB: 30,        //（可选项）数字类型；右边按钮的下边距；默认：7
+                              marginL: 40,      //（可选项）数字类型；右边按钮左边距；默认：10
+                              w: 100,            //（可选项）数字类型；右边按钮的宽；默认：130
+                              h: 40,             //（可选项）数字类型；右边按钮的高；默认：35
+                              corner: 10,         //（可选项）数字类型；右边按钮圆角半径；默认：0.0
+                              bg: '#ff0103',        //（可选项）字符串类型；右边按钮的背景，支持rgb、rgba、#、img；默认：'#e0e'
+                              color: '#fff',  //（可选项）字符串类型；右边按钮标题字体颜色，支持rgb、rgba、#；默认：'#007FFF'
+                              size: 12           //（可选项）数字类型；右边按钮标题字体大小；默认：12
+                          }
+                      }
+                            }, function(ret) {
+                                if (ret.eventType == 'left') {
+                                    var dialogBox = api.require('dialogBox');
+                                    dialogBox.close({
+                                        dialogName: 'alert'
+                                    });
+                                }else if (ret.eventType == 'right') {
+
+
+                                  var openset = api.require('openSet');
+                                  openset.open({
+                                      id: 1
+                                  });
+
+
+                                  var dialogBox = api.require('dialogBox');
+                                  dialogBox.close({
+                                      dialogName: 'alert'
+                                  });
+                                }
+                            });
+                  /*    无网络弹窗提示结束    */
+
+}
+//////////////////////    网络连接错误提示 方法 NetworkConnectionFailurePrompt  E  //////////////////////
+
+//////////////////////    报错按钮打开 方法 baocuo  S  //////////////////////
+function baocuo(){
+
+      api.toast({
+          msg: '开发中'
+      });
+}
+//////////////////////    报错按钮打开 方法 baocuo  E  //////////////////////
+
+
+
+</script>
+</html>

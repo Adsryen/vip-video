@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+
+  <script src="/public/static/assets/js/jquery-1.11.1.min.js"></script>
+
+    <style type="text/css">
+        p {
+            margin-bottom: 0.5rem;
+        }
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            color:    #eaeaea;
+        }
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color:    #eaeaea;
+        }
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color:    #eaeaea;
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10+ */
+            color:    #eaeaea;
+        }
+    </style>
+</head>
+<body class="login-bg2">
+
+
+
+
+<!--
+              <div class="login-font">
+          			<i id="alert">登录</i>
+          		</div>
+          		<div class="am-u-sm-10 login-am-center">
+          			<form class="am-form" method="post" role="form" id="login" >
+          				<fieldset>
+          					<div class="am-form-group">
+          						<input type="text" class="" name="username" id="username" placeholder="账户">
+          					</div>
+          					<div class="am-form-group">
+          						<input type="password" class="" name="passwd" id="passwd" placeholder="密码">
+          					</div>
+          					<p><button type="submit" class="am-btn am-btn-default">登录</button></p>
+          				</fieldset>
+          			</form>
+          		</div>
+              -->
+
+<!-- 找回密码
+  <div class="myui-from">
+    <ul class="myui-from-list">
+      <li class="myui-from-list-item">
+        <div class="myui-code">
+          <input id="username"  name="username"  type="tel" minlength="11" maxlength="11" placeholder="输入手机号码" class="myui-from-list-item-input" disabled="disabled">
+        </div>
+      </li>
+      <li class="myui-from-list-item">
+        <input id="passwd" type="password"  name="passwd"  minlength="6" maxlength="6" placeholder="为了安全请再次输入密码" class="myui-from-list-item-input">
+      </li>
+
+      <li class="myui-from-list-item">
+        <button id="btn2" type="button" name="button" class="myui-from-list-item-button" onClick="toReg()">登录</button>
+      </li>
+    </ul>
+  </div>
+
+-->
+
+
+
+
+<div class="myui-from">
+  <ul class="myui-from-list">
+    <li class="myui-from-list-item">
+      <input type="tel" minlength="11" maxlength="11" id="username" placeholder="请输入账号" class="myui-from-list-item-input" value ="" disabled="disabled">
+    </li>
+    <li class="myui-from-list-item">
+      <input id="password" type="password" placeholder="为了安全请再次输入密码" class="myui-from-list-item-input" value ="">
+    </li>
+    <li class="myui-from-list-item">
+      <button type="button" name="button" class="myui-from-list-item-button" onclick="loginTo()">合伙人登录</button>
+    </li>
+  </ul>
+</div>
+
+
+
+</body>
+
+
+
+
+
+
+
+<!-- Bottom Scripts -->
+<script src="/public/static/assets/js/bootstrap.min.js"></script>
+<script src="/public/static/assets/js/TweenMax.min.js"></script>
+<script src="/public/static/assets/js/resizeable.js"></script>
+<script src="/public/static/assets/js/joinable.js"></script>
+<script src="/public/static/assets/js/xenon-api.js"></script>
+<script src="/public/static/assets/js/xenon-toggles.js"></script>
+<script src="/public/static/assets/js/jquery-validate/jquery.validate.min.js"></script>
+<script src="/public/static/assets/js/toastr/toastr.min.js"></script>
+<!-- JavaScripts initializations and stuff -->
+<script src="/public/static/assets/js/xenon-custom.js"></script>
+
+
+
+
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        api.parseTapmode();
+    };
+</script>
+
+
+<script type="text/javascript">
+    var api_url = localStorage.getItem('api_url');
+    apiready = function () {
+      api.parseTapmode();
+      var header = $api.byId('aui-header');
+      $api.fixStatusBar(header);
+      var headerPos = $api.offset(header);
+      var body_h = $api.offset($api.dom('body')).h;
+
+//获取登录的会员账户
+      var username = $api.byId('username');
+      username.value = localStorage.getItem('user_name');
+
+
+      if (api.pageParam.user) {
+        var username = $api.byId('username');
+        var password = $api.byId('password');
+        password.value = api.pageParam.pass;
+        username.value = api.pageParam.user;
+
+      }
+
+
+    }
+    function closeWin(){
+        api.closeWin({
+        });
+    }
+
+    // function toWin(name){
+    //   api.closeToWin({
+    //       name: name
+    //   });
+    // }
+
+
+
+    function openWin(name){
+          var delay = 300;
+          if(api.systemType != 'ios'){
+              delay = 300;
+          }
+
+
+
+/*
+
+          api.openWin({
+              name: name,
+              url: name+'.html',
+              bounces:false,
+              delay: delay,
+              slidBackEnabled:true,
+              bgColor: '#000',
+              animation:{
+                type:"reveal",                //动画类型（详见动画类型常量）
+                subType:"from_bottom",       //动画子类型（详见动画子类型常量）
+                duration:400
+              },
+              vScrollBarEnabled:false
+          });
+
+          */
+
+      }
+
+
+
+      function loginTo(){
+        var username = $api.val($api.byId('username'));
+				var password = $api.val($api.byId('password'));
+
+        if(username == ''){
+      /*    api.alert({
+              title: '警告！',
+              msg: '请输入登录账号',
+          });
+        原弹窗提示  */
+        api.toast({
+            msg: 'ε=(´ο｀*))) 调皮~   账号都没输入',
+            duration: 5000
+        });
+          return;
+        }
+        if(password == ''){
+        /*           api.alert({
+              title: '警告！',
+              msg: '请输入密码',
+          });
+  原弹窗提示  */
+        api.toast({
+            msg: 'ε=(´ο｀*))) 哎呀~   密码还没输入',
+            duration: 5000
+        });
+          return;
+        }
+  /*       api.showProgress({
+            title: '努力验证中',
+            text: '请骚等...',
+            modal: false
+        });
+原弹窗提示  */
+
+api.toast({
+    msg: 'ヾ(◍°∇°◍)ﾉﾞ 努力验证中……',
+    duration: 5000
+});
+
+
+        api.closeWin({
+            name: 'reg_frm'
+        });
+        //请求数据库并存储用户信息
+        var api_url = localStorage.getItem('api_url');
+        api.ajax({
+            url: 'http://959495.xyz/login/login/veify',
+            method: 'POST',
+            data: {
+                values: {
+                    username: username,
+                    passwd: password,
+                }
+            }
+        },function(ret, err){
+            if (ret) {
+              if (ret.code == 0) {
+            /*    api.hideProgress();
+                alert('账号或密码不正确');
+  原弹窗提示  */
+                api.toast({
+                    msg: '密码不正确或无权限！',
+                    duration: 5000
+                });
+
+
+                return;
+              }else if (ret.code == 1) {
+          /*       alert('登录成功');
+                原弹窗提示  */
+                api.toast({
+                    msg: '合伙人系统登陆成功！',
+                    duration: 5000
+                });
+
+
+                //alert( JSON.stringify( ret ) );
+                  localStorage.setItem('user_name',username);
+                  localStorage.setItem('password',password);
+
+                  api.sendEvent({
+                    name: 'newLoingdata',
+                    extra: {
+                    }
+                  });
+
+
+                  api.hideProgress();
+
+                  api.closeWin({
+                  });
+
+              /*    api.openWin({
+                    name: 'h5',
+                    url: 'http://959495.xyz/index/index/index',
+                   });
+*/
+                   api.openWin({
+                       name: 'video_win',
+                       url: './video_win.html',
+                       delay: 800,
+                       pageParam:{url:'http://959495.xyz/index/index/index'},
+                       bgColor: 'rgba(0,0,0,0)'
+                   });
+
+
+              }
+            } else {
+              api.hideProgress();
+            /*   alert('网络错误！');
+                  原弹窗提示*/
+                  api.toast({
+                      msg: '(欣然影视提醒您！  网络错误 请检查！)',
+                      duration: 5000
+                  });
+
+              //alert( JSON.stringify( err ) );
+              return;
+            }
+        });
+      }
+
+
+</script>
+
+</html>

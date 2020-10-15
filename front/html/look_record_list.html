@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api5.css"/>
+    <style>
+		body{
+
+		}
+		.list{
+		}
+		.list li{
+			box-sizing: border-box;
+			height:73px;
+			width:100%;
+			border-bottom:1px solid #f0f0f0;
+			padding-left:80px;
+		}
+		.left{
+			float:left;
+			width:80px;
+			height:100%;
+			margin-left:-80px;
+		}
+		.logo_frame{
+			width:46px;
+			height:46px;
+			margin-top:17px;
+			margin-left:17px;
+			overflow: hidden;
+		}
+		.logo_frame img{
+			width:100%;
+		}
+		.info{
+			float:left;
+			width:100%;
+
+		}
+		.list_title{
+			box-sizing: border-box;
+			padding-right:10px;
+			margin-top:8px;
+			width:95%;
+			overflow:hidden;
+			font-size:15px;
+			line-height:40px;
+			font-family: '黑体';
+			min-height:40px;
+
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space:nowrap;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		}
+		.list_date{
+			margin-top:0px;
+			font-size:14px;
+			color:#767676;
+		}
+		.empty{
+			width:100%;
+			height:30px;
+			line-height:20px;
+			font:14px;
+			text-align:center;
+			margin-top:10px;
+
+		}
+
+
+	/*新加空提示信息*/
+
+	.m-noRecord {
+    padding: .395rem 0 0;
+    text-align: center;
+}
+
+.m-noRecord .c-icon-noRecord {
+    background: url(../image/app/Browsehistory.png) no-repeat;
+    background-size: cover;
+		width: 5rem;
+    height: 4.6rem;
+    /* margin: .485rem auto 0; */
+    margin: 0 auto;
+	  margin-top: 50px;
+		opacity:0.4;    /*图片透明度*/
+		filter:alpha(opacity=40); /* 针对 IE8 以及更早的版本 */
+}
+.m-noRecord .c-info {
+    color: #cecfce;
+    line-height: 4rem;
+    padding: .25rem 0;
+    font-size: .8rem;
+}
+
+
+    </style>
+</head>
+<body>
+
+	<ul id="list" class="list">
+		<script id="list_template" type="text/x-dot-template">
+			<li onclick="go_detail('{{=it.url}}', '{{=it.title}}');">
+				<div class="left">
+					<div class="logo_frame">
+						<img src="{{=it.logo}}" />
+					</div>
+				</div>
+				<div class="info">
+					<div class="list_title">{{=it.title}}</div>
+					<div class="list_date">{{=it.date_str}}</div>
+				</div>
+			</li>
+		</script>
+	</ul>
+</body>
+<script type="text/javascript" src="../script/api5.js"></script>
+<script type="text/javascript" src="../script/zepto5.js"></script>
+<script type="text/javascript" src="../script/doT5.js"></script>
+<script type="text/javascript" src="../script/date.min5.js"></script>
+<script type="text/javascript">
+    var jx_url2 = localStorage.getItem('jx_url2');
+	var list_template;
+	apiready = function(){
+		list_template = $("#list_template").text();
+		update();
+
+	};
+
+	function update(){
+		api.ajax({
+	        url:'http://959495.xyz/login/login/newjilu?uid=' + localStorage.getItem('user_id')
+        },function(ret,err){
+        	//coding...
+        	if(ret.code==0){
+        		//$("#list").empty();
+      //  		$("#list").html('<div  class="empty">'+ ret.msg +'</div>');
+ 		$("#list").html('<section class="m-noRecord"><div class="c-icon-noRecord"></div> <div class="c-info">看过的那些精彩视频会保存在这里</div></section>');
+
+
+
+        		return;
+        	}
+
+
+        	var array = ret.msg;
+        	//alert(JSON.stringify(ret));
+        	for(var i=0;i<array.length;i++){
+        		var p = array[i];
+        		if(p.ping =="优酷"){
+        			p["logo"] = "../image/default_picture/youku.png"
+        		}else if(p.ping == "爱奇艺"){
+        			p["logo"] = "../image/default_picture/iqiyi.png"
+      			}else if(p.ping == "腾讯"){
+        			p["logo"] = "../image/default_picture/tengxun.png"
+						}else if(p.ping == "搜狐"){
+							p["logo"] = "../image/default_picture/sohu.png"
+						}else if(p.ping == "PPTV"){
+							p["logo"] = "../image/default_picture/pptv.png"
+						}else if(p.ping == "芒果"){
+							p["logo"] = "../image/default_picture/mgtv.png"
+						}else if(p.ping == "M1905"){
+							p["logo"] = "../image/default_picture/m1905.png"
+						}else if(p.ping == "暴风"){
+							p["logo"] = "../image/default_picture/baofeng.png"
+						}else if(p.ping == "乐视"){
+							p["logo"] = "../image/default_picture/letv.png"
+						}else if(p.ping == "风行"){
+							p["logo"] = "../image/default_picture/fengxing.png"
+						}else if(p.ping == "未知"){
+							p["logo"] = "../image/default_picture/weizhi.png"
+        		}
+        		var date_str = "";
+        		try{
+        			var date = new Date();
+        			date.setTime(p.time*1000);
+        			date_str = date.format('MM-dd hh:mm');
+        		}catch(e){
+        		}
+        		p["date_str"] = date_str;
+
+        	}
+
+	   		var text = "";
+
+			for(var i=0;i<array.length;i++){
+				var p = array[i];
+				text = text + doT.template(list_template)(p);
+			}
+			$("#list").html(text);
+
+
+        });
+	}
+
+	function go_detail(dataurl2, page_title){
+		api.openWin({
+           name: 'play_win',
+           url: './play_win.html',
+           delay: 300,
+           pageParam:{
+           		url:jx_url2+dataurl2,
+           		srcUrl:dataurl2,
+           		title:page_title,
+           		needRecordHistory: false
+           	},
+           //pageParam:{url:dataurl2},
+           bgColor: '#000000'
+       });
+	}
+
+
+</script>
+</html>

@@ -1,0 +1,73 @@
+<?php if(session('power')=='0'){?>
+<div class="row">
+    <div class="col-md-12">
+<div class="panel panel-default">
+
+
+  <!--标题-->
+         
+       <div class="panel-heading">
+              
+               <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> 直播间添加
+       		  </div>
+
+      </div>
+       
+   
+    <!--标题-->
+
+
+    <div class="panel-body">
+
+        <form role="form" id="form1"  method="post" action="{:url('zhibo/create')}" enctype="multipart/form-data" class="validate">
+
+            <div class="form-group">
+                <label class="control-label">图片</label>
+                <input type="file" class="form-control" name="img" />
+            </div>
+
+          
+            <div class="form-group">
+                <label class="control-label">标题名称</label>
+
+                <input type="text" class="form-control" name="title"  placeholder="" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">直播源</label>
+
+                <input type="text" class="form-control" name="url"  placeholder="" />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">提交</button>
+                <button type="reset" class="btn btn-white">重置</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+    </div>
+
+</div>
+
+{$code?'
+<div class="col-md-6">
+    <div class="alert alert-danger" id="alert" style="position:fixed;right:0px;bottom:0px;  width: 350px">
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong> 糟糕 !</strong> '.$code.'
+    </div>
+</div>
+
+':''}
+<script>
+    setTimeout("$('#alert').fadeOut(1000)",2000)
+</script>
+
+<?php }?>

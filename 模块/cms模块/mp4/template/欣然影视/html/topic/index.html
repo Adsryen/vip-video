@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>专题首页 - 精品专题 - 推荐专题 - {$maccms.site_name}</title>
+<meta name="keywords" content="电影专题,电视剧专题,综艺专题,动漫专题,推荐专题,专题收录">
+<meta name="description" content="本站提供最新最全精品专题数据">
+{include file="public/include"}
+<style>
+#jswbox ul li:nth-child(1){display: block; width: auto; height: 380px; top: 20px; left: 0px; z-index: 1; }#jswbox ul li:nth-child(2){display: block; width: auto; height: 380px; top: 20px; left: 0px; z-index: 2; }#jswbox ul li:nth-child(3){display: block; width: auto; height: 380px; top: 20px; left: 200px; z-index: 3;}#jswbox ul li:nth-child(4){display: block; width: auto; height: 380px; left: 388px; z-index: 4; top: 0; }#jswbox ul li:nth-child(5){display: block; width: auto; height: 380px; left: 668px; z-index: 3; top: 20px;}#jswbox ul li:nth-child(6){display: block; width: auto; height: 380px; left: 834px; z-index: 2; top: 20px;  }#jswbox ul li:nth-child(7){display: block; width: auto; height: 380px; top: 20px; left: 450px; z-index: 1; }
+</style>
+</head>
+<body>
+{include file="public/head"}
+<div class="icon">
+	<div class="container">
+		<section class="art-top clearfix">
+		<div class="tv-hd">
+			<h2>影视专题</h2>
+		</div>
+		<div class="tv-bd js-tab-con-list">
+			<div class="js-tab-con show">
+				<ul class="tv-topiclist">{maccms:topic num="12" paging="yes" order="desc" by="time"}
+					<li>
+					<div class="v-pic">
+						<img data-src="{$vo.topic_pic|mac_url_img}" class="thumb" alt="{$vo.topic_name}" src="{$vo.topic_pic|mac_url_img}" data-bd-imgshare-binded="1" style="display: block;">
+						<div class="v-tips">
+							推荐影片：{$vo.topic_rel_vod|explode=',',###|count}部
+						</div>
+						<a href="{:mac_url_topic_detail($vo)}" title="{$vo.topic_name}" class="v-playBtn"><i></i></a>
+					</div>
+					<div class="v-txt">
+						<span class="v-tit"><a href="{:mac_url_topic_detail($vo)}" title="{$vo.topic_name}">{$vo.topic_name}</a></span>
+					</div>
+					</li>{/maccms:topic}
+				</ul>
+			</div>
+		</div>
+		<div>
+{include file="public/paging"}
+	</div>
+	</section><section class="imain clearfix">
+	<div class="tv-hd">
+		<h2>最近影片</h2>
+	</div>
+	<div class="tv-bd js-tab-con-list">
+		<div class="js-tab-con show">
+			<ul class="tv-list">{maccms:vod num="8" type="1,2" order="desc" by="time"}
+				<li>
+				<div class="v-pic">
+					<img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name}">
+					<div class="v-tips">{include file="public/serial1"}</div>
+					<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" class="v-playBtn"><i></i></a>
+				</div>
+				<div class="v-txt">
+					<span class="v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></span>
+				</div>
+				</li>{/maccms:vod}
+			</ul>
+		</div>
+	</div>
+	</section>
+</div>
+</div>
+{include file="public/foot"}
+<script src="{$maccms.path_tpl}js/lazyload.min.js"></script>
+<script src="{$maccms.path_tpl}js/app.js"></script>
+</body>
+</html>

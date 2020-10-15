@@ -1,0 +1,113 @@
+<?php if(session('power')=='0'){?>
+<div class="row">
+    <div class="col-md-12">
+<div class="panel panel-default">
+
+
+
+  <!--标题-->
+         
+       <div class="panel-heading">
+              
+               <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> 用户添加
+       		  </div>
+
+      </div>
+       
+   
+    <!--标题-->
+  
+  
+
+    <div class="panel-body">
+
+        <form role="form" id="form1" method="post" action="{:url('vip/add')}" class="validate">
+
+            <div class="form-group">
+                <label class="control-label">账号</label>
+
+                <input type="text" class="form-control" name="name" data-validate="required,minlength[4],maxlength[18]" data-message-required="账号必填,长度最小为4个字符,最大为18个字符" placeholder="账号" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">密码</label>
+
+                <input type="password" class="form-control" id="password" name="password" data-validate="required,minlength[4],maxlength[18]"  data-message-required="密码必填,长度最小为4个字符,最大为18个字符" placeholder="密码" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">确认密码</label>
+
+                <input type="password" class="form-control" name="_password" data-validate="required,minlength[4],equalTo[#password],maxlength[18]" data-message-required="确认密码必填,长度最小为4个字符,最大为18个字符,并与密码一致" placeholder="确认密码" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">开通</label>
+
+
+                <select name="ctime" id="ss" class="form-control">
+
+                     <option value="0.5"}>七天0.5点</option>
+                     <option value="1"}>一个月1点</option>
+                     <option value="2"}>三个月2点</option>
+                     <option value="8"}>一年8点</option>
+                     <option value="10"}>永久10点</option>
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">提交</button>
+                <button type="reset" class="btn btn-white">重置</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{$code=='err3'?'
+<div class="col-md-6">
+    <div class="alert alert-danger" id="alert" style="position:fixed;right:0px;bottom:0px;  width: 350px">
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong> 糟糕 !</strong> 您的余额不足，请联系管理员充值
+    </div>
+</div>
+
+':''}
+{$code=='err1'?'
+<div class="col-md-6">
+    <div class="alert alert-danger" id="alert" style="position:fixed;right:0px;bottom:0px;  width: 350px">
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong> 糟糕 !</strong> 添加失败 .用户已存在
+        .请重新添加
+    </div>
+</div>
+
+':''}
+
+{$code=='err2'?'
+<div class="col-md-6">
+    <div class="alert alert-danger" id="alert" style="position:fixed;right:0px;bottom:0px;  width: 350px">
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong> 糟糕 !</strong> 添加失败
+        .请重新添加
+    </div>
+</div>
+
+':''}
+<script>
+    setTimeout("$('#alert').fadeOut(1000)",2000)
+</script>
+      <?php }?>

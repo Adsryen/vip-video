@@ -1,0 +1,5 @@
+define('DB_USERTABLE', 'ap_user');  //充值用户所在数据库表名
+define('DB_USERMONEY', 'lasttime');  //充值用户所在表中的金额字段名
+define('DB_USERNAME', 'username');  //充值用户名的字段名 根据用户名转换为id
+define('DB_USERSJ', 'parentid');  //充值用户的上级的字段名
+define('DB_USERJE', 'moneys');  //充值用户的上级余额的字段名

@@ -1,0 +1,152 @@
+
+<?php if(session('power')=='0'){?>
+
+<div class="page-title">
+
+    <div class="title-env">
+        <h1 class="title">推荐电影管理</h1>
+    </div>
+
+    <div class="breadcrumb-env">
+
+        <ol class="breadcrumb bc-1">
+            <li>
+                <a href="{:url('/')}"><i class="fa-home"></i>Home</a>
+            </li>
+
+            <li class="active">
+
+                <strong>tuijian</strong>
+            </li>
+        </ol>
+
+    </div>
+
+</div>
+<!-- Responsive Table -->
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+
+                <div class="panel-options">
+
+
+                    <a href="#" data-toggle="panel">
+                        <span class="collapse-icon">&ndash;</span>
+                        <span class="expand-icon">+</span>
+                    </a>
+
+                    <a href="#" data-toggle="reload">
+                        <i class="fa-rotate-right"></i>
+                    </a>
+
+                    <a href="#" data-toggle="remove">
+                        &times;
+                    </a>
+
+                </div>
+                          <div>推荐电影会在播放页显示，建议不要太多 推荐精品电影即可</div>
+            </div>
+
+            <div class="panel-body">
+                <div class="table-responsive" data-pattern="priority-columns" data-focus-btn-icon="fa-asterisk"
+                     data-sticky-table-header="true" data-add-display-all-btn="true" data-add-focus-btn="true">
+
+                    <div class="btn-toolbar">
+                        <div class="btn-group focus-btn-group">
+                            <a href="{:url('tuijian/add')}">
+                                <button class="btn btn-default"><i class="el-pencil"></i> 添加</button>
+                            </a>
+                        </div>
+
+
+                       <!-- <div class="btn-group dropdown-btn-group pull-right">
+                            <?php if(session('power')=='0'){?>
+                            <a href="javascript:;" onclick="del('')" class=btn-single">
+                                <button class="btn btn-danger" ><i class="el-cancel-circled2"></i>批量删除
+                                </button>
+                            </a>
+                            <?php }?>
+
+                        </div>
+                        -->
+                    </div>
+  <div class="table-responsive" data-pattern="priority-columns" data-focus-btn-icon="fa-asterisk"
+                     data-sticky-table-header="true" data-add-display-all-btn="true" data-add-focus-btn="true">
+                    <table cellspacing="0" class="table table-small-font table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th style="width: 120px">图片</th>
+                            <th>电影标题</th>
+                            <th>播放地址</th>
+
+                            <th style="width: 150px">操作</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {volist name="list" id="vo"}
+                        <tr>
+
+                            <th >
+                                <img style="width: 60px; height: 80px" src="{$vo.img}">
+                            </th>
+                            <th >
+                                {$vo.title}
+                            </th>
+                            <th >
+                                {$vo.url}
+                            </th>
+                           <th style=" text-align: center;"> <a href="{:url('tuijian/update',['id'=>$vo['id']])}" title="修改" > <i class="el-edit"></i></a>
+                               &nbsp;
+                               <a href="{:url('tuijian/del',['id'=>$vo['id']])}" title="删除" class=btn-single"><i class="el-trash-circled"></i></a></th>
+
+                            </td>
+
+                        </tr>
+                        {/volist}
+                        </tbody>
+                    </table>
+</div>
+                    {$list->render()}
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+{$code=='0'?'
+<div class="col-md-6">
+    <div class="alert alert-danger" id="alert" style="position:fixed;right:0px;bottom:0px;  width: 350px">
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong> 糟糕 !</strong> '.$msg.'
+    </div>
+</div>
+
+':''}
+{$code=='1'?'
+<div class="col-md-6" id="alert" style="position:fixed;right:0px;bottom:0px;  width: 350px">
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">Close</span>
+        </button>
+
+        <strong>恭喜 !</strong> '.$msg.'.
+    </div>
+</div>
+
+':''}
+                                 <?php }?>

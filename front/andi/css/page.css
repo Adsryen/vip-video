@@ -1,0 +1,149 @@
+html{
+	font-size:62.5%;
+}
+body{
+	background: #f0f0f0;
+	font-size: 14px;
+	color: #333;
+}
+.bg-gray{
+	background: #f3f3f3;
+}
+.flex{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+/*page*/
+.personal-top{
+	overflow: hidden;
+	margin-bottom: 1.5rem;
+	background: #fff; 
+}
+.personal-top .wrap{
+	width: 90%;
+	margin: 1.5rem auto;
+	border-radius: 10px;
+	background: #fff;
+	box-shadow: 0 0 10px #dfdfdf;
+	padding: 1rem 1.5rem;
+}
+.wrap .top-left{
+	width: 7rem;
+	height: 7rem;
+	border-radius: 50%;
+}
+.wrap .top-left img{
+	display: block;
+	max-width: 100%;
+}
+.wrap .top-right{
+	width: 70%;
+}
+.top-right .level h3{
+	font-size: 1.8rem;
+	color: #333;
+}
+.top-right .level h3 img{
+	display: inline-block;
+	width: 1.6rem;
+	vertical-align: middle;
+	margin-left: .4rem;
+}
+.top-right .level p span{
+	display: inline-block;
+	border: 1px solid #ed2e4b;
+	color: #ed2e4b;
+	border-radius: 20px;
+	padding: 0 .6rem;
+	font-weight: 500;
+}
+.top-right .sign-in{
+	background: #ed2e4b;
+	border-radius: 4px;
+	padding: .3rem 1rem;
+}
+.top-right .sign-in a{
+	color: #fff;
+	display: block;
+	font-size: 1.5rem;
+	vertical-align: middle;
+}
+.personal-top .personal_tit a{
+	color: #333;
+	text-align: center;
+}
+.personal-top .personal_tit a p{
+	font-size: 1.6rem;
+}
+
+.personal-top .subnav{
+	width: 90%;
+	margin: 0 auto 1rem;
+}
+.personal-top .subnav a{
+	text-align: center;
+	color: #333;
+}
+.personal-top .subnav i{
+	font-size: 3rem;
+	display: inline-block;
+	height:3.4rem;
+	line-height: 3.4rem;
+	color: #f1586f;
+	vertical-align: middle;
+}
+.personal-top .subnav i.icon-huiyuan{
+	font-size: 3.6rem;
+}
+.personal-top .subnav i.icon-jinbi{
+	font-size: 2.8rem;
+}
+.personal-top .subnav i.icon-yonghuzhangce{
+	font-size: 2.6rem;
+}
+.personal-top .subnav i.icon-qiamizhifu{
+	font-size: 2.5rem;
+}
+.personal-top .subnav p{
+	line-height: 2.6rem;
+}
+
+.personal_list{
+	background: #fff;
+	overflow: hidden;
+}
+.personal_list a{
+	display: block;
+	padding: 0 5%;
+	height: 5rem;
+	line-height: 5rem;
+	border-bottom: 1px solid #f3f3f3;
+	background: url(../img/27.png) no-repeat 96% center;
+	background-size: .8rem;
+}
+.personal_list a span{
+	float: left;
+	height: 5rem;
+	line-height: 5rem;
+}
+.personal_list a img{
+	width: 2rem;
+	margin-right: 1rem;
+	vertical-align: middle;
+}
+.personal_list a h3{
+	float: left;
+	line-height: 5rem;
+	color: #333;
+	font-size: 1.6rem;
+}
+.personal_list a p{
+	float: right;
+	color: #999;
+	font-size: 1.6rem;
+	vertical-align: middle;
+	height: 5rem;
+	line-height: 5rem;
+	padding-right: 1.5rem;
+}

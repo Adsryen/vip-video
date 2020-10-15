@@ -1,0 +1,27 @@
+            <section class="imain clearfix">
+                <ul class="sel_list">{maccms:type ids="1,2,3,4" order="asc" by="sort"}
+                    <li>
+                        <dl>
+                            {switch name="vo.type_id" }
+    {case value="1"}<dt class="yellow">{$vo.type_name}</dt>{/case}
+    {case value="2"}<dt class="blue">{$vo.type_name}</dt>{/case}
+	{case value="3"}<dt class="green">{$vo.type_name}</dt>{/case}
+    {default /}<dt class="red">{$vo.type_name}</dt>
+{/switch}
+                            <dd>
+                      
+                                <p class="clearfix"><span class="s_tit">地 区：</span>
+									{maccms:foreach name=":explode(',',$vo.type_extend.area)" id="vo2" key="key2"}
+									<span><a href="{:mac_url_type($vo,['area'=>$vo2],'show')}" title="{$vo2}">{$vo2}</a></span>
+									{/maccms:foreach}
+                                </p>
+                                <p class="clearfix"><span class="s_tit">年 代：</span>
+									{maccms:foreach name=":explode(',',$vo.type_extend.year)" id="vo2" key="key2"}
+                                    <span><a href="{:mac_url_type($vo,['year'=>$vo2],'show')}" title="{$vo2}">{$vo2}</a></span>
+									{/maccms:foreach}
+                                </p>
+                            </dd>
+                        </dl>
+                    </li>{/maccms:type}
+                </ul>
+            </section>
